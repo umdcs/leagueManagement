@@ -1,0 +1,25 @@
+League (Interface)
+
+•Teams (Interface)
+ oRecord
+  *Current score
+  *Match History (Sprint 2)
+ oPlayers
+ oSchedule (Empty Declaration)
+ oScore entering (via team menu)
+ oCurrent Matchup (Grants skip score editing access)
+  *Possible button to allow skip access
+
+•Schedule (Interface)
+ oRound Robin Standard Season
+  *Sprint 2
+ oPlayoff Brackets
+  *Sprint 2
+
+•Scoreboard
+ oTwo tables
+  *1st table: Team standings 
+   •Array/list of team objects
+  *2nd table: Matchup scores
+   •2D array of scores
+   •Scores can be added to table via team score accessor
