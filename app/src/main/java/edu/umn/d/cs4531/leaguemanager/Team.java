@@ -6,15 +6,17 @@ import java.util.LinkedList;
  * Created by Mark W on 3/14/2017.
  */
 
-public class Team implements Cloneable {
+public class Team {
 
     //Variables
-    private int wins = 0;
-    private int losses = 0;
-    private int ties = 0;
-    private LinkedList<String> PlayerList = null;
-    private LinkedList<Match> Schedule = null;
-    private LinkedList<Match> FinishedMatches;
+
+
+    private static int wins = 0;
+    private static int losses = 0;
+    private static int ties = 0;
+    private static LinkedList<String> PlayerList = null;
+    private static LinkedList<Match> Schedule = null;
+    private static LinkedList<Match> FinishedMatches;
     private static String teamName;
 
     //Constructor
