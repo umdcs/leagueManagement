@@ -1,0 +1,11 @@
+{
+  "name": "leaguetester",
+  "version": "1.0.0",
+  "description": "Simple server to receive JSON data from a league manager. Used for testing purposes only!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "LeagueManagerTeam",
+  "license": "ISC"
+}
