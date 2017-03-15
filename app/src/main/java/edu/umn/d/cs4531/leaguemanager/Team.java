@@ -9,13 +9,15 @@ import java.util.LinkedList;
 public class Team {
 
     //Variables
+
+
     private static int wins = 0;
     private static int losses = 0;
     private static int ties = 0;
     private static LinkedList<String> PlayerList = null;
     private static LinkedList<Match> Schedule = null;
     private static LinkedList<Match> FinishedMatches;
-    private String teamName;
+    private static String teamName;
 
     //Constructor
     public Team(String name){
@@ -32,7 +34,7 @@ public class Team {
     }
 
     //Accessors and Basic Mutators
-    public String getTeamName(){ return teamName; }
+    public static String getTeamName(){ return teamName; }
 
     public int getWins() { return wins; }
 
