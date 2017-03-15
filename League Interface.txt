@@ -11,6 +11,8 @@ League (Interface)
   *Possible button to allow skip access
 
 •Schedule (Interface)
+ oMatches(Class)
+  *Handles date, time, teams, and curling lane
  oRound Robin Standard Season
   *Sprint 2
  oPlayoff Brackets
