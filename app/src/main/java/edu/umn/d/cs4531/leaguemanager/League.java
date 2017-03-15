@@ -48,7 +48,8 @@ public class League {
     /*
      */
     private LinkedList<Match> createOneWeekOfMatches(LinkedList<Team> currRotation){
-
+        double listSize = currRotation.size() / 2;
+        int testOdd = listSize;
         return null;
     }
 
