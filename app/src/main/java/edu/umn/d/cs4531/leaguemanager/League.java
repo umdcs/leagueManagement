@@ -15,7 +15,7 @@ public class League {
     private static boolean scheduleFinalized; //Prevents teams and schedules being added and removed after the schedule is made
 
     //Constructor
-    public League(String name){ LeagueName = name; }
+    League(String name){ LeagueName = name; }
 
     //Accessors and Basic Mutators
     public String getLeagueName() { return LeagueName; }
