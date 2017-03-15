@@ -42,7 +42,7 @@ var teamList = {
 var leagueListData = {
     leagueList:[]
 };
-//Single matchup score to be inputted into server.
+//Single matchup score to be inputed into server.
 var matchScore = {
     "ScoreA":0,
     "ScoreB":0
@@ -62,8 +62,23 @@ var leagueStandings = {
     leagueStandingsList:[]
 };
 
+app.get('/', function(request, response)
+	{
+	    response.writeHead(200, {'Content-Type': 'text/html'});
+	    response.write('<!DOCTYPE html><head><title>Dashboard</title></head></body>');
+	    response.write('<H1>League Test Server</H1>');
+	    response.write('<p>Report: Client sends all testing data to display on this server. This information is to display on the main page; information includes leagues, teams, rosters and more.</p>');
+	    response.write('</body></html>');
+	    response.end();
+	    console.log('Recieved Dashboard request!');
+	});
+app.get('/', function(request, response)
+	{
+	    response.json(league);
+	    response.json(leagueStandings);
+	    console.log('GET REQUEST: Test Server with JSON');
 
-
+	});
 
 app.use(function(req, res, next){
     res.status(404).send('Sorry cant find that!');

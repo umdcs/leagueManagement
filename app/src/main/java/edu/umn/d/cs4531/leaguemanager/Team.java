@@ -15,7 +15,7 @@ public class Team implements Cloneable {
     private LinkedList<String> PlayerList = null;
     private LinkedList<Match> Schedule = null;
     private LinkedList<Match> FinishedMatches;
-    private String teamName;
+    private static String teamName;
 
     //Constructor
     public Team(String name){
@@ -32,7 +32,7 @@ public class Team implements Cloneable {
     }
 
     //Accessors and Basic Mutators
-    public String getTeamName(){ return teamName; }
+    public static String getTeamName(){ return teamName; }
 
     public int getWins() { return wins; }
 
