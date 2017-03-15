@@ -1,0 +1,83 @@
+Notes:
+ • Not everything you may need is implemented yet. I’m focusing on getting basics in, so let me know if you need something coded in quickly.
+ • The Match class uses the Java Calendar class. I’m planning to either simplify this or make it friendlier to use in time.
+ • Currently planning on having the League teams and schedules become locked once the schedule is made, in order to prevent errors arising with teams being added/removed
+
+League
+ • Constructor
+  o League(String name)
+   * Creates league and sets the league name
+  o No Default Constructor
+ • getLeagueName() : String
+  o Returns league name
+ • getTeams() : LinkedList<Team>
+  o Returns the list of teams
+ • addTeam(String name) : Boolean
+  o Add a team to the roster with the given name. Returns true if successful
+ • removeTeam(String name) : Boolean
+  o Remove the team from the roster. Returns true if successful
+ • getFullSchedule() : LinkedList<Match>
+  o Returns the full list of matches, both complete and upcoming
+  o May change if I implement a schedule class
+
+Team
+ • Constructors
+  o Team(String name)
+   * Creates team and sets the team name
+  o Team(Team)
+   * Copy Constructor
+ • Accessors
+  o getTeamName() : String
+  o getWins() : int
+  o getLosses() : int
+  o getTies() : int
+  o getPlayerList() : LinkedList<String>
+  o getSchedule() : LinkedList<Match>
+   * Returns upcoming matches
+  o getFinishedMatches() : LinkedList<Match>
+   * Returns completed matches
+ • Mutators
+  o addPlayer(String player) : void
+  o removePlayer(String player) : Boolean
+   * Returns true if successful
+  o addMatch(Match match) : void
+   * Add a single match
+  o addSchedule(LinkedList<Match> matches) : void
+   * Add an entire schedule
+  o removeMatch() : Match
+   * Removes and returns current match
+  o peekMatch() : Match
+   * Returns, but doesn’t remove, current match
+  o enterScore(int teamScore, int opponentScore) : void
+   * Sets the match score, and updates both team’s wins and losses
+   * Calls removeMatch() by default
+
+Match
+ • Constructors
+  o Match()
+   * Default Constructor, sets all values to 0 or null
+  o Match(Team teamA, Team teamB, int lane, Calendar time)
+   * Sets the following:
+    • Team A = first team passed in
+    • Team B = second team passed in
+    • Curling lane = integer passed in
+    • PlayTime = time and date set in Calendar class
+  o Match(Match)
+   * Copy Constructor
+ • Accessors
+  o setTeamA(Team A) : void
+  o setTeamB(Team B) : void
+  o setTeamAScore(int score) : void
+  o setTeamBScore(int score) : void
+  o setLane(int lane) : void
+  o setPlayTime(Calendar time) : void
+ • Mutators
+  o getTeamA() : Team
+  o getTeamB() : Team
+  o getTeamAScore() : int
+  o getTeamBScore() : int
+  o getLane() : int
+  o getPlayTime() : Calendar
+ • Other
+  o getWinner() : Team
+   * Returns the winning team based on entered scores. Returns null if a tie

@@ -30,6 +30,7 @@ public class Match {
         lane = newLane;
     }
 
+    //Copy Constructor
     public Match(Match match) {
         teamAScore = match.getTeamAScore();
         teamBScore = match.getTeamBScore();
@@ -40,56 +41,33 @@ public class Match {
     }
 
     //Accessors and Basic Mutators
-    public void setTeamA(Team A) {
-        teamA = A;
-    }
+    public void setTeamA(Team A) { teamA = A; }
 
-    public void setTeamB(Team B) {
-        teamB = B;
-    }
+    public void setTeamB(Team B) { teamB = B; }
 
-    public Team getTeamA() {
-        return teamA;
-    }
+    public Team getTeamA() { return teamA; }
 
-    public Team getTeamB() {
-        return teamB;
-    }
+    public Team getTeamB() { return teamB; }
 
-    public void setTeamAScore(int score) {
-        teamAScore = score;
-    }
+    public void setTeamAScore(int score) { teamAScore = score; }
 
-    public void setTeamBScore(int score) {
-        teamBScore = score;
-    }
+    public void setTeamBScore(int score) { teamBScore = score; }
 
-    public int getTeamAScore() {
-        return teamAScore;
-    }
+    public int getTeamAScore() { return teamAScore; }
 
-    public int getTeamBScore() {
-        return teamBScore;
-    }
+    public int getTeamBScore() { return teamBScore; }
 
-    public void setLane(int newLane) {
-        lane = newLane;
-    }
+    public void setLane(int newLane) { lane = newLane; }
 
-    public int getLane() {
-        return lane;
-    }
+    public int getLane() { return lane; }
 
-    public void setPlayTime(Calendar time) {
-        playTime = time;
-    }
+    public void setPlayTime(Calendar time) { playTime = time; }
 
-    public Calendar getPlayTime() {
-        return playTime;
-    }
+    public Calendar getPlayTime() { return playTime; }
 
     //Other Methods
     public Team getWinner() {
+        determineWinner();
         Team winningTeam = null;
         if(winner == 0) winningTeam = teamA;
         else if(winner == 1) winningTeam = teamB;

@@ -1,66 +1,71 @@
 package edu.umn.d.cs4531.leaguemanager;
 
 import java.util.LinkedList;
-import java.util.Queue;
+
 /**
  * Created by Mark W on 3/14/2017.
  */
 
-public class Team {
+public class Team implements Cloneable {
 
     //Variables
     private int wins = 0;
     private int losses = 0;
     private int ties = 0;
     private LinkedList<String> PlayerList = null;
-    private Queue<Match> Schedule = null;
+    private LinkedList<Match> Schedule = null;
+    private LinkedList<Match> FinishedMatches;
     private String teamName;
 
+    //Constructor
+    public Team(String name){
+        teamName = name;
+    }
+
+    //Copy Constructor
+    public Team(Team team){
+        wins = team.getWins();
+        losses = team.getLosses();
+        ties = team.getTies();
+        PlayerList = team.getPlayerList();
+        Schedule = team.getSchedule();
+    }
+
     //Accessors and Basic Mutators
-    public int getWins() {
-        return wins;
-    }
+    public String getTeamName(){ return teamName; }
 
-    public int getLosses() {
-        return losses;
-    }
+    public int getWins() { return wins; }
 
-    public int getTies() {
-        return ties;
-    }
+    public int getLosses() { return losses; }
 
-    public void addPlayer(String player) {
-        PlayerList.add(player);
-    }
+    public int getTies() { return ties; }
 
-    public boolean removePlayer(String player) {
-        return PlayerList.remove(player);
-    }
+    public void addPlayer(String player) { PlayerList.add(player); }
 
-    public LinkedList<String> getPlayerList() {
-        return PlayerList;
-    }
+    public boolean removePlayer(String player) { return PlayerList.remove(player); }
 
-    public void addMatch(Match match) {
-        Schedule.add(match);
-    }
+    public LinkedList<String> getPlayerList() { return PlayerList; }
 
-    public void addSchedule(Queue<Match> matches) {
-        Schedule = matches;
-    }
+    public void addMatch(Match match) { Schedule.add(match); }
+
+    public void addSchedule(LinkedList<Match> matches) { Schedule = matches; }
 
     public Match removeMatch() {
+        FinishedMatches.add(Schedule.peek());
         return Schedule.remove();
     }
 
-    public Match peekMatch() {
-        return Schedule.peek();
-    }
+    public Match peekMatch() { return Schedule.peek(); }
+
+    public LinkedList<Match> getSchedule() { return Schedule; }
+
+    public LinkedList<Match> getFinishedMatches() { return FinishedMatches; }
 
     //Other Methods
     public void enterScore(int teamScore, int opponentScore) {
-
+        //--Implement--
     }
 
 
 }
+
