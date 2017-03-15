@@ -10,25 +10,34 @@ import java.util.LinkedList;
 public class League {
 
     //Variables
-    private static String LeagueName;
-    private static LinkedList<Team> Teams;
+    private static String leagueName;
+    private static LinkedList<Team> teams = new LinkedList<Team>();
     private static boolean scheduleFinalized; //Prevents teams and schedules being added and removed after the schedule is made
+    private static int numberOfLanes;
 
     //Constructor
-    League(String name){ LeagueName = name; }
+    League(String name){ leagueName = name; }
+
 
     //Accessors and Basic Mutators
-    public String getLeagueName() { return LeagueName; }
+    public String getLeagueName() { return leagueName; }
 
-    public LinkedList<Team> getTeams() { return Teams; }
+    public LinkedList<Team> getTeams() { return teams; }
 
+    public void setNumberOfLanes(int lanes){
+        numberOfLanes = lanes;
+    }
+
+    public int getNumberOfLanes(){
+        return numberOfLanes;
+    }
     //Other Methods
     //Adds a team to a league only if the league schedule has not yet been finalized.
     // If schedule is already finalized, return false indicating that adding a team is unsuccessful
     // @param name: name of team to be added, typically the name of the skip.
     //@return true if team was added successfully. False otherwise.
     public boolean addTeam(String name) {
-        if(!scheduleFinalized) Teams.add(new Team(name));
+        if(!scheduleFinalized) teams.add(new Team(name));
         return !scheduleFinalized;
     }
     //Removes a team from a league only if the team name exists in the league.
@@ -37,10 +46,12 @@ public class League {
     //@return true if team was removed successfully. False otherwise.
     public boolean removeTeam(String name) {
         boolean removed = false;
-        for (Team team:Teams) {
-            if(Team.getTeamName().equals(name)){
-                Teams.remove(team);
-                removed = true;}
+        if (!scheduleFinalized){
+            for (Team team:teams) {
+                if(Team.getTeamName().equals(name)){
+                    teams.remove(team);
+                    removed = true;}
+            }
         }
         return removed;
     }
@@ -53,20 +64,34 @@ public class League {
 
     //public scoreboard getFullResults
 
-    //public schedule createSchedule
+    /* public schedule createSchedule(start date and time meeting)
+        create initial date and time, pass into createAllWeeks(), let that method create future weeks
+    */
 
     //public schedule createPlayoffs
 
     //Private Methods
     /*
      */
-    private LinkedList<Match> createOneWeekOfMatches(LinkedList<Team> currRotation){
+    private LinkedList<Match> createOneWeekOfMatches(LinkedList<Team> currRotation, Calendar time){
 
-        return null;
+        LinkedList<Match> matchList = new LinkedList<Match>();
+        int listSize = currRotation.size() / 2;
+        for (int i = 0; i < listSize; i++){
+            matchList.add(new Match(currRotation.get(i), currRotation.get(i+listSize), i+1, time));
+        }
+        return matchList;
     }
 
     private LinkedList<LinkedList<Match>> createAllWeeks(){
+        LinkedList<LinkedList<Match>> fullSchedule = new LinkedList<LinkedList<Match>>();
+        int numberOfTeams = teams.size();
+        int numberOfRounds = numberOfTeams - 1;
+        if(numberOfTeams % 2 == 1){
+            teams.add(new Team("Bye"));
+            numberOfRounds++;
+        }
 
-        return null;
+        return fullSchedule;
     }
 }
