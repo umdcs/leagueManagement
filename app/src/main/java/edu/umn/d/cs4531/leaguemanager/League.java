@@ -1,5 +1,6 @@
 package edu.umn.d.cs4531.leaguemanager;
 
+import java.util.Calendar;
 import java.util.LinkedList;
 
 /**
@@ -9,9 +10,9 @@ import java.util.LinkedList;
 public class League {
 
     //Variables
-    private String LeagueName;
-    private LinkedList<Team> Teams;
-    private boolean scheduleFinalized; //Prevents teams and schedules being added and removed after the schedule is made
+    private static String LeagueName;
+    private static LinkedList<Team> Teams;
+    private static boolean scheduleFinalized; //Prevents teams and schedules being added and removed after the schedule is made
 
     //Constructor
     public League(String name){ LeagueName = name; }
@@ -42,4 +43,17 @@ public class League {
     //public schedule createSchedule
 
     //public schedule createPlayoffs
+
+    //Private Methods
+    /*
+     */
+    private LinkedList<Match> createOneWeekOfMatches(LinkedList<Team> currRotation){
+
+        return null;
+    }
+
+    private LinkedList<LinkedList<Match>> createAllWeeks(){
+
+        return null;
+    }
 }
