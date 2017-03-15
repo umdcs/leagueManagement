@@ -13,5 +13,22 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="@string/duluth_curl"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView" />
+
+    <android.support.v4.app.FragmentTabHost
+        android:id="@+id/listView"
+        android:text="@string/pick_league"
+        android:textAlignment="center"
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_marginTop="18dp"
+        android:layout_alignEnd="@+id/textView"
+        />
 </RelativeLayout>

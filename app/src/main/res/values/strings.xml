@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LeagueManager</string>
+    <string name="duluth_curl">Duluth Curling Club</string>
+    <string name="pick_league">Choose Your League</string>
 </resources>
