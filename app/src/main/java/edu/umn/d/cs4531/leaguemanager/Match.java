@@ -8,13 +8,13 @@ import java.util.Calendar;
 public class Match {
 
     //Variables
-    private int teamAScore = 0;
-    private int teamBScore = 0;
-    private Team teamA;
-    private Team teamB;
-    private Calendar playTime;
-    private int lane = 0;
-    private int winner = 2; //0 = teamA, 1 = teamB, 2 = draw
+    private static int teamAScore = 0;
+    private static int teamBScore = 0;
+    private static Team teamA;
+    private static Team teamB;
+    private static Calendar playTime;
+    private static int lane = 0;
+    private static int winner = 2; //0 = teamA, 1 = teamB, 2 = draw
 
     //Constructor
     public Match() {
