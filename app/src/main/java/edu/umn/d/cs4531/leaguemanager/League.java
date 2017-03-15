@@ -15,6 +15,8 @@ public class League {
     private static boolean scheduleFinalized; //Prevents teams and schedules being added and removed after the schedule is made
     private static int numberOfLanes;
 
+    //Default Constructor
+    League(){};
     //Constructor
     League(String name){ leagueName = name; }
 

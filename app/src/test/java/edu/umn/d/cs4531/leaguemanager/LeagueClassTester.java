@@ -12,33 +12,24 @@ import static org.junit.Assert.*;
  */
 public class LeagueClassTester extends League{
 
-    private LinkedList<Team> teamList= new LinkedList<Team>();
-
-
-    public Team Team1=new Team("team1");
-    public Team Team2=new Team("team2");
-    public Team Team3=new Team("team3");
-
-
     @Test
     public void teamAdder() throws Exception {
-        assertTrue(teamList.size()==0);
-
-        teamList.add(Team1);
-        assertTrue(teamList.size()==1);
-        teamList.add(Team2);
-        assertTrue(teamList.size()==2);
-        teamList.add(Team3);
-        assertTrue(teamList.size()==3);
+        assertTrue(getTeams().size()==0);
+        addTeam("Team1");
+        assertTrue(getTeams().size()==1);
+        addTeam("Team2");
+        assertTrue(getTeams().size()==2);
+        addTeam("Team3");
+        assertTrue(getTeams().size()==3);
     }
     @Test
     public void teamRemover() throws Exception {
-        assertTrue(teamList.size()==3);
-        teamList.remove();
-        assertTrue(teamList.size()==2);
-        teamList.add(Team2);
-        assertTrue(teamList.size()==1);
-        teamList.add(Team3);
-        assertTrue(teamList.size()==0);
+        assertTrue(getTeams().size()==3);
+        removeTeam("Team1");
+        assertTrue(getTeams().size()==2);
+        removeTeam("Team2");
+        assertTrue(getTeams().size()==1);
+        removeTeam("Team3");
+        assertTrue(getTeams().size()==0);
     }
 }
