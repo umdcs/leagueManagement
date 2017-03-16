@@ -24,12 +24,19 @@ public class LeagueClassTester extends League{
     }
     @Test
     public void teamRemover() throws Exception {
-        assertTrue(getTeams().size()==3);
-        removeTeam("Team1");
-        assertTrue(getTeams().size()==2);
-        removeTeam("Team2");
+        addTeam("Team1");
+        addTeam("Team2");
+        assertTrue(removeTeam("Team2"));
         assertTrue(getTeams().size()==1);
-        removeTeam("Team3");
-        assertTrue(getTeams().size()==0);
+        addTeam("Team3");
+        addTeam("Team4");
+        assertTrue(removeTeam("Team4"));
+        assertTrue(getTeams().size()==2);
+        //removeTeam("Team1");
+        //assertTrue(getTeams().size()==2);
+        //removeTeam("Team2");
+        //assertTrue(getTeams().size()==1);
+        //removeTeam("Team3");
+        //assertTrue(getTeams().size()==0);
     }
 }

@@ -7,12 +7,12 @@ import java.util.LinkedList;
  * Created by Mark W on 3/14/2017.
  */
 
-public class League {
+public class League implements LMTInterface.L{
 
     //Variables
     private static String leagueName;
     private static LinkedList<Team> teams = new LinkedList<Team>();
-    private static boolean scheduleFinalized; //Prevents teams and schedules being added and removed after the schedule is made
+    private static boolean scheduleFinalized=false; //Prevents teams and schedules being added and removed after the schedule is made
     private static int numberOfLanes;
 
     //Default Constructor
@@ -48,6 +48,7 @@ public class League {
     //@return true if team was removed successfully. False otherwise.
     public boolean removeTeam(String name) {
         boolean removed = false;
+
         if (!scheduleFinalized){
             for (Team team:teams) {
                 if(Team.getTeamName().equals(name)){
