@@ -25,13 +25,20 @@ public class LeagueClassTester extends League{
     @Test
     public void teamRemover() throws Exception {
         addTeam("Team1");
+        for (Team team:getTeams()) {
+            System.out.println(team.getTeamName());
+        }
         addTeam("Team2");
         assertTrue(removeTeam("Team2"));
+        for (Team team:getTeams()) {
+            System.out.println(team.getTeamName());
+        }
         assertTrue(getTeams().size()==1);
-        addTeam("Team3");
-        addTeam("Team4");
-        assertTrue(removeTeam("Team4"));
-        assertTrue(getTeams().size()==2);
+        assertTrue(addTeam("Team3"));
+        assertTrue(addTeam("Team4"));
+        assertTrue(getTeams().size()==3);
+        assertTrue(removeTeam("Team1"));
+        //assertTrue(getTeams().size()==2);
         //removeTeam("Team1");
         //assertTrue(getTeams().size()==2);
         //removeTeam("Team2");

@@ -51,9 +51,10 @@ public class League implements LMTInterface.L{
 
         if (!scheduleFinalized){
             for (Team team:teams) {
-                if(Team.getTeamName().equals(name)){
+                if(name.equals(team.getTeamName())){
                     teams.remove(team);
-                    removed = true;}
+                    removed = true;
+                }
             }
         }
         return removed;
