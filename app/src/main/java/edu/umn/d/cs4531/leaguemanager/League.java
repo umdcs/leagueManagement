@@ -39,7 +39,9 @@ public class League implements LMTInterface.L{
     // @param name: name of team to be added, typically the name of the skip.
     //@return true if team was added successfully. False otherwise.
     public boolean addTeam(String name) {
-        if(!scheduleFinalized) teams.add(new Team(name));
+
+        if(!scheduleFinalized)
+            teams.add(new Team(name));
         return !scheduleFinalized;
     }
     //Removes a team from a league only if the team name exists in the league.
@@ -51,9 +53,9 @@ public class League implements LMTInterface.L{
 
         if (!scheduleFinalized){
             for (Team team:teams) {
-                if(name.equals(team.getTeamName())){
-                    teams.remove(team);
-                    removed = true;
+                if(team.getTeamName().equals(name)){
+                    removed = teams.remove(team);
+
                 }
             }
         }
