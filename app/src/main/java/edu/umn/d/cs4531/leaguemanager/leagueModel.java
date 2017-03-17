@@ -13,12 +13,17 @@ public class leagueModel implements MVPComponents.Model{
     public leagueModel(MVPComponents.Presenter Presenter)
     {
         listOfLeagues = new LinkedList<League>();
+        //Dummy list of leagues to send to the view for testing purposes DELETE AFTER TEST
+        listOfLeagues.add(new League("League 1"));
+        listOfLeagues.add(new League("League 2"));
+        listOfLeagues.add(new League("League 3"));
+        //--------------------------------------------------------------------------------
         this.Presenter = Presenter;
 
     }
     @Override
-    public String[] getTeams(String leagueName) {
-        return new String[0];
+    public LinkedList<Team> getTeams(String leagueName) {
+        return null;
     }
 
     @Override
@@ -27,8 +32,8 @@ public class leagueModel implements MVPComponents.Model{
     }
 
     @Override
-    public String[] getLeagues() {
-        return new String[0];
+    public LinkedList<League> getLeagues() {
+        return listOfLeagues;
     }
     @Override
     public void createLeague(String name)

@@ -15,8 +15,8 @@ public class leaguePresenter implements MVPComponents.Presenter{
     }
 
     @Override
-    public String[] getLeagues() {
-        return new String[0];
+    public String getLeagues() {
+        return leagueModel.getLeagues().toString();
     }
 
     @Override
