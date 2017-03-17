@@ -34,7 +34,7 @@ public class League implements LMTInterface.L{
         return numberOfLanes;
     }
     //Other Methods
-    //Adds a team to a league only if the league schedule has not yet been finalized.
+    //Adds a team to the bottom of a league linkedlist<Team> only if the league schedule has not yet been finalized.
     // If schedule is already finalized, return false indicating that adding a team is unsuccessful
     // @param name: name of team to be added, typically the name of the skip.
     //@return true if team was added successfully. False otherwise.
@@ -52,10 +52,9 @@ public class League implements LMTInterface.L{
         boolean removed = false;
 
         if (!scheduleFinalized){
-            for (Team team:teams) {
-                if(team.getTeamName().equals(name)){
-                    removed = teams.remove(team);
-
+            for(int i=0;i<teams.size();++i) {
+                if(teams.get(i).getTeamName().equals(name)){
+                    removed = teams.remove(teams.get(i));
                 }
             }
         }

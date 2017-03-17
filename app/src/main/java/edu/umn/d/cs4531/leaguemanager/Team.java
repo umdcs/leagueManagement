@@ -11,13 +11,13 @@ public class Team {
     //Variables
 
 
-    private static int wins = 0;
-    private static int losses = 0;
-    private static int ties = 0;
-    private static LinkedList<String> PlayerList = null;
-    private static LinkedList<Match> Schedule = null;
-    private static LinkedList<Match> FinishedMatches;
-    private static String teamName;
+    private  int wins = 0;
+    private  int losses = 0;
+    private  int ties = 0;
+    private  LinkedList<String> PlayerList = null;
+    private  LinkedList<Match> Schedule = null;
+    private  LinkedList<Match> FinishedMatches;
+    private String teamName="";
 
     //Constructor
     public Team(String name){
@@ -34,7 +34,8 @@ public class Team {
     }
 
     //Accessors and Basic Mutators
-    public static String getTeamName(){ return teamName; }
+    public  String getTeamName(){
+        return teamName; }
 
     public int getWins() { return wins; }
 
