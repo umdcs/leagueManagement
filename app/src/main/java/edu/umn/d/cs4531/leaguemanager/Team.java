@@ -19,6 +19,8 @@ public class Team {
     private  LinkedList<Match> FinishedMatches;
     private String teamName="";
 
+    //Default Constructor
+    Team(){};
     //Constructor
     public Team(String name){
         teamName = name;
