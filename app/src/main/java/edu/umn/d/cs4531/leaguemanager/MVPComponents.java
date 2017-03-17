@@ -65,5 +65,7 @@ public interface MVPComponents {
          * @return
          */
         String[] getLeagues();
+
+        void createLeague(String name);
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 public class HomeScreen extends AppCompatActivity implements MVPComponents.View {
 
+    private leaguePresenter Presenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
