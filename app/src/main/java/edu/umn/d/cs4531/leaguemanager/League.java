@@ -1,6 +1,7 @@
 package edu.umn.d.cs4531.leaguemanager;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.LinkedList;
 
 /**
@@ -10,10 +11,16 @@ import java.util.LinkedList;
 public class League implements LMTInterface.L{
 
     //Variables
-    private static String leagueName;
-    private static LinkedList<Team> teams = new LinkedList<Team>();
-    private static boolean scheduleFinalized=false; //Prevents teams and schedules being added and removed after the schedule is made
-    private static int numberOfLanes;
+    private String leagueName;
+    private LinkedList<Team> teams = new LinkedList<Team>();
+    private boolean scheduleFinalized=false; //Prevents teams and schedules being added and removed after the schedule is made
+    private int numberOfLanes;
+    private int startDate;
+    private int startMonth;
+    private int startYear;
+    private int startHour;
+    private int startMinute;
+    private int maxRounds;
 
     //Default Constructor
     League(){};
@@ -26,13 +33,21 @@ public class League implements LMTInterface.L{
 
     public LinkedList<Team> getTeams() { return teams; }
 
-    public void setNumberOfLanes(int lanes){
-        numberOfLanes = lanes;
-    }
+    public void setNumberOfLanes(int lanes) { numberOfLanes = lanes; }
 
-    public int getNumberOfLanes(){
-        return numberOfLanes;
-    }
+    public int getNumberOfLanes() { return numberOfLanes; }
+
+    public void setStartDate(int date) { startDate = date; }
+
+    public void setStartMonth(int month) { startMonth = month; }
+
+    public void setStartYear(int year) { startYear = year; }
+
+    public void setStartHour(int hour) { startHour = hour; }
+
+    public void setStartMinute(int minute) { startMinute = minute; }
+
+    public void setMaxRounds(int rounds) { maxRounds = rounds; }
     //Other Methods
     //Adds a team to the bottom of a league linkedlist<Team> only if the league schedule has not yet been finalized.
     // If schedule is already finalized, return false indicating that adding a team is unsuccessful
@@ -61,7 +76,7 @@ public class League implements LMTInterface.L{
         return removed;
     }
 
-    public LinkedList<Match> getFullSchedule() {
+    public LinkedList<LinkedList<Match>> getFullSchedule() {
         return null;  //--Implement--
     }
 
@@ -78,7 +93,7 @@ public class League implements LMTInterface.L{
     //Private Methods
     /*
      */
-    private LinkedList<Match> createOneWeekOfMatches(LinkedList<Team> currRotation, Calendar time){
+    private LinkedList<Match> createOneWeekOfMatches(LinkedList<Team> currRotation, GregorianCalendar time){
 
         LinkedList<Match> matchList = new LinkedList<Match>();
         int listSize = currRotation.size() / 2;
@@ -96,7 +111,15 @@ public class League implements LMTInterface.L{
             teams.add(new Team("Bye"));
             numberOfRounds++;
         }
-
+        if(numberOfTeams == 1) { numberOfRounds = 0;}
+        LinkedList<Team> currRotation = (LinkedList<Team>)teams.clone();
+        GregorianCalendar currTime = new GregorianCalendar(startYear, startMonth, startDate, startHour, startMinute);
+        for(int i = 0; i < numberOfRounds; i++){
+            fullSchedule.add(createOneWeekOfMatches(currRotation, currTime));
+            currTime.add(Calendar.DAY_OF_MONTH, 7);
+            Team tempTeam = currRotation.remove(2);
+            currRotation.addLast(tempTeam);
+        }
         return fullSchedule;
     }
 }

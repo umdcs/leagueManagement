@@ -12,6 +12,7 @@ public class Match {
     private  int teamBScore = 0;
     private  Team teamA;
     private  Team teamB;
+    private  Team draw = new Team("Draw");
     private  Calendar playTime;
     private  int lane = 0;
     private  int winner = 2; //0 = teamA, 1 = teamB, 2 = draw
@@ -61,14 +62,30 @@ public class Match {
 
     public int getLane() { return lane; }
 
-    public void setPlayTime(Calendar time) { playTime = time; }
+    public void setPlayTime(Calendar time) { playTime = (Calendar) time.clone(); }
 
     public Calendar getPlayTime() { return playTime; }
+
+    //Debug toString function
+    public String toString() {
+        String debug;
+
+        debug = "Team A: " + teamA.getTeamName() + "\n" +
+                "Team B: " + teamB.getTeamName() + "\n" +
+                "Team A Score: " + teamAScore + "\n" +
+                "Team B Score: " + teamBScore + "\n" +
+                "Play Time:\n" +
+                (playTime.get(Calendar.MONTH)+1) + "/" + playTime.get(Calendar.DAY_OF_MONTH) + "/" + playTime.get(Calendar.YEAR) + "\n" +
+                playTime.get(Calendar.HOUR_OF_DAY) + ":";
+        if (playTime.get(Calendar.MINUTE) < 10) { debug += "0";}
+        debug += playTime.get(Calendar.MINUTE);
+        return debug;
+    }
 
     //Other Methods
     public Team getWinner() {
         determineWinner();
-        Team winningTeam = null;
+        Team winningTeam = draw;
         if(winner == 0) winningTeam = teamA;
         else if(winner == 1) winningTeam = teamB;
         return winningTeam;
