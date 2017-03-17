@@ -19,6 +19,12 @@ League
  • getFullSchedule() : LinkedList<Match>
   o Returns the full list of matches, both complete and upcoming
   o May change if I implement a schedule class
+ • setStartDate(int date)
+ • setStarMonth(int month)
+ • setStartYear(int year)
+ • setStartHour(int time)
+ • setStartMinute(int time)
+ • setMaxRounds(int rounds)
 
 Team
  • Constructors
@@ -81,3 +87,5 @@ Match
  • Other
   o getWinner() : Team
    * Returns the winning team based on entered scores. Returns null if a tie
+  o toString()
+   * Debug function that outputs team names, scores, and play time
