@@ -1,5 +1,7 @@
 package edu.umn.d.cs4531.leaguemanager;
 
+import java.util.LinkedList;
+
 /**
  * Created by Hunter on 3/16/2017.
  */
@@ -18,7 +20,7 @@ public interface MVPComponents {
          * gets a list of available leagues in the sport selected
          * Will be removed upon later versions when sport selection is implemented
          */
-        String[] getLeagues();
+        String getLeagues();
 
         /**
          * Takes a string leagueName selected from a list of available leagues
@@ -50,7 +52,7 @@ public interface MVPComponents {
          * @param leagueName
          * @return String[] teams in selected league
          */
-        String[] getTeams(String leagueName);
+        LinkedList getTeams(String leagueName);
 
         /**
          * Gets all relevant info on the team selected so it can be displayed in the view
@@ -64,6 +66,8 @@ public interface MVPComponents {
          * will be implemented differently depending on a server or not.
          * @return
          */
-        String[] getLeagues();
+        LinkedList getLeagues();
+
+        void createLeague(String name);
     }
 }

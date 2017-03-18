@@ -65,17 +65,17 @@ var leagueStandings = {
 app.get('/', function(request, response)
 	{
 	    response.writeHead(200, {'Content-Type': 'text/html'});
-	    response.write('<!DOCTYPE html><head><title>Dashboard</title></head></body>');
+	    response.write('<!DOCTYPE html><head><title>League Manager</title></head></body>');
 	    response.write('<H1>League Test Server</H1>');
 	    response.write('<p>Report: Client sends all testing data to display on this server. This information is to display on the main page; information includes leagues, teams, rosters and more.</p>');
 	    response.write('</body></html>');
 	    response.end();
 	    console.log('Recieved Dashboard request!');
 	});
-app.get('/', function(request, response)
+app.get('/leagues', function(request, response)
 	{
 	    response.json(league);
-	    response.json(leagueStandings);
+	    
 	    console.log('GET REQUEST: Test Server with JSON');
 
 	});
