@@ -20,7 +20,7 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/textView" />
 
-    <android.support.v4.app.FragmentTabHost
+    <TextView
         android:id="@+id/listView"
         android:text="@string/pick_league"
         android:textAlignment="center"
@@ -31,4 +31,11 @@
         android:layout_marginTop="18dp"
         android:layout_alignEnd="@+id/textView"
         />
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/leagueSpinner"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/listView"
+        android:layout_centerHorizontal="true"></Spinner>
 </RelativeLayout>
