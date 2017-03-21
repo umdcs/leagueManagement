@@ -15,6 +15,7 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
 
     private MVPComponents.Presenter mPresenter;
     private String leagueSelected;
+    private String teamSelected;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +47,8 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getBaseContext(), parent.getItemAtPosition(position)+" selected", Toast.LENGTH_LONG).show();
                 leagueSelected = parent.getItemAtPosition(position).toString();
+                setupTeamSpinner();
+                setupSchedule();
             }
 
             @Override
@@ -54,8 +57,25 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
             }
         });
 
+    }
+
+    private void setupTeamSpinner() {
         ArrayList<String> teamArray = mPresenter.getTeams(leagueSelected);
+
         Spinner teamSpinner = (Spinner) findViewById(R.id.teamSpinner);
+        teamSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, teamArray));
+        teamSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getBaseContext(), parent.getItemAtPosition(position)+" selected", Toast.LENGTH_LONG).show();
+                teamSelected = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
     }
