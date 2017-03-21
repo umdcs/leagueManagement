@@ -67,8 +67,42 @@ public class Team {
     public LinkedList<Match> getFinishedMatches() { return FinishedMatches; }
 
     //Other Methods
+
+    //Class to be called ONLY by enterScore method
+    protected void setResult(int result) {
+        if(result == 0){
+            wins++;
+        }
+        else if(result == 1){
+            losses++;
+        }
+        else if(result == 2){
+            ties++;
+        }
+        removeMatch();
+    }
     public void enterScore(int teamScore, int opponentScore) {
-        //--Implement--
+        Match currentMatch = Schedule.peek();
+        int otherTeamResult; //0 = win, 1 = loss, 2 = draw
+        if(currentMatch.getWinner() == this){
+            wins++;
+            otherTeamResult = 1;
+        }
+        else if(currentMatch.getWinner().getTeamName() == "Draw"){
+            ties++;
+            otherTeamResult = 2;
+        }
+        else {
+            losses++;
+            otherTeamResult = 0;
+        }
+        removeMatch();
+        if (currentMatch.getTeamA() == this){
+            currentMatch.getTeamB().setResult(otherTeamResult);
+        }
+        else {
+            currentMatch.getTeamA().setResult(otherTeamResult);
+        }
     }
 
 
