@@ -51,6 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/pickTeam"
+        android:id="@+id/teamSpinner"
         android:layout_centerHorizontal="true">
-        android:id="@+id/teamSpinner"</Spinner>
+        </Spinner>
 </RelativeLayout>
