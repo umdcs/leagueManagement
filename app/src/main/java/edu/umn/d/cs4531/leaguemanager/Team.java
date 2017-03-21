@@ -1,6 +1,7 @@
 package edu.umn.d.cs4531.leaguemanager;
 
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
 /**
  * Created by Mark W on 3/14/2017.
@@ -56,8 +57,15 @@ public class Team {
     public void addSchedule(LinkedList<Match> matches) { Schedule = matches; }
 
     public Match removeMatch() {
-        FinishedMatches.add(Schedule.peek());
-        return Schedule.remove();
+        Match returnMatch;
+        if(Schedule.size() > 0) {
+            FinishedMatches.add(Schedule.peek());
+            returnMatch = Schedule.remove();
+        }
+        else{
+            returnMatch = null;
+        }
+        return returnMatch;
     }
 
     public Match peekMatch() { return Schedule.peek(); }
@@ -83,25 +91,34 @@ public class Team {
     }
     public void enterScore(int teamScore, int opponentScore) {
         Match currentMatch = Schedule.peek();
-        int otherTeamResult; //0 = win, 1 = loss, 2 = draw
-        if(currentMatch.getWinner() == this){
-            wins++;
-            otherTeamResult = 1;
-        }
-        else if(currentMatch.getWinner().getTeamName() == "Draw"){
-            ties++;
-            otherTeamResult = 2;
+        if (currentMatch.getTeamA() == this || currentMatch.getTeamB() == this) {
+            if (currentMatch.getTeamA() == this) {
+                currentMatch.setTeamAScore(teamScore);
+                currentMatch.setTeamBScore(opponentScore);
+            } else {
+                currentMatch.setTeamAScore(opponentScore);
+                currentMatch.setTeamBScore(teamScore);
+            }
+            int otherTeamResult; //0 = win, 1 = loss, 2 = draw
+            if (currentMatch.getWinner() == this) {
+                wins++;
+                otherTeamResult = 1;
+            } else if (currentMatch.getWinner().getTeamName() == "Draw") {
+                ties++;
+                otherTeamResult = 2;
+            } else {
+                losses++;
+                otherTeamResult = 0;
+            }
+            removeMatch();
+            if (currentMatch.getTeamA() == this) {
+                currentMatch.getTeamB().setResult(otherTeamResult);
+            } else {
+                currentMatch.getTeamA().setResult(otherTeamResult);
+            }
         }
         else {
-            losses++;
-            otherTeamResult = 0;
-        }
-        removeMatch();
-        if (currentMatch.getTeamA() == this){
-            currentMatch.getTeamB().setResult(otherTeamResult);
-        }
-        else {
-            currentMatch.getTeamA().setResult(otherTeamResult);
+            removeMatch();
         }
     }
 
