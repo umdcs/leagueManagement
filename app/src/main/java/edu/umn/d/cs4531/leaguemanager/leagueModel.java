@@ -34,9 +34,26 @@ import org.json.JSONObject;
 
 public class leagueModel implements MVPComponents.Model{
     LinkedList<League> listOfLeagues;
+
+
+
+    private String selectedLeague;
+    private String selectedTeam;
+    private String inputtedScoreA;
+    private String inputtedScoreB;
     private MVPComponents.Presenter Presenter;
 
 
+    public void setSelectedTeam(String selectedTeam) {
+        this.selectedTeam = selectedTeam;
+    }
+    public void setSelectedInputtedScoreA(String inputtedScoreA) {
+        this.inputtedScoreA = inputtedScoreA;
+    }
+    public void setSelectedInputtedScoreB(String inputtedScoreB) {
+        this.inputtedScoreB = inputtedScoreB;
+
+    }
 
 
     private class HTTPAsyncTask extends AsyncTask<String, Integer, String>{
@@ -207,6 +224,7 @@ public class leagueModel implements MVPComponents.Model{
     }
     @Override
     public LinkedList<Team> getTeams(String leagueName) {
+        selectedLeague  = leagueName;
         return null;
     }
 
@@ -223,5 +241,8 @@ public class leagueModel implements MVPComponents.Model{
     public void createLeague(String name)
     {
        listOfLeagues.add(new League("name"));
+    }
+    public void setSelectedLeague(String selectedLeague) {
+        this.selectedLeague = selectedLeague;
     }
 }

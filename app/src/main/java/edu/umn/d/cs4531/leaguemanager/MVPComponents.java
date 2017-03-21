@@ -37,7 +37,7 @@ public interface MVPComponents {
          * @param leagueName
          * @return an array of strings of the teams in the selected league
          */
-        String[] leagueInput(String leagueName);
+        void leagueInput(String leagueName);
 
         /**
          * Takes a string of the team selected ********************************
@@ -78,5 +78,7 @@ public interface MVPComponents {
         LinkedList getLeagues();
 
         void createLeague(String name);
+
+        void setSelectedLeague(String leagueName);
     }
 }
