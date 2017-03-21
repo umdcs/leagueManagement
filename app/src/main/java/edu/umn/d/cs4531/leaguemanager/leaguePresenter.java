@@ -12,9 +12,9 @@ public class leaguePresenter implements MVPComponents.Presenter{
     private MVPComponents.Model leagueModel;
     private MVPComponents.View leagueView;
 
-    public leaguePresenter(MVPComponents.View view)
-    {
+    public leaguePresenter(MVPComponents.View view) {
         leagueView = view;
+        leagueModel = new leagueModel(this);
     }
 
     @Override
@@ -26,6 +26,11 @@ public class leaguePresenter implements MVPComponents.Presenter{
             leagueArray.add(leagues.get(i).getLeagueName());
         }
         return leagueArray;
+    }
+
+    @Override
+    public ArrayList<String> getTeams(String leagueSelected) {
+        return null;
     }
 
     @Override
