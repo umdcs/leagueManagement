@@ -38,21 +38,4 @@
         android:layout_marginTop="12dp"
         android:layout_below="@+id/listView"
         android:layout_centerHorizontal="true"></Spinner>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Choose Your Team"
-        android:id="@+id/teamView"
-        android:layout_marginTop="19dp"
-        android:layout_below="@+id/leagueSpinner"
-        android:layout_centerHorizontal="true" />
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/teamView"
-        android:layout_alignStart="@+id/leagueSpinner"
-        android:layout_marginTop="15dp">
-        android:id="@+id/teamSpinner"
-    </Spinner>
 </RelativeLayout>

@@ -1,5 +1,8 @@
 package edu.umn.d.cs4531.leaguemanager;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+
 /**
  * Created by Jeff Vang on 3/17/2017.
  */
@@ -15,8 +18,14 @@ public class leaguePresenter implements MVPComponents.Presenter{
     }
 
     @Override
-    public String getLeagues() {
-        return leagueModel.getLeagues().toString();
+    public ArrayList<String> getLeagues() {
+
+        ArrayList<String> leagueArray = new ArrayList<String>();
+        LinkedList<League> leagues = new LinkedList<League> (leagueModel.getLeagues());
+        for (int i = 0; i < leagues.size(); i++) {
+            leagueArray.add(leagues.get(i).getLeagueName());
+        }
+        return leagueArray;
     }
 
     @Override

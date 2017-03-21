@@ -1,5 +1,6 @@
 package edu.umn.d.cs4531.leaguemanager;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -20,7 +21,7 @@ public interface MVPComponents {
          * gets a list of available leagues in the sport selected
          * Will be removed upon later versions when sport selection is implemented
          */
-        String getLeagues();
+        ArrayList<String> getLeagues();
 
         /**
          * Takes a string leagueName selected from a list of available leagues
