@@ -44,16 +44,7 @@ public class leagueModel implements MVPComponents.Model{
     private MVPComponents.Presenter Presenter;
 
 
-    public void setSelectedTeam(String selectedTeam) {
-        this.selectedTeam = selectedTeam;
-    }
-    public void setSelectedInputtedScoreA(String inputtedScoreA) {
-        this.inputtedScoreA = inputtedScoreA;
-    }
-    public void setSelectedInputtedScoreB(String inputtedScoreB) {
-        this.inputtedScoreB = inputtedScoreB;
 
-    }
 
 
     private class HTTPAsyncTask extends AsyncTask<String, Integer, String>{
@@ -202,7 +193,8 @@ public class leagueModel implements MVPComponents.Model{
         try {
             //Create JSONObject here
             jsonParam = new JSONObject();
-            jsonParam.put("League",null);
+            jsonParam.put("League",selectedLeague);
+            jsonParam.put("Team",selectedTeam);
             //jasonParam.put("Matchup",leaguePresenter.getMa)
 
         } catch (JSONException e) {
@@ -224,7 +216,6 @@ public class leagueModel implements MVPComponents.Model{
     }
     @Override
     public LinkedList<Team> getTeams(String leagueName) {
-        selectedLeague  = leagueName;
         return null;
     }
 
@@ -244,5 +235,18 @@ public class leagueModel implements MVPComponents.Model{
     }
     public void setSelectedLeague(String selectedLeague) {
         this.selectedLeague = selectedLeague;
+    }
+    public void setSelectedTeam(String selectedTeam) {
+        this.selectedTeam = selectedTeam;
+    }
+    public void setSelectedInputtedScoreA(String inputtedScoreA) {
+        this.inputtedScoreA = inputtedScoreA;
+    }
+    public void setSelectedInputtedScoreB(String inputtedScoreB) {
+        this.inputtedScoreB = inputtedScoreB;
+
+    }
+    public void inputData()
+    {
     }
 }

@@ -44,7 +44,7 @@ public interface MVPComponents {
          * @param teamName
          * @return
          */
-        String teamInput(String teamName);
+        void teamInput(String teamName);
 
         /**
          * Takes ints of the score for the previous game between teams
@@ -80,5 +80,7 @@ public interface MVPComponents {
         void createLeague(String name);
 
         void setSelectedLeague(String leagueName);
+
+        void setSelectedTeam(String teamName);
     }
 }

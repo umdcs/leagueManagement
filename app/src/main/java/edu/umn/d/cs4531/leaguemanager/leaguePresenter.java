@@ -38,9 +38,11 @@ public class leaguePresenter implements MVPComponents.Presenter{
         leagueModel.setSelectedLeague(leagueName);
     }
 
+
     @Override
-    public String teamInput(String teamName) {
-        return null;
+    public void teamInput(String teamName) {
+        leagueModel.setSelectedTeam(teamName);
+
     }
 
     @Override
