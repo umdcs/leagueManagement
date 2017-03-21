@@ -24,6 +24,14 @@ public interface MVPComponents {
         ArrayList<String> getLeagues();
 
         /**
+         * Takes in a string param on the league selected and returns an array of the
+         * teams in that league
+         * @param leagueSelected
+         * @return
+         */
+        ArrayList<String> getTeams(String leagueSelected);
+
+        /**
          * Takes a string leagueName selected from a list of available leagues
          * on the league select screen
          * @param leagueName
