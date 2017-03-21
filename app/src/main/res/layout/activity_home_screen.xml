@@ -24,18 +24,16 @@
         android:id="@+id/listView"
         android:text="@string/pick_league"
         android:textAlignment="center"
-        android:layout_width="25dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/textView"
-        android:layout_alignStart="@+id/textView"
-        android:layout_marginTop="18dp"
-        android:layout_alignEnd="@+id/textView"
-        />
+        android:layout_centerHorizontal="true" />
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/leagueSpinner"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/listView"
         android:layout_centerHorizontal="true"></Spinner>
 
@@ -44,16 +42,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/pickTeam"
         android:text="Choose Your Team"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/leagueSpinner"
         android:layout_centerHorizontal="true" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/pickTeam"
-        android:layout_alignStart="@+id/leagueSpinner">
-        android:id="@id/teamSpinner"
-    </Spinner>
+        android:layout_centerHorizontal="true">
+        android:id="@+id/teamSpinner"</Spinner>
 </RelativeLayout>
