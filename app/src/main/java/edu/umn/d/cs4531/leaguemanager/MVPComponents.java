@@ -51,7 +51,7 @@ public interface MVPComponents {
          * @param winnerScore
          * @param loserScore
          */
-        void scoreInput(int winnerScore, int loserScore);
+        void scoreInput(String winnerScore, String loserScore);
     }
 
     interface Model
@@ -82,5 +82,6 @@ public interface MVPComponents {
         void setSelectedLeague(String leagueName);
 
         void setSelectedTeam(String teamName);
+        void setSelectedInputtedScore(String score_A, String score_B);
     }
 }

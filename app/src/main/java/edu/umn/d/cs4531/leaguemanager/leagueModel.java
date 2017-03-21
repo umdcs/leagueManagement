@@ -34,19 +34,67 @@ import org.json.JSONObject;
 
 public class leagueModel implements MVPComponents.Model{
     LinkedList<League> listOfLeagues;
-
-
-
+    private MVPComponents.Presenter Presenter;
     private String selectedLeague;
     private String selectedTeam;
     private String inputtedScoreA;
     private String inputtedScoreB;
-    private MVPComponents.Presenter Presenter;
 
 
 
+    public leagueModel(MVPComponents.Presenter Presenter)
+    {
+        listOfLeagues = new LinkedList<League>();
+        //Dummy list of leagues to send to the view for testing purposes DELETE AFTER TEST
+        listOfLeagues.add(new League("League 1"));
+        listOfLeagues.add(new League("League 2"));
+        listOfLeagues.add(new League("League 3"));
+        //--------------------------------------------------------------------------------
+        this.Presenter = Presenter;
 
+    }
+    @Override
+    public LinkedList<Team> getTeams(String leagueName) {
+        return null;
+    }
 
+    @Override
+    public String[] teamData(String teamName) {
+        return new String[0];
+    }
+
+    @Override
+    public LinkedList<League> getLeagues() {
+        return listOfLeagues;
+    }
+    @Override
+    public void createLeague(String name)
+    {
+       listOfLeagues.add(new League("name"));
+    }
+    public void setSelectedLeague(String selectedLeague) {
+        this.selectedLeague = selectedLeague;
+    }
+    public void setSelectedTeam(String selectedTeam) {
+        this.selectedTeam = selectedTeam;
+    }
+    public void setSelectedInputtedScore(String inputtedScoreA, String inputtedScoreB) {
+        this.inputtedScoreA = inputtedScoreA;
+        this.inputtedScoreB = inputtedScoreB;
+    }
+    //Processes the data of league name, team name, scoreA, scoreB into back-end data.
+    // Updates matchups to include score entered and sends matchup data to the servers on a restful POST call.
+    //@param leagueName, teamName, scoreA, scoreB
+       public void inputData(String leagueName, String teamName, String scoreA, String scoreB)
+    {
+        for(int i=0;i<listOfLeagues.size();++i) {
+            if(listOfLeagues.get(i).getLeagueName().equals(leagueName)){//if selected league is in the list
+               listOfLeagues.get(i).inputData(teamName, scoreA,scoreB);
+            }
+        }
+    }
+
+    /*Model Connection to Server************************************************/
     private class HTTPAsyncTask extends AsyncTask<String, Integer, String>{
         @Override
         protected String doInBackground(String... params) {
@@ -202,51 +250,5 @@ public class leagueModel implements MVPComponents.Model{
         }
         Log.d("DEBUG:", jsonParam.toString());
         new HTTPAsyncTask().execute("http://10.0.2.2:3246/Dash", "POST", jsonParam.toString());
-    }
-    public leagueModel(MVPComponents.Presenter Presenter)
-    {
-        listOfLeagues = new LinkedList<League>();
-        //Dummy list of leagues to send to the view for testing purposes DELETE AFTER TEST
-        listOfLeagues.add(new League("League 1"));
-        listOfLeagues.add(new League("League 2"));
-        listOfLeagues.add(new League("League 3"));
-        //--------------------------------------------------------------------------------
-        this.Presenter = Presenter;
-
-    }
-    @Override
-    public LinkedList<Team> getTeams(String leagueName) {
-        return null;
-    }
-
-    @Override
-    public String[] teamData(String teamName) {
-        return new String[0];
-    }
-
-    @Override
-    public LinkedList<League> getLeagues() {
-        return listOfLeagues;
-    }
-    @Override
-    public void createLeague(String name)
-    {
-       listOfLeagues.add(new League("name"));
-    }
-    public void setSelectedLeague(String selectedLeague) {
-        this.selectedLeague = selectedLeague;
-    }
-    public void setSelectedTeam(String selectedTeam) {
-        this.selectedTeam = selectedTeam;
-    }
-    public void setSelectedInputtedScoreA(String inputtedScoreA) {
-        this.inputtedScoreA = inputtedScoreA;
-    }
-    public void setSelectedInputtedScoreB(String inputtedScoreB) {
-        this.inputtedScoreB = inputtedScoreB;
-
-    }
-    public void inputData()
-    {
     }
 }

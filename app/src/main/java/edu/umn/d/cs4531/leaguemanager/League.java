@@ -122,4 +122,13 @@ public class League implements LMTInterface.L{
         }
         return fullSchedule;
     }
+    //Gets called by model to input teamName, scoreA and scoreB into team.java and match.java
+    //@param teamName, scoreA. scoreB
+    public void inputData(String teamName, String scoreA, String scoreB) {
+        for(int i=0;i<teams.size();++i) {
+            if(teams.get(i).getTeamName().equals(teamName)){//if selected league is in the list
+                teams.get(i).inputData(scoreA,scoreB);
+            }
+        }
+    }
 }
