@@ -70,6 +70,7 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getBaseContext(), parent.getItemAtPosition(position)+" selected", Toast.LENGTH_LONG).show();
                 teamSelected = parent.getItemAtPosition(position).toString();
+                mPresenter.teamInput(teamSelected);
             }
 
             @Override

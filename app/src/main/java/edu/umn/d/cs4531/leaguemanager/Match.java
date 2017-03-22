@@ -8,6 +8,7 @@ import java.util.Calendar;
 public class Match {
 
     //Variables
+
     private  int teamAScore = 0;
     private  int teamBScore = 0;
     private  Team teamA;
@@ -19,6 +20,7 @@ public class Match {
 
     //Constructor
     public Match() {
+
         teamA = null;
         teamB = null;
         playTime = null;

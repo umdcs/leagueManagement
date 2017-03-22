@@ -44,14 +44,14 @@ public interface MVPComponents {
          * @param teamName
          * @return
          */
-        String teamInput(String teamName);
+        void teamInput(String teamName);
 
         /**
          * Takes ints of the score for the previous game between teams
          * @param winnerScore
          * @param loserScore
          */
-        void scoreInput(int winnerScore, int loserScore);
+        void scoreInput(String winnerScore, String loserScore);
     }
 
     interface Model
@@ -80,5 +80,8 @@ public interface MVPComponents {
         void createLeague(String name);
 
         void setSelectedLeague(String leagueName);
+
+        void setSelectedTeam(String teamName);
+        void setSelectedInputtedScore(String score_A, String score_B);
     }
 }

@@ -122,6 +122,14 @@ public class Team {
         }
     }
 
-
+    //Gets called by league to input scoreA and scoreB into match.java
+    //@param scoreA. scoreB
+   /* public void inputData(String scoreA, String scoreB) {
+        for(int i=0;i<Schedule.size();++i) {
+            if(Schedule.get(i).getTeamName().equals(teamName)){//if selected league is in the list
+                teams.get(i).inputData(scoreA,scoreB);
+            }
+        }
+    }*/
 }
 
