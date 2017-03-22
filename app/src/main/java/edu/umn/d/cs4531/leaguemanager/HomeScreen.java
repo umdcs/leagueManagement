@@ -1,5 +1,6 @@
 package edu.umn.d.cs4531.leaguemanager;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -74,6 +75,7 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
                 Toast.makeText(getBaseContext(), parent.getItemAtPosition(position)+" selected", Toast.LENGTH_LONG).show();
                 teamSelected = parent.getItemAtPosition(position).toString();
                 mPresenter.teamInput(teamSelected);
+                Intent teamIntent -
             }
 
             @Override
