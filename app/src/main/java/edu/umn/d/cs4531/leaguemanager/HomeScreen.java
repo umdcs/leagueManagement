@@ -34,7 +34,6 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
 
     void setupSpinner() {
         //RelativeLayout mainLayout = (RelativeLayout)findViewById(R.id.activity_home_screen);
-        //ArrayList<String> leagueArray = mPresenter.getLeagues();
         ArrayList<String> leagueArray = mPresenter.getLeagues();
         //leagueArray.add("League1");
         //leagueArray.add("League2");
@@ -49,7 +48,7 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
                 leagueSelected = parent.getItemAtPosition(position).toString();
                 mPresenter.leagueInput(leagueSelected);
                 setupTeamSpinner();
-                setupSchedule();
+                //setupSchedule();
             }
 
             @Override
@@ -61,7 +60,11 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
     }
 
     private void setupTeamSpinner() {
-        ArrayList<String> teamArray = mPresenter.getTeams(leagueSelected);
+       //ArrayList<String> teamArray = mPresenter.getTeams();
+        ArrayList<String> teamArray = new ArrayList<String>();
+        teamArray.add("Team1");
+        teamArray.add("Team2");
+        teamArray.add("Team3");
 
         Spinner teamSpinner = (Spinner) findViewById(R.id.teamSpinner);
         teamSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, teamArray));

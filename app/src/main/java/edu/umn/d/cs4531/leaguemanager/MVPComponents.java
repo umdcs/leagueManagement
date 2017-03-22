@@ -24,12 +24,12 @@ public interface MVPComponents {
         ArrayList<String> getLeagues();
 
         /**
-         * Takes in a string param on the league selected and returns an array of the
-         * teams in that league
-         * @param leagueSelected
+         * Returns a list of the names of the teams in the league that was specified
+         * in the leagueInput function
+         * @param
          * @return
          */
-        ArrayList<String> getTeams(String leagueSelected);
+        ArrayList<String> getTeams();
 
         /**
          * Takes a string leagueName selected from a list of available leagues
@@ -57,11 +57,11 @@ public interface MVPComponents {
     interface Model
     {
         /**
-         * returns a list of teams in the league selected
-         * @param leagueName
-         * @return String[] teams in selected league
+         * returns a list of team objects in the league specified by the setSelectedLeague function
+         * @param
+         * @return LinkedList<team> of teams in selected league
          */
-        LinkedList getTeams(String leagueName);
+        LinkedList<Team> getTeams();
 
         /**
          * Gets all relevant info on the team selected so it can be displayed in the view

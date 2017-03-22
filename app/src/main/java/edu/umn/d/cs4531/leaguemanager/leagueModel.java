@@ -54,7 +54,7 @@ public class leagueModel implements MVPComponents.Model{
 
     }
     @Override
-    public LinkedList<Team> getTeams(String leagueName) {
+    public LinkedList<Team> getTeams() {
         return null;
     }
 
@@ -85,7 +85,7 @@ public class leagueModel implements MVPComponents.Model{
     //Processes the data of league name, team name, scoreA, scoreB into back-end data.
     // Updates matchups to include score entered and sends matchup data to the servers on a restful POST call.
     //@param leagueName, teamName, scoreA, scoreB
-       public void inputData(String leagueName, String teamName, String scoreA, String scoreB)
+       public void inputData(String leagueName, String teamName, int scoreA, int scoreB)
     {
         for(int i=0;i<listOfLeagues.size();++i) {
             if(listOfLeagues.get(i).getLeagueName().equals(leagueName)){//if selected league is in the list

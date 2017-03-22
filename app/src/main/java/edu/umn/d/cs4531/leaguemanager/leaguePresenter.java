@@ -29,8 +29,13 @@ public class leaguePresenter implements MVPComponents.Presenter{
     }
 
     @Override
-    public ArrayList<String> getTeams(String leagueSelected) {
-        return null;
+    public ArrayList<String> getTeams() {
+        ArrayList<String> teamArray = new ArrayList<String>();
+        LinkedList<Team> teamLinked = new LinkedList<Team> (leagueModel.getTeams());
+        for (int i = 0; i < teamLinked.size(); i++) {
+            teamArray.add(teamLinked.get(i).getTeamName());
+        }
+        return teamArray;
     }
 
     @Override
