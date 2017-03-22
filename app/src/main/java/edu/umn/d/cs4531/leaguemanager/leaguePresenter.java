@@ -12,9 +12,9 @@ public class leaguePresenter implements MVPComponents.Presenter{
     private MVPComponents.Model leagueModel;
     private MVPComponents.View leagueView;
 
-    public leaguePresenter(MVPComponents.View view)
-    {
+    public leaguePresenter(MVPComponents.View view) {
         leagueView = view;
+        leagueModel = new leagueModel(this);
     }
 
     @Override
@@ -29,19 +29,31 @@ public class leaguePresenter implements MVPComponents.Presenter{
     }
 
     @Override
-    public String[] leagueInput(String leagueName) {
-        return new String[0];
+    public ArrayList<String> getTeams() {
+        ArrayList<String> teamArray = new ArrayList<String>();
+        LinkedList<Team> teamLinked = new LinkedList<Team> (leagueModel.getTeams());
+        for (int i = 0; i < teamLinked.size(); i++) {
+            teamArray.add(teamLinked.get(i).getTeamName());
+        }
+        return teamArray;
     }
 
     @Override
-    public String teamInput(String teamName) {
-        return null;
+    public void leagueInput(String leagueName) {
+        leagueModel.setSelectedLeague(leagueName);
     }
 
     @Override
-    public void scoreInput(int winnerScore, int loserScore) {
+    public void teamInput(String teamName) {
+        leagueModel.setSelectedTeam(teamName);
 
     }
+    @Override
+    public void scoreInput(String scoreA, String scoreB) {
+        leagueModel.setSelectedInputtedScore(scoreA, scoreB);
+
+    }
+
 
     public void setModel(leagueModel model)
     {

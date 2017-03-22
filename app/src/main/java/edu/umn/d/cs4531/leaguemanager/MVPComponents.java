@@ -24,36 +24,44 @@ public interface MVPComponents {
         ArrayList<String> getLeagues();
 
         /**
+         * Returns a list of the names of the teams in the league that was specified
+         * in the leagueInput function
+         * @param
+         * @return
+         */
+        ArrayList<String> getTeams();
+
+        /**
          * Takes a string leagueName selected from a list of available leagues
          * on the league select screen
          * @param leagueName
          * @return an array of strings of the teams in the selected league
          */
-        String[] leagueInput(String leagueName);
+        void leagueInput(String leagueName);
 
         /**
          * Takes a string of the team selected ********************************
          * @param teamName
          * @return
          */
-        String teamInput(String teamName);
+        void teamInput(String teamName);
 
         /**
          * Takes ints of the score for the previous game between teams
          * @param winnerScore
          * @param loserScore
          */
-        void scoreInput(int winnerScore, int loserScore);
+        void scoreInput(String winnerScore, String loserScore);
     }
 
     interface Model
     {
         /**
-         * returns a list of teams in the league selected
-         * @param leagueName
-         * @return String[] teams in selected league
+         * returns a list of team objects in the league specified by the setSelectedLeague function
+         * @param
+         * @return LinkedList<team> of teams in selected league
          */
-        LinkedList getTeams(String leagueName);
+        LinkedList<Team> getTeams();
 
         /**
          * Gets all relevant info on the team selected so it can be displayed in the view
@@ -70,5 +78,10 @@ public interface MVPComponents {
         LinkedList getLeagues();
 
         void createLeague(String name);
+
+        void setSelectedLeague(String leagueName);
+
+        void setSelectedTeam(String teamName);
+        void setSelectedInputtedScore(String score_A, String score_B);
     }
 }
