@@ -30,6 +30,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/enterTeam1Score"
         android:text="@string/enterScore"
+        android:inputType="number"
         android:layout_marginStart="71dp"
         android:layout_alignBaseline="@+id/Team2Name"
         android:layout_alignBottom="@+id/Team2Name"
@@ -39,6 +40,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/enterTeam2Score"
         android:text="@string/enterScore"
+        android:inputType="number"
         android:layout_alignBaseline="@+id/Team1Name"
         android:layout_alignBottom="@+id/Team1Name"
         android:layout_alignStart="@+id/enterTeam1Score" />

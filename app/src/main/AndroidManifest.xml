@@ -15,7 +15,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddScoreActivity"></activity>
+        <activity android:name=".ScoreInput"></activity>
     </application>
 
 </manifest>
