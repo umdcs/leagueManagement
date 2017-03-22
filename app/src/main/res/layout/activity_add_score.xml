@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="edu.umn.d.cs4531.leaguemanager.AddScoreActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Team1Name"
+        android:text="@string/teamNameHere"
+        android:textSize="20sp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="28dp"
+        android:layout_below="@+id/enterTeam1Score"
+        android:layout_alignParentStart="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Team2Name"
+        android:textSize="20sp"
+        android:text="@string/teamNameHere"
+        android:layout_marginTop="48dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/Team1Name" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/enterTeam1Score"
+        android:text="@string/enterScore"
+        android:layout_marginStart="71dp"
+        android:layout_alignBaseline="@+id/Team2Name"
+        android:layout_alignBottom="@+id/Team2Name"
+        android:layout_toEndOf="@+id/Team2Name" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/enterTeam2Score"
+        android:text="@string/enterScore"
+        android:layout_alignBaseline="@+id/Team1Name"
+        android:layout_alignBottom="@+id/Team1Name"
+        android:layout_alignStart="@+id/enterTeam1Score" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/enterScore"
+        android:text="@string/submitScore"
+        android:layout_marginTop="72dp"
+        android:layout_below="@+id/enterTeam2Score"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
+
