@@ -61,11 +61,11 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
     }
 
     private void setupTeamSpinner() {
-       //ArrayList<String> teamArray = mPresenter.getTeams();
-        ArrayList<String> teamArray = new ArrayList<String>();
-        teamArray.add("Team1");
-        teamArray.add("Team2");
-        teamArray.add("Team3");
+        ArrayList<String> teamArray = mPresenter.getTeams();
+        //ArrayList<String> teamArray = new ArrayList<String>();
+        //teamArray.add("Team1");
+        //teamArray.add("Team2");
+        //teamArray.add("Team3");
 
         Spinner teamSpinner = (Spinner) findViewById(R.id.teamSpinner);
         teamSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, teamArray));
@@ -75,7 +75,7 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
                 Toast.makeText(getBaseContext(), parent.getItemAtPosition(position)+" selected", Toast.LENGTH_LONG).show();
                 teamSelected = parent.getItemAtPosition(position).toString();
                 mPresenter.teamInput(teamSelected);
-                Intent teamIntent -
+                //Intent teamIntent -
             }
 
             @Override

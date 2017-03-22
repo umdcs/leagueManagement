@@ -12,8 +12,8 @@ public class ScoreInput extends AppCompatActivity implements MVPComponents.View 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_score_input);
+        setContentView(R.layout.activity_add_score);
 
-        
+
     }
 }
