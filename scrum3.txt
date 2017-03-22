@@ -1,0 +1,19 @@
+League Manager
+2017-03-21
+11:00 a.m.
+Library
+1 hour and 15 minutes
+All members attended.
+1.
+	Get server talking to devices, view schedules, and input scores.
+2.
+	The team has talked about logistics in sending information between the view and model and server.
+	Jeff is working on how to store information on the server
+	Mark is working on the model and how to organize and store information in the local device. Also, worked on classes for league, team, and matches.
+	Adam worked on the xml and creating another view and activity.
+	Hunter is working on the activities and passing information from user input into the model and eventually stored in the server.
+3.
+	If we were working together all of the time when coding, instead of doing the bulk of it alone, I believe we could have a much more cohesive project on our hands. I think we're working it out fine during our scrum meetings on what needs to be done, but we could have more communication.
+4. Alas, we have not completed a user story by this point.
+
+Our meeting went ok, I feel like we are a little behind in where we want to be, an accelerated work schedule from myself (Hunter) could improve this situation. I plan on implementing more UI components soon. We need to work on testing some of our more complicated methods.
