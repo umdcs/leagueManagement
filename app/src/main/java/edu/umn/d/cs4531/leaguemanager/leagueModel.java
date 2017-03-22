@@ -45,10 +45,22 @@ public class leagueModel implements MVPComponents.Model{
     public leagueModel(MVPComponents.Presenter Presenter)
     {
         listOfLeagues = new LinkedList<League>();
+
+
         //Dummy list of leagues to send to the view for testing purposes DELETE AFTER TEST
         listOfLeagues.add(new League("League 1"));
         listOfLeagues.add(new League("League 2"));
         listOfLeagues.add(new League("League 3"));
+        for (League leagues: listOfLeagues)
+        {
+            leagues.addTeam("Team 1");
+            leagues.addTeam("Team 2");
+            leagues.addTeam("Team 3");
+            leagues.addTeam("Team 4");
+            Match match1 = new Match(leagues.getTeams().get(1),leagues.getTeams().get(2),0,null);
+            Match match2 = new Match(leagues.getTeams().get(3),leagues.getTeams().get(4),0,null);
+
+        }
         //--------------------------------------------------------------------------------
         this.Presenter = Presenter;
 
