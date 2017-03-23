@@ -65,11 +65,11 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
 
     private void setupTeamSpinner() {
 
-       // ArrayList<String> teamArray = mPresenter.getTeams();
-        ArrayList<String> teamArray = new ArrayList<String>();
-        teamArray.add("Team1");
-        teamArray.add("Team2");
-        teamArray.add("Team3");
+        ArrayList<String> teamArray = mPresenter.getTeams();
+       // ArrayList<String> teamArray = new ArrayList<String>();
+        //teamArray.add("Team1");
+        //teamArray.add("Team2");
+        //teamArray.add("Team3");
 
 
         Spinner teamSpinner = (Spinner) findViewById(R.id.teamSpinner);
