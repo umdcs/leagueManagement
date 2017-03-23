@@ -6,4 +6,6 @@
     <string name="teamNameHere">Team Name Goes Here</string>
     <string name="submitScore">Submit Score</string>
     <string name="enterScore">000</string>
+    <string name="addScore">Enter Final Score</string>
+    <string name="viewSchedule">View Schedule</string>
 </resources>
