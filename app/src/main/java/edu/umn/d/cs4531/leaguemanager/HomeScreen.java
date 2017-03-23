@@ -18,6 +18,7 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
     private MVPComponents.Presenter mPresenter;
     private String leagueSelected;
     private String teamSelected;
+    public static final String EXTRA_MESSAGE = "edu.umn.d.cs4531.leaguemanager.MESSAGE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +94,9 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
     }
 
     public void addScore(View view) {
+        Intent scoreIntent = new Intent (this, AddScoreActivity.class);
+        scoreIntent.putExtra (EXTRA_MESSAGE, teamSelected);
+        startActivity(scoreIntent);
 
     }
 }
