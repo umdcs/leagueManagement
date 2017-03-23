@@ -12,9 +12,10 @@ public class League implements LMTInterface.L{
 
     //Variables
     private String leagueName;
-    private LinkedList<Team> teams = new LinkedList<Team>();
+    private LinkedList<Team> teams = new LinkedList<>();
+    private LinkedList<LinkedList<Match>> fullSchedule = new LinkedList<>();
     private boolean scheduleFinalized=false; //Prevents teams and schedules being added and removed after the schedule is made
-    private int numberOfLanes;
+    private int numberOfLanes; // Need to implement functionality
     private int startDate;
     private int startMonth;
     private int startYear;
@@ -77,16 +78,26 @@ public class League implements LMTInterface.L{
     }
 
     public LinkedList<LinkedList<Match>> getFullSchedule() {
-        return null;  //--Implement--
+        return fullSchedule;
     }
 
     //public scoreboard getLeagueStandings
 
     //public scoreboard getFullResults
 
-    /* public schedule createSchedule(start date and time meeting)
-        create initial date and time, pass into createAllWeeks(), let that method create future weeks
-    */
+    //Creates a full round robin schedule based on variables set prior to calling the function.
+    // Requires scheduleFinalized to be false, and startYear,startMonth,startDate,startHour,startMinute,and maxRounds must have been changed from default
+    //@return true if schedule was created successfully. False otherwise.
+    public boolean createSchedule(){
+        boolean success = false;
+        if(/*numberOfLanes != 0 && */startYear != 0 && startMonth != 0 && startDate != 0 && startHour != 0 && startMinute != 0 && maxRounds != 0 && !scheduleFinalized) {
+            fullSchedule = createAllWeeks();
+            scheduleFinalized = true;
+            success = true;
+        }
+        return success;
+    }
+
 
     //public schedule createPlayoffs
 
@@ -98,7 +109,10 @@ public class League implements LMTInterface.L{
         LinkedList<Match> matchList = new LinkedList<Match>();
         int listSize = currRotation.size() / 2;
         for (int i = 0; i < listSize; i++){
-            matchList.add(new Match(currRotation.get(i), currRotation.get(i+listSize), i+1, time));
+            Match newestMatch = new Match(currRotation.get(i), currRotation.get(i+listSize), i+1, time);
+            matchList.add(newestMatch);
+            currRotation.get(i).addMatch(newestMatch);
+            currRotation.get(i+listSize).addMatch(newestMatch);
         }
         return matchList;
     }
@@ -112,6 +126,7 @@ public class League implements LMTInterface.L{
             numberOfRounds++;
         }
         if(numberOfTeams == 1) { numberOfRounds = 0;}
+        if(numberOfRounds > maxRounds) { numberOfRounds = maxRounds;}
         LinkedList<Team> currRotation = (LinkedList<Team>)teams.clone();
         GregorianCalendar currTime = new GregorianCalendar(startYear, startMonth, startDate, startHour, startMinute);
         for(int i = 0; i < numberOfRounds; i++){
