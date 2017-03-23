@@ -39,7 +39,7 @@ public class leagueModel implements MVPComponents.Model{
     private String selectedTeam;
     private String inputtedScoreA;
     private String inputtedScoreB;
-    private League mLeague;
+    private League mLeague;         //the current league we can pull info from
 
 
     public leagueModel(MVPComponents.Presenter Presenter)
@@ -63,6 +63,7 @@ public class leagueModel implements MVPComponents.Model{
 
         }
         Log.d("Model: ", "outside listofleagues for");
+        //adding these unique teams to the lists to differentiate between the leagues.
         listOfLeagues.get(0).addTeam("Team Awesome");
         listOfLeagues.get(1).addTeam("Team Incredible");
         listOfLeagues.get(2).addTeam("Team Ludacris");
@@ -90,6 +91,10 @@ public class leagueModel implements MVPComponents.Model{
        listOfLeagues.add(new League("name"));
     }
 
+    /**
+     * takes in a string of the league selected and sets the League member object to it
+     * @param selectedLeague
+     */
     public void setSelectedLeague(String selectedLeague) {
         this.selectedLeague = selectedLeague;
         for (League leagues: listOfLeagues) {
