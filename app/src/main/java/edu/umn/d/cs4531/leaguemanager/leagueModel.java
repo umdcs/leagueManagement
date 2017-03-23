@@ -39,7 +39,7 @@ public class leagueModel implements MVPComponents.Model{
     private String selectedTeam;
     private String inputtedScoreA;
     private String inputtedScoreB;
-
+    private League mLeague;         //the current league we can pull info from
 
 
     public leagueModel(MVPComponents.Presenter Presenter)
@@ -57,17 +57,25 @@ public class leagueModel implements MVPComponents.Model{
             leagues.addTeam("Team 2");
             leagues.addTeam("Team 3");
             leagues.addTeam("Team 4");
-            Match match1 = new Match(leagues.getTeams().get(1),leagues.getTeams().get(2),0,null);
-            Match match2 = new Match(leagues.getTeams().get(3),leagues.getTeams().get(4),0,null);
+            Log.d ("Model: ", "List of leagues in for loop");
+           // Match match1 = new Match(leagues.getTeams().get(1),leagues.getTeams().get(2),0,null);
+           // Match match2 = new Match(leagues.getTeams().get(3),leagues.getTeams().get(4),0,null);
 
         }
+
+        Log.d("Model: ", "outside listofleagues for");
+        //adding these unique teams to the lists to differentiate between the leagues.
+        listOfLeagues.get(0).addTeam("Team Awesome");
+        listOfLeagues.get(1).addTeam("Team Incredible");
+        listOfLeagues.get(2).addTeam("Team Ludacris");
+
         //--------------------------------------------------------------------------------
         this.Presenter = Presenter;
 
     }
     @Override
     public LinkedList<Team> getTeams() {
-        return null;
+        return mLeague.getTeams();
     }
 
     @Override
@@ -84,9 +92,18 @@ public class leagueModel implements MVPComponents.Model{
     {
        listOfLeagues.add(new League("name"));
     }
+
+    /**
+     * takes in a string of the league selected and sets the League member object to it
+     * @param selectedLeague
+     */
     public void setSelectedLeague(String selectedLeague) {
         this.selectedLeague = selectedLeague;
+        for (League leagues: listOfLeagues) {
+            if (leagues.getLeagueName() == selectedLeague) mLeague = leagues;
+        }
     }
+
     public void setSelectedTeam(String selectedTeam) {
         this.selectedTeam = selectedTeam;
     }

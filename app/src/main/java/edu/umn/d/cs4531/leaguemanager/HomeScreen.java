@@ -3,6 +3,7 @@ package edu.umn.d.cs4531.leaguemanager;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -45,6 +46,8 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedString = parent.getItemAtPosition(position).toString();
+                Log.d("Main", "the item selected is: " + selectedString);
                 Toast.makeText(getBaseContext(), parent.getItemAtPosition(position)+" selected", Toast.LENGTH_LONG).show();
                 leagueSelected = parent.getItemAtPosition(position).toString();
                 mPresenter.leagueInput(leagueSelected);
