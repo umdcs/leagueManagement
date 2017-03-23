@@ -52,6 +52,13 @@ public class Match {
 
     public Team getTeamB() { return teamB; }
 
+    public Team getOtherTeam(Team homeTeam) {
+        Team returnTeam = null;
+        if(homeTeam == teamA) returnTeam = teamB;
+        else if(homeTeam == teamB) returnTeam = teamA;
+        return returnTeam;
+    }
+
     public void setTeamAScore(int score) { teamAScore = score; }
 
     public void setTeamBScore(int score) { teamBScore = score; }
