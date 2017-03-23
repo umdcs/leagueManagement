@@ -15,9 +15,9 @@ public class Team {
     private  int wins = 0;
     private  int losses = 0;
     private  int ties = 0;
-    private  LinkedList<String> PlayerList = null;
-    private  LinkedList<Match> Schedule = null;
-    private  LinkedList<Match> FinishedMatches;
+    private  LinkedList<String> PlayerList = new LinkedList<>();
+    private  LinkedList<Match> Schedule = new LinkedList<>();
+    private  LinkedList<Match> FinishedMatches = new LinkedList<>();
     private String teamName="";
 
     //Default Constructor
@@ -68,7 +68,10 @@ public class Team {
         return returnMatch;
     }
 
-    public Match peekMatch() { return Schedule.peek(); }
+    public Match peekMatch() {
+        if(Schedule.size() > 0) return Schedule.peek();
+        else return null;
+    }
 
     public LinkedList<Match> getSchedule() { return Schedule; }
 
