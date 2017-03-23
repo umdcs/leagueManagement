@@ -92,4 +92,7 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
 
     }
 
+    public void addScore(View view) {
+
+    }
 }
