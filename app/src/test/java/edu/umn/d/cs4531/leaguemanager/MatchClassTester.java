@@ -11,8 +11,8 @@ import static junit.framework.Assert.*;
  */
 
 public class MatchClassTester extends Match {
-        public GregorianCalendar time = new GregorianCalendar(2017, 9, 20, 17, 30);//Should Be October 20th, 2017 at 5:30PM
-        public Match match1 = new Match(new Team("team1"),new Team("team2"),1,time);
+        GregorianCalendar time = new GregorianCalendar(2017, 9, 20, 17, 30);//Should Be October 20th, 2017 at 5:30PM
+        Match match1 = new Match(new Team("team1"),new Team("team2"),1,time);
         Team winningTeam = null;
         @Test
         public void determineWinnerTest()
