@@ -14,13 +14,22 @@ app.set("port",3246);
 
 
 app.use(bodyParser.urlencoded({
-    extended true
+    extended: true
 }));
 app.use(bodyParser.json());
 
 //Data of a player
 var player = {
     "Name":""
+};
+var inputTestData = {
+    "LeagueName":"",
+    "TeamName":"",
+    "ScoreA":"",
+    "ScoreB":""
+}
+var inputHistory = {
+    History:[]
 };
 //Data on a single team.
 var singleTeam ={
@@ -53,9 +62,9 @@ var matchupScores = {
 };
 //Data of a league
 var league = {
+    "leagueName":"",
     leagueStandings:[],
-    teams:[],
-    fullSchedule:[]    
+    teams:[]    
 };
 //List of League Standings
 var leagueStandings = {
@@ -69,6 +78,7 @@ app.get('/', function(request, response)
 	    response.write('<H1>League Test Server</H1>');
 	    response.write('<p>Report: Client sends all testing data to display on this server. This information is to display on the main page; information includes leagues, teams, rosters and more.</p>');
 	    response.write('</body></html>');
+	   // response.json(inputHistory);
 	    response.end();
 	    console.log('Recieved Dashboard request!');
 	});
@@ -79,7 +89,18 @@ app.get('/leagues', function(request, response)
 	    console.log('GET REQUEST: Test Server with JSON');
 
 	});
+app.post('/', function(req, res)
+	 {
+	     if(!req.body) return response.sendStatus(400);
 
+	     inputTestData.LeagueName= req.body.LeagueName;
+	     inputTestData.TeamName=req.body.TeamName;
+	     inputTestData.ScoreA=req.body.ScoreA;
+	     inputTestData.ScoreB.req.body.ScoreB;
+
+	     inputHistory.History.push(inputTestData);//CHECK FOR ERROR
+	     console.log('Match Input Posted'); 
+	 });
 app.use(function(req, res, next){
     res.status(404).send('Sorry cant find that!');
 });
@@ -89,7 +110,7 @@ app.use(function(req, res, next){
     res.status(500).send('Something broke!');
 });
 
-app.listem(app.get("port"), funtion() {
+app.listen(app.get("port"), function() {
     console.log("League Manager Testing Server Ready on port: ", app.get("port"))});
 
 

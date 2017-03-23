@@ -58,8 +58,8 @@ public class leagueModel implements MVPComponents.Model{
             leagues.addTeam("Team 3");
             leagues.addTeam("Team 4");
             Log.d ("Model: ", "List of leagues in for loop");
-           // Match match1 = new Match(leagues.getTeams().get(1),leagues.getTeams().get(2),0,null);
-           // Match match2 = new Match(leagues.getTeams().get(3),leagues.getTeams().get(4),0,null);
+            Match match1 = new Match(leagues.getTeams().get(0),leagues.getTeams().get(1),0,null);
+            Match match2 = new Match(leagues.getTeams().get(2),leagues.getTeams().get(3),0,null);
 
         }
 
@@ -121,6 +121,7 @@ public class leagueModel implements MVPComponents.Model{
                listOfLeagues.get(i).inputData(teamName, scoreA,scoreB);
             }
         }
+        restPOST();
     }
 
     /*Model Connection to Server************************************************/
@@ -272,6 +273,7 @@ public class leagueModel implements MVPComponents.Model{
             jsonParam = new JSONObject();
             jsonParam.put("League",selectedLeague);
             jsonParam.put("Team",selectedTeam);
+            jsonParam.put("Score A", mLeague.getTeams().)
             //jasonParam.put("Matchup",leaguePresenter.getMa)
 
         } catch (JSONException e) {
