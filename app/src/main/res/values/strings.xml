@@ -8,4 +8,5 @@
     <string name="enterScore">000</string>
     <string name="addScore">Enter Final Score</string>
     <string name="viewSchedule">View Schedule</string>
+    <string name="opponent">Opponent</string>
 </resources>

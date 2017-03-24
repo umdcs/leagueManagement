@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/Team2Name"
         android:textSize="20sp"
-        android:text="@string/teamNameHere"
+        android:text="@string/opponent"
         android:layout_marginTop="48dp"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/Team1Name" />
