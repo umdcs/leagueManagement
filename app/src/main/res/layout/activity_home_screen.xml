@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/duluth_curl"
+        android:text="@string/duluthCurl"
         android:textColor="#000000"
         android:textSize="30sp"
         android:layout_alignParentTop="true"
@@ -22,7 +22,7 @@
 
     <TextView
         android:id="@+id/listView"
-        android:text="@string/pick_league"
+        android:text="@string/pickLeague"
         android:textAlignment="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/pickTeam"
-        android:text="@string/pick_team"
+        android:text="@string/pickTeam"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/leagueSpinner"
         android:layout_centerHorizontal="true" />

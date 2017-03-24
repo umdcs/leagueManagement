@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">LeagueManager</string>
-    <string name="duluth_curl">Duluth Curling Club</string>
-    <string name="pick_league">Choose Your League</string>
-    <string name="pick_team">Choose Your Team</string>
+    <string name="duluthCurl">Duluth Curling Club</string>
+    <string name="pickLeague">Choose Your League</string>
+    <string name="pickTeam">Choose Your Team</string>
     <string name="teamNameHere">Team Name Goes Here</string>
     <string name="submitScore">Submit Score</string>
     <string name="enterScore">000</string>
