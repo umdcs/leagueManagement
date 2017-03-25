@@ -18,7 +18,10 @@ public class leaguePresenter implements MVPComponents.Presenter {
         leagueView = view;
         leagueModel = new leagueModel(this);
     }
-
+    public leaguePresenter getPresenter()
+    {
+        return this;
+    }
     @Override
     public ArrayList<String> getLeagues() {
 
@@ -55,7 +58,11 @@ public class leaguePresenter implements MVPComponents.Presenter {
         leagueModel.setSelectedInputtedScore(scoreA, scoreB);
 
     }
-
+    @Override
+    public void run()
+        {
+            leagueModel.inputData();
+        };
 
     public void setModel(leagueModel model)
     {

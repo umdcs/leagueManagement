@@ -114,17 +114,39 @@ public class leagueModel implements MVPComponents.Model{
     //Processes the data of league name, team name, scoreA, scoreB into back-end data.
     // Updates matchups to include score entered and sends matchup data to the servers on a restful POST call.
     //@param leagueName, teamName, scoreA, scoreB
-       public void inputData(String leagueName, String teamName, int scoreA, int scoreB)
+       public void inputData()
     {
         for(int i=0;i<listOfLeagues.size();++i) {
-            if(listOfLeagues.get(i).getLeagueName().equals(leagueName)){//if selected league is in the list
-               listOfLeagues.get(i).inputData(teamName, scoreA,scoreB);
+            if(listOfLeagues.get(i).getLeagueName().equals(selectedLeague)){//if selected league is in the list
+               listOfLeagues.get(i).inputData(selectedTeam, Integer.parseInt(inputtedScoreA),Integer.parseInt(inputtedScoreB));
             }
         }
         restPOST();
     }
 
     /*Model Connection to Server************************************************/
+
+    public void restGET() {
+
+        new HTTPAsyncTask().execute("http://10.0.2.2:3246/Dash", "GET");
+    }
+    public void restPOST() {
+
+        JSONObject jsonParam = null;
+        try {
+            //Create JSONObject here
+            jsonParam = new JSONObject();
+            jsonParam.put("League",selectedLeague);
+            jsonParam.put("Team",selectedTeam);
+            //jsonParam.put("Score A", mLeague.getTeams().)
+            //jasonParam.put("Matchup",leaguePresenter.getMa)
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.d("DEBUG:", jsonParam.toString());
+        new HTTPAsyncTask().execute("http://10.0.2.2:3246/Dash", "POST", jsonParam.toString());
+    }
     private class HTTPAsyncTask extends AsyncTask<String, Integer, String>{
         @Override
         protected String doInBackground(String... params) {
@@ -261,25 +283,5 @@ public class leagueModel implements MVPComponents.Model{
             //textView.setText( result );
         }
     }
-    public void restGET(View view) {
 
-        new HTTPAsyncTask().execute("http://10.0.2.2:3246/Dash", "GET");
-    }
-    public void restPOST(View view) {
-
-        JSONObject jsonParam = null;
-        try {
-            //Create JSONObject here
-            jsonParam = new JSONObject();
-            jsonParam.put("League",selectedLeague);
-            jsonParam.put("Team",selectedTeam);
-            jsonParam.put("Score A", mLeague.getTeams().)
-            //jasonParam.put("Matchup",leaguePresenter.getMa)
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        Log.d("DEBUG:", jsonParam.toString());
-        new HTTPAsyncTask().execute("http://10.0.2.2:3246/Dash", "POST", jsonParam.toString());
-    }
 }
