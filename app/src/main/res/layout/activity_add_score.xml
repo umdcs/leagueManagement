@@ -48,6 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/enterScore"
+        android:onClick="sendData"
         android:text="@string/submitScore"
         android:layout_marginTop="72dp"
         android:layout_below="@+id/enterTeam2Score"

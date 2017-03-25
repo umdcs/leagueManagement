@@ -78,25 +78,26 @@ app.get('/', function(request, response)
 	    response.write('<H1>League Test Server</H1>');
 	    response.write('<p>Report: Client sends all testing data to display on this server. This information is to display on the main page; information includes leagues, teams, rosters and more.</p>');
 	    response.write('</body></html>');
-	   // response.json(inputHistory);
+	   
 	    response.end();
+	    
 	    console.log('Recieved Dashboard request!');
 	});
-app.get('/leagues', function(request, response)
+app.get('/dash', function(request, response)
 	{
-	    response.json(league);
+	    response.json(inputHistory);
 	    
 	    console.log('GET REQUEST: Test Server with JSON');
 
 	});
-app.post('/', function(req, res)
+app.post('/dash', function(req, res)
 	 {
 	     if(!req.body) return response.sendStatus(400);
 
 	     inputTestData.LeagueName= req.body.LeagueName;
 	     inputTestData.TeamName=req.body.TeamName;
-	     inputTestData.ScoreA=req.body.ScoreA;
-	     inputTestData.ScoreB.req.body.ScoreB;
+	     inputTestData.Matchup=req.body.Matchup;
+	    
 
 	     inputHistory.History.push(inputTestData);//CHECK FOR ERROR
 	     console.log('Match Input Posted'); 

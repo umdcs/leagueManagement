@@ -40,6 +40,7 @@ public class leagueModel implements MVPComponents.Model{
     private String inputtedScoreA;
     private String inputtedScoreB;
     private League mLeague;         //the current league we can pull info from
+    private Team mTeam;         //The current team we can pull from
 
 
     public leagueModel(MVPComponents.Presenter Presenter)
@@ -103,6 +104,13 @@ public class leagueModel implements MVPComponents.Model{
             if (leagues.getLeagueName() == selectedLeague) mLeague = leagues;
         }
     }
+    public void setCurrentTeam(String selectedTeam)
+    {
+        for(Team team: mLeague.getTeams())
+        {
+            if(team.getTeamName()==selectedTeam) mTeam = team;
+        }
+    }
 
     public void setSelectedTeam(String selectedTeam) {
         this.selectedTeam = selectedTeam;
@@ -128,7 +136,7 @@ public class leagueModel implements MVPComponents.Model{
 
     public void restGET() {
 
-        new HTTPAsyncTask().execute("http://10.0.2.2:3246/Dash", "GET");
+        new HTTPAsyncTask().execute("http://10.0.2.2:3246/dash", "GET");
     }
     public void restPOST() {
 
@@ -138,14 +146,14 @@ public class leagueModel implements MVPComponents.Model{
             jsonParam = new JSONObject();
             jsonParam.put("League",selectedLeague);
             jsonParam.put("Team",selectedTeam);
-            //jsonParam.put("Score A", mLeague.getTeams().)
-            //jasonParam.put("Matchup",leaguePresenter.getMa)
+            jsonParam.put("ScoreA",mTeam.peekMatch().getTeamAScore());
+            jsonParam.put("ScoreB",mTeam.peekMatch().getTeamBScore());
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
         Log.d("DEBUG:", jsonParam.toString());
-        new HTTPAsyncTask().execute("http://10.0.2.2:3246/Dash", "POST", jsonParam.toString());
+        new HTTPAsyncTask().execute("http://10.0.2.2:3246/dash", "POST", jsonParam.toString());
     }
     private class HTTPAsyncTask extends AsyncTask<String, Integer, String>{
         @Override

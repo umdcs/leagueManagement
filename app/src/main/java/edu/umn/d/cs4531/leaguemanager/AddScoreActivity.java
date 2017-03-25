@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -30,7 +31,7 @@ public class AddScoreActivity extends AppCompatActivity implements MVPComponents
     void setupPresenter() {
         mPresenter = new leaguePresenter(this);
     }
-    public void sendData() {
+    public void sendData(View view) {
         EditText scoreA = (EditText) findViewById(R.id.enterTeam1Score);
         EditText scoreB = (EditText) findViewById(R.id.enterTeam2Score);
         mPresenter.scoreInput(scoreA.toString(), scoreB.toString());
