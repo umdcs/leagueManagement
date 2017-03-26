@@ -293,13 +293,13 @@ public class leagueModel implements MVPComponents.Model{
              * simple means to show the output.
              */
 
-            try {
+           /* try {
                 JSONObject jsonData = new JSONObject( result );
                 Log.d("PostExecute Valid JSON:", jsonData.toString());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
+*/
             //textView.setText( result );
         }
     }
