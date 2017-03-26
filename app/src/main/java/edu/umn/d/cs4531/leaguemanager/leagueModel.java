@@ -59,8 +59,20 @@ public class leagueModel implements MVPComponents.Model{
             leagues.addTeam("Team 3");
             leagues.addTeam("Team 4");
             Log.d ("Model: ", "List of leagues in for loop");
+
             Match match1 = new Match(leagues.getTeams().get(0),leagues.getTeams().get(1),0,null);
             Match match2 = new Match(leagues.getTeams().get(2),leagues.getTeams().get(3),0,null);
+            for (int i=0; i<4; ++i)
+            {
+                if(i<=1)
+                leagues.getTeams().get(i).addMatch(match1);
+                else
+                {
+                    leagues.getTeams().get(i).addMatch(match2);
+                }
+
+            }
+
 
         }
 
@@ -104,16 +116,14 @@ public class leagueModel implements MVPComponents.Model{
             if (leagues.getLeagueName() == selectedLeague) mLeague = leagues;
         }
     }
-    public void setCurrentTeam(String selectedTeam)
-    {
+
+
+    public void setSelectedTeam(String selectedTeam) {
+        this.selectedTeam = selectedTeam;
         for(Team team: mLeague.getTeams())
         {
             if(team.getTeamName()==selectedTeam) mTeam = team;
         }
-    }
-
-    public void setSelectedTeam(String selectedTeam) {
-        this.selectedTeam = selectedTeam;
     }
     public void setSelectedInputtedScore(String inputtedScoreA, String inputtedScoreB) {
         this.inputtedScoreA = inputtedScoreA;
@@ -129,6 +139,7 @@ public class leagueModel implements MVPComponents.Model{
                listOfLeagues.get(i).inputData(selectedTeam, Integer.parseInt(inputtedScoreA),Integer.parseInt(inputtedScoreB));
             }
         }
+
         restPOST();
     }
 
@@ -142,12 +153,13 @@ public class leagueModel implements MVPComponents.Model{
 
         JSONObject jsonParam = null;
         try {
+
             //Create JSONObject here
             jsonParam = new JSONObject();
-            jsonParam.put("League",selectedLeague);
-            jsonParam.put("Team",selectedTeam);
-            jsonParam.put("ScoreA",mTeam.peekMatch().getTeamAScore());
-            jsonParam.put("ScoreB",mTeam.peekMatch().getTeamBScore());
+            jsonParam.put("LeagueName",selectedLeague);
+            jsonParam.put("TeamName",selectedTeam);
+            jsonParam.put("ScoreA",inputtedScoreA);//mTeam.peekMatch().getTeamAScore());
+            jsonParam.put("ScoreB",inputtedScoreB);//mTeam.peekMatch().getTeamBScore());
 
         } catch (JSONException e) {
             e.printStackTrace();

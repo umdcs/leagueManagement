@@ -87,5 +87,7 @@ public interface MVPComponents {
         void setSelectedInputtedScore(String score_A, String score_B);
 
         void inputData();
+
+
     }
 }
