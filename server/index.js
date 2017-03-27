@@ -51,11 +51,7 @@ var teamList = {
 var leagueListData = {
     leagueList:[]
 };
-//Single matchup score to be inputed into server.
-var matchScore = {
-    "ScoreA":0,
-    "ScoreB":0
-};
+
 //List of Matchup Scores
 var matchupScores = {
     matchupScoresList:[]
@@ -101,6 +97,10 @@ app.post('/dash', function(req, res)
 
 	     inputHistory.History.push(inputTestData);//CHECK FOR ERROR
 	     console.log('Match Input Posted'); 
+
+	     var statusMessage = {'status':"OK"
+				 };
+	     res.json(inputTestData.LeagueName);
 	 });
 app.use(function(req, res, next){
     res.status(404).send('Sorry cant find that!');

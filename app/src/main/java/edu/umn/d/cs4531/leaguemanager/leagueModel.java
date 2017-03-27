@@ -167,6 +167,7 @@ public class leagueModel implements MVPComponents.Model{
         }
         Log.d("DEBUG:", jsonParam.toString());
         new HTTPAsyncTask().execute("http://10.0.2.2:3246/dash", "POST", jsonParam.toString());
+
     }
     private class HTTPAsyncTask extends AsyncTask<String, Integer, String>{
         @Override
@@ -265,7 +266,7 @@ public class leagueModel implements MVPComponents.Model{
                  * contains valid JSON data.  We need to return this string out of this
                  * function and the onPostExecute function will process it.
                  */
-
+                System.out.println(sb.toString());
                 return sb.toString();
 
             } catch (MalformedURLException e) {
@@ -294,13 +295,13 @@ public class leagueModel implements MVPComponents.Model{
              * simple means to show the output.
              */
 
-           /* try {
+            try {
                 JSONObject jsonData = new JSONObject( result );
                 Log.d("PostExecute Valid JSON:", jsonData.toString());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-*/
+
             //textView.setText( result );
         }
     }
