@@ -136,6 +136,7 @@ public class leagueModel implements MVPComponents.Model{
     {
         for(int i=0;i<listOfLeagues.size();++i) {
             if(listOfLeagues.get(i).getLeagueName().equals(selectedLeague)){//if selected league is in the list
+               Log.d("Model: ", "Selected Team is " + selectedTeam);
                listOfLeagues.get(i).inputData(selectedTeam, Integer.parseInt(inputtedScoreA),Integer.parseInt(inputtedScoreB));
             }
         }

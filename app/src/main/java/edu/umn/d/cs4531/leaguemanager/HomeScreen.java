@@ -1,5 +1,6 @@
 package edu.umn.d.cs4531.leaguemanager;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
     private MVPComponents.Presenter mPresenter;
     private String leagueSelected;
     private String teamSelected;
+    private String returnData;
     public static final String EXTRA_MESSAGE = "edu.umn.d.cs4531.leaguemanager.MESSAGE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,8 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
 
         setupPresenter();
         setupSpinner();
+        Toast.makeText(getBaseContext(), returnData, Toast.LENGTH_LONG);
+        Log.d("Home: ", "onCreate" + returnData);
     }
 
     /**
@@ -81,7 +85,6 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
                 Toast.makeText(getBaseContext(), parent.getItemAtPosition(position)+" selected", Toast.LENGTH_LONG).show();
                 teamSelected = parent.getItemAtPosition(position).toString();
                 mPresenter.teamInput(teamSelected);
-                //Intent teamIntent -
             }
 
             @Override
@@ -96,7 +99,25 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
     public void addScore(View view) {
         Intent scoreIntent = new Intent (this, AddScoreActivity.class);
         scoreIntent.putExtra (EXTRA_MESSAGE, teamSelected);
-        startActivity(scoreIntent);
+        startActivityForResult(scoreIntent, 100);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode) {
+            case (100) : {
+                if (resultCode == Activity.RESULT_OK) {
+                    returnData = data.getStringExtra("edu.umn.d.cs4531.leaguemanager.MESSAGE");
+                    Log.d("Home: ", "we in onActResult" + returnData);
+                    //parse the data into two strings
+                    String[] splitted = returnData.split(" ");
+                    Log.d("onActRes: ", "first " + splitted[0] + "second " + splitted[1]);
+                    mPresenter.scoreInput(splitted[0], splitted[1]);
+                    mPresenter.run();
+                }
+            }
+        }
 
     }
 }

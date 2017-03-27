@@ -1,5 +1,6 @@
 package edu.umn.d.cs4531.leaguemanager;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import static android.R.attr.id;
 
 public class AddScoreActivity extends AppCompatActivity implements MVPComponents.View {
 
+    Intent intent;
     private String message;
     private MVPComponents.Presenter mPresenter;
     @Override
@@ -19,7 +21,7 @@ public class AddScoreActivity extends AppCompatActivity implements MVPComponents
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_score);
         setupPresenter();
-        Intent intent = getIntent();
+        intent = getIntent();
         Bundle extras = intent.getExtras();
         if (extras != null) message = extras.getString("edu.umn.d.cs4531.leaguemanager.MESSAGE");
         else message = "fuck";
@@ -34,8 +36,12 @@ public class AddScoreActivity extends AppCompatActivity implements MVPComponents
     public void sendData(View view) {
         EditText scoreA = (EditText) findViewById(R.id.enterTeam1Score);
         EditText scoreB = (EditText) findViewById(R.id.enterTeam2Score);
-        mPresenter.scoreInput(scoreA.toString(), scoreB.toString());
+        //String returnData = scoreA.getText().toString() + " " + scoreB.getText().toString();
+       // intent.putExtra("edu.umn.d.cs4531.leaguemanager.MESSAGE", returnData);
+        //Log.d("AddScore: ", returnData);
+        //setResult(Activity.RESULT_OK, intent);
+        mPresenter.scoreInput(scoreA.getText().toString(), scoreB.getText().toString());
         mPresenter.run();
-
+        finish();
     }
 }
