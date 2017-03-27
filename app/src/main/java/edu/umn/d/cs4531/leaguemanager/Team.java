@@ -97,7 +97,8 @@ public class Team {
     public void enterScore(int teamScore, int opponentScore) {
         Match currentMatch = Schedule.peek();
         Log.d("Team: ", "My team is " + teamName);
-        if (currentMatch.getTeamA().equals(this.teamName) || currentMatch.getTeamB().equals(this.teamName)) {
+        Log.d("Team: ", "My opponent is " + currentMatch.getOtherTeam(this));
+        if (currentMatch.getTeamA().equals(this.teamName) || currentMatch.getOtherTeam(this).equals(this.teamName)) {
             if (currentMatch.getTeamA() == this) {
                 currentMatch.setTeamAScore(teamScore);
                 currentMatch.setTeamBScore(opponentScore);

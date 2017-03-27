@@ -78,9 +78,9 @@ public class leagueModel implements MVPComponents.Model{
 
         Log.d("Model: ", "outside listofleagues for");
         //adding these unique teams to the lists to differentiate between the leagues.
-        listOfLeagues.get(0).addTeam("Team Awesome");
-        listOfLeagues.get(1).addTeam("Team Incredible");
-        listOfLeagues.get(2).addTeam("Team Ludacris");
+        //listOfLeagues.get(0).addTeam("Team Awesome");
+        //listOfLeagues.get(1).addTeam("Team Incredible");
+        //listOfLeagues.get(2).addTeam("Team Ludacris");
 
         //--------------------------------------------------------------------------------
         this.Presenter = Presenter;
