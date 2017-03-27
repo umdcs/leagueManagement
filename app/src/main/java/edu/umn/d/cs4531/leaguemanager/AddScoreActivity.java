@@ -37,7 +37,7 @@ public class AddScoreActivity extends AppCompatActivity implements MVPComponents
         EditText scoreA = (EditText) findViewById(R.id.enterTeam1Score);
         EditText scoreB = (EditText) findViewById(R.id.enterTeam2Score);
         //String returnData = scoreA.getText().toString() + " " + scoreB.getText().toString();
-       // intent.putExtra("edu.umn.d.cs4531.leaguemanager.MESSAGE", returnData);
+        //intent.putExtra("edu.umn.d.cs4531.leaguemanager.MESSAGE", returnData);
         //Log.d("AddScore: ", returnData);
         //setResult(Activity.RESULT_OK, intent);
         mPresenter.scoreInput(scoreA.getText().toString(), scoreB.getText().toString());

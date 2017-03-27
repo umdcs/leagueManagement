@@ -113,7 +113,7 @@ public class leagueModel implements MVPComponents.Model{
     public void setSelectedLeague(String selectedLeague) {
         this.selectedLeague = selectedLeague;
         for (League leagues: listOfLeagues) {
-            if (leagues.getLeagueName() == selectedLeague) mLeague = leagues;
+            if (leagues.getLeagueName().equals(selectedLeague)) mLeague = leagues;
         }
     }
 
@@ -122,7 +122,7 @@ public class leagueModel implements MVPComponents.Model{
         this.selectedTeam = selectedTeam;
         for(Team team: mLeague.getTeams())
         {
-            if(team.getTeamName()==selectedTeam) mTeam = team;
+            if(team.getTeamName().equals(selectedTeam)) mTeam = team;
         }
     }
     public void setSelectedInputtedScore(String inputtedScoreA, String inputtedScoreB) {

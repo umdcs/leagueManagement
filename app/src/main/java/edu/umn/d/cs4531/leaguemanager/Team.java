@@ -1,5 +1,7 @@
 package edu.umn.d.cs4531.leaguemanager;
 
+import android.util.Log;
+
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 
@@ -94,7 +96,8 @@ public class Team {
     }
     public void enterScore(int teamScore, int opponentScore) {
         Match currentMatch = Schedule.peek();
-        if (currentMatch.getTeamA() == this || currentMatch.getTeamB() == this) {
+        Log.d("Team: ", "My team is " + teamName);
+        if (currentMatch.getTeamA().equals(this.teamName) || currentMatch.getTeamB().equals(this.teamName)) {
             if (currentMatch.getTeamA() == this) {
                 currentMatch.setTeamAScore(teamScore);
                 currentMatch.setTeamBScore(opponentScore);
