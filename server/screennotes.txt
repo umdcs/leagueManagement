@@ -1,0 +1,9 @@
+ssh ukko
+screen
+nodejs index.js
+^ad
+logout
+
+ssh ukko
+screen -ls //list all screens
+screen -r $ScreenID$
