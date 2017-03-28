@@ -2,6 +2,7 @@ package edu.umn.d.cs4531.leaguemanager;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -101,6 +102,11 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
         //ScheduleList.getInstance().setScheduleList(mPresenter.getSchedule(0));
         ScheduleList.getInstance().setScheduleList(arrayList);
         startActivity(scheduleIntent);
+    }
+
+    public void goToWebsite(View view) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.duluthcurlingclub.org/"));
+        startActivity(intent);
     }
 
     @Override

@@ -83,6 +83,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/viewWeb"
+        android:id="@+id/DCCWebsite"
+        android:onClick="goToWebsite"
         android:layout_alignParentBottom="true"
         android:layout_alignEnd="@+id/addScoreButton" />
 </RelativeLayout>
