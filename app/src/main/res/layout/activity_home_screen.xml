@@ -70,6 +70,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/viewSchedule"
         android:text="@string/viewSchedule"
+        android:onClick="viewSchedule"
         android:layout_below="@+id/addScoreButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="55dp" />

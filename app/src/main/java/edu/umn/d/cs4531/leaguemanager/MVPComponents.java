@@ -53,6 +53,8 @@ public interface MVPComponents {
          */
         void scoreInput(String winnerScore, String loserScore);
 
+        ArrayList<String> getSchedule(int week);
+
         void run();
     }
 
@@ -88,6 +90,7 @@ public interface MVPComponents {
 
         void inputData();
 
+        LinkedList<Match> getSchedule(int week);
 
     }
 }

@@ -72,7 +72,16 @@ public class leagueModel implements MVPComponents.Model{
                 }
 
             }
-
+            leagues.setStartDate(21);
+            leagues.setStartMonth(0);
+            leagues.setStartYear(2016);
+            leagues.setStartHour(17);
+            leagues.setStartMinute(0);
+            leagues.setMaxRounds(3);
+            leagues.setNumberOfLanes(8);
+            boolean success = leagues.createSchedule();
+            if (success) Log.d("Model: ", "Successful league schedule creation");
+            else Log.d("Model: ", "Couldn't make a schedule");
 
         }
 
@@ -142,6 +151,12 @@ public class leagueModel implements MVPComponents.Model{
         }
 
         restPOST();
+    }
+
+    @Override
+    public LinkedList<Match> getSchedule(int week) {
+        LinkedList<LinkedList<Match>> fullSchedule = mLeague.getFullSchedule();
+        return fullSchedule.get(week);
     }
 
     /*Model Connection to Server************************************************/

@@ -68,4 +68,15 @@ public class leaguePresenter implements MVPComponents.Presenter {
     {
         this.leagueModel = model;
     }
+
+    @Override
+    public ArrayList<String> getSchedule(int week) {
+        ArrayList<String> returnArray = new ArrayList<String>();
+        LinkedList<Match> schedule = leagueModel.getSchedule(week);
+
+        for (Match match : schedule) {
+            returnArray.add(match.toString());
+        }
+        return returnArray;
+    }
 }

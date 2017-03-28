@@ -40,11 +40,7 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
     }
 
     void setupSpinner() {
-        //RelativeLayout mainLayout = (RelativeLayout)findViewById(R.id.activity_home_screen);
         ArrayList<String> leagueArray = mPresenter.getLeagues();
-        //leagueArray.add("League1");
-        //leagueArray.add("League2");
-        //leagueArray.add("League3");
 
         Spinner spinner = (Spinner) findViewById(R.id.leagueSpinner);
         spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, leagueArray));
@@ -69,13 +65,7 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
     }
 
     private void setupTeamSpinner() {
-
         ArrayList<String> teamArray = mPresenter.getTeams();
-       // ArrayList<String> teamArray = new ArrayList<String>();
-        //teamArray.add("Team1");
-        //teamArray.add("Team2");
-        //teamArray.add("Team3");
-
 
         Spinner teamSpinner = (Spinner) findViewById(R.id.teamSpinner);
         teamSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, teamArray));
@@ -100,6 +90,17 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
         Intent scoreIntent = new Intent (this, AddScoreActivity.class);
         scoreIntent.putExtra (EXTRA_MESSAGE, teamSelected);
         startActivityForResult(scoreIntent, 100);
+    }
+
+    public void viewSchedule(View view) {
+        Intent scheduleIntent = new Intent (this, ViewScheduleActivity.class);
+        ArrayList<String> arrayList = new ArrayList<String>();
+        arrayList.add("Something");
+        arrayList.add("Something else");
+        arrayList.add("Something so crazy it couldn't possibly fit on one line");
+        //ScheduleList.getInstance().setScheduleList(mPresenter.getSchedule(0));
+        ScheduleList.getInstance().setScheduleList(arrayList);
+        startActivity(scheduleIntent);
     }
 
     @Override
