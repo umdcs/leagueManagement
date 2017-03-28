@@ -70,8 +70,8 @@ var leagueStandings = {
 app.get('/', function(request, response)
 	{
 	    response.writeHead(200, {'Content-Type': 'text/html'});
-	    response.write('<!DOCTYPE html><head><title>League Manager</title></head></body>');
-	    response.write('<H1>League Test Server</H1>');
+	    response.write('<!DOCTYPE html><head><title>Duluth Curling Club</title></head></body>');
+	    response.write('<H1>Duluth Curling Club</H1>');
 	    response.write('<p>Report: Client sends all testing data to display on this server. This information is to display on the main page; information includes leagues, teams, rosters and more.</p>');
 	    response.write('</body></html>');
 	   
@@ -92,7 +92,8 @@ app.post('/dash', function(req, res)
 
 	     inputTestData.LeagueName= req.body.LeagueName;
 	     inputTestData.TeamName=req.body.TeamName;
-	     inputTestData.Matchup=req.body.Matchup;
+	     inputTestData.ScoreA=req.body.ScoreA;
+	     inputTestData.ScoreB=req.body.ScoreB;
 	    
 
 	     inputHistory.History.push(inputTestData);//CHECK FOR ERROR
