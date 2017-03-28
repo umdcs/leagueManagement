@@ -9,4 +9,5 @@
     <string name="addScore">Enter Final Score</string>
     <string name="viewSchedule">View Schedule</string>
     <string name="opponent">Opponent</string>
+    <string name="viewWeb">View DCC Website</string>
 </resources>
