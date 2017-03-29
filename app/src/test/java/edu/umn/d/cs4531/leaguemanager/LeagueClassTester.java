@@ -79,6 +79,8 @@ public class LeagueClassTester extends League{
 
         assertTrue(createSchedule());
 
+        assertFalse(createSchedule());
+
         assertTrue(getTeams().get(0).getSchedule().size() == 3);
         assertTrue(getTeams().get(1).getSchedule().size() == 3);
         assertTrue(getTeams().get(2).getSchedule().size() == 3);

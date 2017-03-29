@@ -15,13 +15,14 @@ public class League implements LMTInterface.L{
     private LinkedList<Team> teams = new LinkedList<>();
     private LinkedList<LinkedList<Match>> fullSchedule = new LinkedList<>();
     private boolean scheduleFinalized=false; //Prevents teams and schedules being added and removed after the schedule is made
+    private Calendar initialCalendar = null; // Useable as a different was to set calendar
     private int numberOfLanes; // Need to implement functionality
-    private int startDate;
-    private int startMonth;
-    private int startYear;
-    private int startHour;
-    private int startMinute;
-    private int maxRounds;
+    private int startDate = -1;
+    private int startMonth = -1;
+    private int startYear = -1;
+    private int startHour = -1;
+    private int startMinute = -1;
+    private int maxRounds = -1;
 
     //Default Constructor
     League(){};
@@ -38,13 +39,15 @@ public class League implements LMTInterface.L{
 
     public int getNumberOfLanes() { return numberOfLanes; }
 
+    public void setInitialCalendar(Calendar calendar) { initialCalendar = calendar; }
+
     public void setStartDate(int date) { startDate = date; }
 
-    public void setStartMonth(int month) { startMonth = month; }
+    public void setStartMonth(int month) { startMonth = month; } //0-11 scale
 
-    public void setStartYear(int year) { startYear = year; }
+    public void setStartYear(int year) { startYear = year; } //4-digit
 
-    public void setStartHour(int hour) { startHour = hour; }
+    public void setStartHour(int hour) { startHour = hour; } //Military time
 
     public void setStartMinute(int minute) { startMinute = minute; }
 
@@ -77,6 +80,8 @@ public class League implements LMTInterface.L{
         return removed;
     }
 
+    //Returns a linked list of linked list of matches
+    //Inside linked list: One week of matches.
     public LinkedList<LinkedList<Match>> getFullSchedule() {
         return fullSchedule;
     }
@@ -90,7 +95,13 @@ public class League implements LMTInterface.L{
     //@return true if schedule was created successfully. False otherwise.
     public boolean createSchedule(){
         boolean success = false;
-        if(/*numberOfLanes != 0 && */startYear != 0 && startMonth != 0 && startDate != 0 && startHour != 0 && startMinute != 0 && maxRounds != 0 && !scheduleFinalized) {
+        if(/*numberOfLanes != 0 && */startYear != -1 && startMonth != -1 && startDate != -1 && startHour != -1 && startMinute != -1 && !scheduleFinalized) {
+            initialCalendar = new GregorianCalendar(startYear, startMonth, startDate, startHour, startMinute);
+            fullSchedule = createAllWeeks();
+            scheduleFinalized = true;
+            success = true;
+        }
+        else if(initialCalendar != null && !scheduleFinalized){
             fullSchedule = createAllWeeks();
             scheduleFinalized = true;
             success = true;
@@ -104,7 +115,7 @@ public class League implements LMTInterface.L{
     //Private Methods
     /*
      */
-    private LinkedList<Match> createOneWeekOfMatches(LinkedList<Team> currRotation, GregorianCalendar time){
+    private LinkedList<Match> createOneWeekOfMatches(LinkedList<Team> currRotation, Calendar time){
 
         LinkedList<Match> matchList = new LinkedList<Match>();
         int listSize = currRotation.size() / 2;
@@ -128,7 +139,7 @@ public class League implements LMTInterface.L{
         if(numberOfTeams == 1) { numberOfRounds = 0;}
         if(numberOfRounds > maxRounds) { numberOfRounds = maxRounds;}
         LinkedList<Team> currRotation = (LinkedList<Team>)teams.clone();
-        GregorianCalendar currTime = new GregorianCalendar(startYear, startMonth, startDate, startHour, startMinute);
+        GregorianCalendar currTime = (GregorianCalendar)initialCalendar.clone();
         for(int i = 0; i < numberOfRounds; i++){
             fullSchedule.add(createOneWeekOfMatches(currRotation, currTime));
             currTime.add(Calendar.DAY_OF_MONTH, 7);
