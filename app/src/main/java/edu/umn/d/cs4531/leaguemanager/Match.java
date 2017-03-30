@@ -85,9 +85,11 @@ public class Match {
                 "Team B Score: " + teamBScore + "\n" +
                 "Play Time:\n" +
                 (playTime.get(Calendar.MONTH)+1) + "/" + playTime.get(Calendar.DAY_OF_MONTH) + "/" + playTime.get(Calendar.YEAR) + "\n" +
-                playTime.get(Calendar.HOUR_OF_DAY) + ":";
+                playTime.get(Calendar.HOUR) + ":";
         if (playTime.get(Calendar.MINUTE) < 10) { debug += "0";}
         debug += playTime.get(Calendar.MINUTE);
+        if (playTime.get(Calendar.HOUR_OF_DAY) > 11) debug += "PM";
+        else debug += "AM";
         return debug;
     }
 
