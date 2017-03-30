@@ -98,8 +98,8 @@ public class Team {
         Match currentMatch = Schedule.peek();
 //        Log.d("Team: ", "My team is " + teamName);
 //        Log.d("Team: ", "My opponent is " + currentMatch.getOtherTeam(this));
-        if (currentMatch.getTeamA().equals(this.teamName) || currentMatch.getOtherTeam(this).equals(this.teamName)) {
-            if (currentMatch.getTeamA() == this) {
+        if (currentMatch.getTeamA().equals(this) || currentMatch.getOtherTeam(this).equals(this)) {
+            if (currentMatch.getTeamA().equals(this)) {
                 currentMatch.setTeamAScore(teamScore);
                 currentMatch.setTeamBScore(opponentScore);
             } else {

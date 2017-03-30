@@ -120,10 +120,10 @@ public class League implements LMTInterface.L{
         LinkedList<Match> matchList = new LinkedList<Match>();
         int listSize = currRotation.size() / 2;
         for (int i = 0; i < listSize; i++){
-            Match newestMatch = new Match(currRotation.get(i), currRotation.get(i+listSize), i+1, time);
+            Match newestMatch = new Match(currRotation.get(i), currRotation.get((currRotation.size()-1)-i), i+1, time);
             matchList.add(newestMatch);
             currRotation.get(i).addMatch(newestMatch);
-            currRotation.get(i+listSize).addMatch(newestMatch);
+            currRotation.get((currRotation.size()-1)-i).addMatch(newestMatch);
         }
         return matchList;
     }
@@ -136,14 +136,14 @@ public class League implements LMTInterface.L{
             teams.add(new Team("Bye"));
             numberOfRounds++;
         }
-        if(numberOfTeams == 1) { numberOfRounds = 0;}
+        if(numberOfTeams <= 1) { numberOfRounds = 0;}
         if(numberOfRounds > maxRounds) { numberOfRounds = maxRounds;}
         LinkedList<Team> currRotation = (LinkedList<Team>)teams.clone();
         GregorianCalendar currTime = (GregorianCalendar)initialCalendar.clone();
         for(int i = 0; i < numberOfRounds; i++){
             fullSchedule.add(createOneWeekOfMatches(currRotation, currTime));
             currTime.add(Calendar.DAY_OF_MONTH, 7);
-            Team tempTeam = currRotation.remove(2);
+            Team tempTeam = currRotation.remove(1);
             currRotation.addLast(tempTeam);
         }
         return fullSchedule;

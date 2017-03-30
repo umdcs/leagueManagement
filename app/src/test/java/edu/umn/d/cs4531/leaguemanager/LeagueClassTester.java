@@ -67,6 +67,8 @@ public class LeagueClassTester extends League{
         addTeam("Team 1");
         addTeam("Team 2");
         addTeam("Team 3");
+        addTeam("Team 4");
+        addTeam("Team 5");
 
         assertFalse(createSchedule());
 
@@ -75,15 +77,15 @@ public class LeagueClassTester extends League{
         setStartDate(28);
         setStartHour(17);
         setStartMinute(45);
-        setMaxRounds(4);
+        setMaxRounds(10);
 
         assertTrue(createSchedule());
 
         assertFalse(createSchedule());
 
-        assertTrue(getTeams().get(0).getSchedule().size() == 3);
-        assertTrue(getTeams().get(1).getSchedule().size() == 3);
-        assertTrue(getTeams().get(2).getSchedule().size() == 3);
+        assertTrue(getTeams().get(0).getSchedule().size() == 5);
+        assertTrue(getTeams().get(1).getSchedule().size() == 5);
+        assertTrue(getTeams().get(2).getSchedule().size() == 5);
 
         int testScore = 0;
         for(Team team: getTeams()){
