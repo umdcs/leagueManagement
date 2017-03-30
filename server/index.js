@@ -19,9 +19,14 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 //Data of a player
-var player = {
-    "Name":""
+var listOfLeagues = {
+    listOfLeagues:[Monday, Tuesday, Wednesday]
 };
+//League Data
+var league = {
+    "leagueName":""
+}
+var team
 var inputTestData = {
     "LeagueName":"",
     "TeamName":"",
