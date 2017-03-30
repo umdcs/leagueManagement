@@ -23,6 +23,7 @@ public class League implements LMTInterface.L{
     private int startHour = -1;
     private int startMinute = -1;
     private int maxRounds = -1;
+    private Match[][] schedule = null;
 
     //Default Constructor
     League(){};
@@ -94,19 +95,25 @@ public class League implements LMTInterface.L{
     // Requires scheduleFinalized to be false, and startYear,startMonth,startDate,startHour,startMinute,and maxRounds must have been changed from default
     //@return true if schedule was created successfully. False otherwise.
     public boolean createSchedule(){
-        boolean success = false;
+        boolean successA = false;
+        boolean successB = true;
+        //Creating Schedule
         if(/*numberOfLanes != 0 && */startYear != -1 && startMonth != -1 && startDate != -1 && startHour != -1 && startMinute != -1 && !scheduleFinalized) {
             initialCalendar = new GregorianCalendar(startYear, startMonth, startDate, startHour, startMinute);
             fullSchedule = createAllWeeks();
             scheduleFinalized = true;
-            success = true;
+            successA = true;
         }
         else if(initialCalendar != null && !scheduleFinalized){
             fullSchedule = createAllWeeks();
             scheduleFinalized = true;
-            success = true;
+            successA = true;
         }
-        return success;
+        //Creating Scoreboard
+        if(scheduleFinalized){
+
+        }
+        return (successA && successB);
     }
 
 
@@ -142,7 +149,12 @@ public class League implements LMTInterface.L{
         GregorianCalendar currTime = (GregorianCalendar)initialCalendar.clone();
         for(int i = 0; i < numberOfRounds; i++){
             fullSchedule.add(createOneWeekOfMatches(currRotation, currTime));
-            currTime.add(Calendar.DAY_OF_MONTH, 7);
+//            currTime.add(Calendar.DAY_OF_MONTH, 7);
+            currTime = new GregorianCalendar(currTime.get(Calendar.YEAR),
+                                             currTime.get(Calendar.MONTH),
+                                             currTime.get(Calendar.DAY_OF_MONTH)+7,
+                                             currTime.get(Calendar.HOUR),
+                                             currTime.get(Calendar.MINUTE));
             Team tempTeam = currRotation.remove(1);
             currRotation.addLast(tempTeam);
         }

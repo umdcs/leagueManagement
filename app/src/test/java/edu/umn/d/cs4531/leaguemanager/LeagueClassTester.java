@@ -2,6 +2,7 @@ package edu.umn.d.cs4531.leaguemanager;
 
 import org.junit.Test;
 
+import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import static org.junit.Assert.*;
 
@@ -72,11 +73,12 @@ public class LeagueClassTester extends League{
 
         assertFalse(createSchedule());
 
-        setStartYear(2017);
-        setStartMonth(1);
-        setStartDate(28);
-        setStartHour(17);
-        setStartMinute(45);
+        setInitialCalendar(new GregorianCalendar(2017,1,28,17,45));
+//        setStartYear(2017);
+//        setStartMonth(1);
+//        setStartDate(28);
+//        setStartHour(17);
+//        setStartMinute(45);
         setMaxRounds(10);
 
         assertTrue(createSchedule());
@@ -110,8 +112,7 @@ public class LeagueClassTester extends League{
         for(Team team : getTeams()){
             System.out.println(team.getTeamName());
             for(Match match : team.getFinishedMatches()){
-                System.out.println(match.getTeamA().getTeamName() + " vs " + match.getTeamB().getTeamName());
-                System.out.println(match.getTeamAScore() + ":" + match.getTeamBScore() + "\n");
+                System.out.println(match.toString() + "\n");
             }
         }
 
