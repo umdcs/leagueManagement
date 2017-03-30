@@ -117,4 +117,46 @@ public class LeagueClassTester extends League{
         }
 
     }
+
+    @Test
+    public void scoreboardTest() throws Exception{
+        getTeams().clear();
+        addTeam("Team 1");
+        addTeam("Team 2");
+        addTeam("Team 3");
+        addTeam("Team 4");
+        addTeam("Team 5");
+        addTeam("Team 6");
+        setInitialCalendar(new GregorianCalendar(2017,1,28,17,45));
+        setMaxRounds(10);
+
+        assertTrue(getScoreboard() == null);
+
+        assertTrue(createSchedule());
+
+        int testScore = 0;
+        for(Team team: getTeams()){
+            while(team.getSchedule().size() > 0){
+                team.enterScore(testScore,++testScore);
+            }
+        }
+
+        Match[][] scoreboard = getScoreboard();
+        String row = "";
+        for(int xAxis = 0; xAxis < getTeams().size(); xAxis++){
+            row += getTeams().get(xAxis).getTeamName();
+            for(int yAxis = 0; yAxis < getTeams().size(); yAxis++){
+                if(scoreboard[xAxis][yAxis] != null) {
+                    if (scoreboard[xAxis][yAxis].getTeamA() == getTeams().get(xAxis)) {
+                        row += "|" + scoreboard[xAxis][yAxis].getTeamAScore() + ":" + scoreboard[xAxis][yAxis].getTeamBScore();
+                    } else {
+                        row += "|" + scoreboard[xAxis][yAxis].getTeamBScore() + ":" + scoreboard[xAxis][yAxis].getTeamAScore();
+                    }
+                }
+            }
+            row += "\n";
+        }
+
+        System.out.println(row);
+    }
 }
