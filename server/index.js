@@ -8,8 +8,8 @@
 var bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
-
-//Set port number for http connection
+var path = require('path');
+    //Set port number for http connection
 app.set("port",3246);
 
 
@@ -31,62 +31,29 @@ var inputTestData = {
 var inputHistory = {
     History:[]
 };
-//Data on a single team.
-var singleTeam ={
-    "RecordWins":"",
-    "RecordLoss":"",
-    "RecordTie":"",
-    playersList:[],
-    teamSchedule:[],
-    "skip":"",
-    "PhoneNumber":"",
-    "currentMatchup":""
-   
-};
-//List of teams
-var teamList = {
-    teamList:[]
-};
-//List of different leagues in a sport.
-var leagueListData = {
-    leagueList:[]
-};
-
-//List of Matchup Scores
-var matchupScores = {
-    matchupScoresList:[]
-};
-//Data of a league
-var league = {
-    "leagueName":"",
-    leagueStandings:[],
-    teams:[]    
-};
-//List of League Standings
-var leagueStandings = {
-    leagueStandingsList:[]
-};
 
 app.get('/', function(request, response)
 	{
-	    response.writeHead(200, {'Content-Type': 'text/html'});
-	    response.write('<!DOCTYPE html><head><title>Duluth Curling Club</title></head></body>');
-	    response.write('<H1>Duluth Curling Club</H1>');
-	    response.write('<p>Report: Client sends all testing data to display on this server. This information is to display on the main page; information includes leagues, teams, rosters and more.</p>');
-	    response.write('</body></html>');
+	    response.sendFile(path.join(__dirname +'/home.html'));
+//	    response.writeHead(200, {'Content-Type': 'text/html'});
+//	    response.write('<!DOCTYPE html><head><title>Duluth Curling Club</title></head></body>');
+//	    response.write('<H1 align="center">Duluth Curling Club</H1>');
+//	    response.write('<a href="localhost:3246/Leagues">Leagues </a>');
+  //      response.write('<a href="localhost:3246/Teams">Teams </a>');		   
+//	    response.write('</body></html>');
 	   
-	    response.end();
+//	    response.end();
 	    
 	    console.log('Recieved Dashboard request!');
 	});
-app.get('/dash', function(request, response)
+app.get('/Leagues', function(request, response)
 	{
 	    response.json(inputHistory);
 	    
 	    console.log('GET REQUEST: Test Server with JSON');
 
 	});
-app.post('/dash', function(req, res)
+app.post('/Leagues', function(req, res)
 	 {
 	     if(!req.body) return response.sendStatus(400);
 
