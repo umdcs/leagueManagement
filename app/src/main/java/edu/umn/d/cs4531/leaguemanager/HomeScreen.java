@@ -95,12 +95,12 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
 
     public void viewSchedule(View view) {
         Intent scheduleIntent = new Intent (this, ViewScheduleActivity.class);
-        ArrayList<String> arrayList = new ArrayList<String>();
-        arrayList.add("Something");
-        arrayList.add("Something else");
-        arrayList.add("Something so crazy it couldn't possibly fit on one line");
-        //ScheduleList.getInstance().setScheduleList(mPresenter.getSchedule(0));
-        ScheduleList.getInstance().setScheduleList(arrayList);
+//        ArrayList<String> arrayList = new ArrayList<String>();
+//        arrayList.add("Something");
+//        arrayList.add("Something else");
+//        arrayList.add("Something so crazy it couldn't possibly fit on one line");
+        ScheduleList.getInstance().setScheduleList(mPresenter.getSchedule(0));
+        //ScheduleList.getInstance().setScheduleList(arrayList);
         startActivity(scheduleIntent);
     }
 

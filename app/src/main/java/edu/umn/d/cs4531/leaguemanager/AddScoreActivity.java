@@ -1,7 +1,10 @@
 package edu.umn.d.cs4531.leaguemanager;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +18,10 @@ public class AddScoreActivity extends AppCompatActivity implements MVPComponents
 
     Intent intent;
     private String message;
+    private String NO_PREF = "nopref";
+    private String teamIDString;
+    SharedPreferences sharedPref;
+    EditText teamIDET;
     private MVPComponents.Presenter mPresenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +35,13 @@ public class AddScoreActivity extends AppCompatActivity implements MVPComponents
         Log.d("SCORE ACTIVITY", "This is what we got" + message);
         TextView textview = (TextView) findViewById(R.id.Team1Name);
         textview.setText(message);
+        teamIDET = (EditText) findViewById(R.id.teamID);
+        // Shared Preferences
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        teamIDString = sharedPref.getString("TeamIDPref", "");
+        if (!teamIDString.equalsIgnoreCase("")) {
+            teamIDET.setText(teamIDString);
+        }
 
     }
     void setupPresenter() {
@@ -36,7 +50,14 @@ public class AddScoreActivity extends AppCompatActivity implements MVPComponents
     public void sendData(View view) {
         EditText scoreA = (EditText) findViewById(R.id.enterTeam1Score);
         EditText scoreB = (EditText) findViewById(R.id.enterTeam2Score);
-        String returnData = scoreA.getText().toString() + " " + scoreB.getText().toString();
+        // Handle ID
+        if (!teamIDET.getText().toString().equalsIgnoreCase(teamIDString)) {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString("TeamIDPref", teamIDET.getText().toString());
+        }
+
+        String returnData = scoreA.getText().toString() + " " + scoreB.getText().toString()
+                            + " " + teamIDET.getText().toString();
         intent.putExtra("edu.umn.d.cs4531.leaguemanager.MESSAGE", returnData);
         Log.d("AddScore: ", returnData);
         setResult(Activity.RESULT_OK, intent);
