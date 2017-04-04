@@ -59,6 +59,12 @@ public class leaguePresenter implements MVPComponents.Presenter {
 
     }
     @Override
+    public boolean teamIDVerification(String teamID) {
+        String mID = leagueModel.getSelectedTeam().getTeamName();
+        if (teamID.equalsIgnoreCase(mID)) return true;
+        else return false;
+    }
+    @Override
     public void run()
         {
             leagueModel.inputData();

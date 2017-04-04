@@ -38,8 +38,8 @@ public class AddScoreActivity extends AppCompatActivity implements MVPComponents
         teamIDET = (EditText) findViewById(R.id.teamID);
         // Shared Preferences
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        teamIDString = sharedPref.getString("TeamIDPref", "");
-        if (!teamIDString.equalsIgnoreCase("")) {
+        teamIDString = sharedPref.getString("TeamIDPref", "InitialString");
+        if (!teamIDString.equalsIgnoreCase("InitialString")) {
             teamIDET.setText(teamIDString);
         }
 
@@ -54,10 +54,12 @@ public class AddScoreActivity extends AppCompatActivity implements MVPComponents
         if (!teamIDET.getText().toString().equalsIgnoreCase(teamIDString)) {
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putString("TeamIDPref", teamIDET.getText().toString());
+            editor.commit();
+            Log.d("Shared Pref sendData", "Stored value" + sharedPref.getString("TeamIDPref", "Nothing here"));
         }
 
-        String returnData = scoreA.getText().toString() + " " + scoreB.getText().toString()
-                            + " " + teamIDET.getText().toString();
+        String returnData = scoreA.getText().toString() + ";" + scoreB.getText().toString()
+                            + ";" + teamIDET.getText().toString();
         intent.putExtra("edu.umn.d.cs4531.leaguemanager.MESSAGE", returnData);
         Log.d("AddScore: ", returnData);
         setResult(Activity.RESULT_OK, intent);

@@ -118,10 +118,12 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
                     returnData = data.getStringExtra("edu.umn.d.cs4531.leaguemanager.MESSAGE");
                     Log.d("Home: ", "we in onActResult" + returnData);
                     //parse the data into two strings
-                    String[] splitted = returnData.split(" ");
+                    String[] splitted = returnData.split(";");
                     Log.d("onActRes: ", "first " + splitted[0] + "second " + splitted[1]);
                     mPresenter.scoreInput(splitted[0], splitted[1]);
-                    mPresenter.run();
+                    if (mPresenter.teamIDVerification(splitted[2])) mPresenter.run();
+                    else
+                        Toast.makeText(getBaseContext(), "The team ID: " + splitted[2] + " Did not match out records", Toast.LENGTH_LONG).show();
                 }
             }
         }

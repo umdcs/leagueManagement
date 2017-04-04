@@ -53,6 +53,13 @@ public interface MVPComponents {
          */
         void scoreInput(String winnerScore, String loserScore);
 
+        /**
+         * Returns true when the ID inputted by user and stored in the team is identical
+         * @param teamID
+         * @return
+         */
+        boolean teamIDVerification(String teamID);
+
         ArrayList<String> getSchedule(int week);
 
         void run();
@@ -80,6 +87,8 @@ public interface MVPComponents {
          * @return
          */
         LinkedList getLeagues();
+
+        Team getSelectedTeam();
 
         void createLeague(String name);
 
