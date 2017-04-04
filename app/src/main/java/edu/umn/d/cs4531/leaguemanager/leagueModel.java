@@ -101,6 +101,11 @@ public class leagueModel implements MVPComponents.Model{
     }
 
     @Override
+    public Team getSelectedTeam() {
+        return mTeam;
+    }
+
+    @Override
     public String[] teamData(String teamName) {
         return new String[0];
     }
