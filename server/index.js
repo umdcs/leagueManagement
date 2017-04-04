@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 
 //Data of a player
 var listOfLeagues = {
-    listOfLeagues:[Monday, Tuesday, Wednesday]
+    listOfLeagues:['Monday', 'Tuesday', 'Wednesday']
 };
 //League Data
 var league = {
@@ -40,14 +40,7 @@ var inputHistory = {
 app.get('/', function(request, response)
 	{
 	    response.sendFile(path.join(__dirname +'/home.html'));
-//	    response.writeHead(200, {'Content-Type': 'text/html'});
-//	    response.write('<!DOCTYPE html><head><title>Duluth Curling Club</title></head></body>');
-//	    response.write('<H1 align="center">Duluth Curling Club</H1>');
-//	    response.write('<a href="localhost:3246/Leagues">Leagues </a>');
-  //      response.write('<a href="localhost:3246/Teams">Teams </a>');		   
-//	    response.write('</body></html>');
-	   
-//	    response.end();
+	    response.end();
 	    
 	    console.log('Recieved Dashboard request!');
 	});
