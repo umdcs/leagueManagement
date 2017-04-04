@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 
 //Data of a player
 var listOfLeagues = {
-    listOfLeagues:[Monday, Tuesday, Wednesday]
+    listOfLeagues:['Monday', 'Tuesday', 'Wednesday']
 };
 //League Data
 var league = {
@@ -51,14 +51,15 @@ app.get('/', function(request, response)
 	    
 	    console.log('Recieved Dashboard request!');
 	});
-app.get('/Leagues', function(request, response)
+app.get('/league.html', function(request, response)
 	{
-	    response.json(inputHistory);
-	    
-	    console.log('GET REQUEST: Test Server with JSON');
-
+		response.sendFile(path.join(__dirname +'/league.html'));
+		console.log('test for second page');
+		//response.json(inputHistory);
+		console.log('GET REQUEST: Test Server with JSON');
 	});
-app.post('/Leagues', function(req, res)
+
+app.post('/leagues.html', function(req, res)
 	 {
 	     if(!req.body) return response.sendStatus(400);
 
