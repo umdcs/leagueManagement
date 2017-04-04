@@ -126,7 +126,7 @@ public class LeagueClassTester extends League{
         addTeam("Team 3");
         addTeam("Team 4");
         addTeam("Team 5");
-        addTeam("Team 6");
+        addTeam("Bye");
         setInitialCalendar(new GregorianCalendar(2017,1,28,17,45));
         setMaxRounds(10);
 
@@ -141,11 +141,31 @@ public class LeagueClassTester extends League{
             }
         }
 
+        //SCOREBOARD STYLE A
+//        Match[][] scoreboard = getScoreboard();
+//        String row = "";
+//        for(int xAxis = 0; xAxis < getTeams().size(); xAxis++){
+//            row += getTeams().get(xAxis).getTeamName();
+//            for(int yAxis = 0; yAxis < getTeams().size(); yAxis++){
+//                if(scoreboard[xAxis][yAxis] != null) {
+//                    if (scoreboard[xAxis][yAxis].getTeamA() == getTeams().get(xAxis)) {
+//                        row += "|" + scoreboard[xAxis][yAxis].getTeamAScore() + ":" + scoreboard[xAxis][yAxis].getTeamBScore();
+//                    } else {
+//                        row += "|" + scoreboard[xAxis][yAxis].getTeamBScore() + ":" + scoreboard[xAxis][yAxis].getTeamAScore();
+//                    }
+//                }
+//            }
+//            row += "\n";
+//        }
+//
+//        System.out.println(row);
+
         Match[][] scoreboard = getScoreboard();
         String row = "";
-        for(int xAxis = 0; xAxis < getTeams().size(); xAxis++){
+        int arraySize = scoreboard.length;
+        for(int xAxis = 0; xAxis < arraySize; xAxis++) {
             row += getTeams().get(xAxis).getTeamName();
-            for(int yAxis = 0; yAxis < getTeams().size(); yAxis++){
+            for(int yAxis = 0; yAxis < arraySize; yAxis++) {
                 if(scoreboard[xAxis][yAxis] != null) {
                     if (scoreboard[xAxis][yAxis].getTeamA() == getTeams().get(xAxis)) {
                         row += "|" + scoreboard[xAxis][yAxis].getTeamAScore() + ":" + scoreboard[xAxis][yAxis].getTeamBScore();
@@ -153,10 +173,12 @@ public class LeagueClassTester extends League{
                         row += "|" + scoreboard[xAxis][yAxis].getTeamBScore() + ":" + scoreboard[xAxis][yAxis].getTeamAScore();
                     }
                 }
+                else {
+                    row += "|-:-";
+                }
             }
             row += "\n";
         }
-
         System.out.println(row);
     }
 }

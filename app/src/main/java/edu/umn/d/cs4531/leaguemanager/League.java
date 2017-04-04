@@ -167,22 +167,38 @@ public class League implements LMTInterface.L{
 
     private void createScoreboard() {
         //index.X + index.Y > (2*index.X)
-//        int sizeOfArray;
-//        if(teams.getLast().getTeamName() == "Bye") sizeOfArray = teams.size()-1;
-//        else sizeOfArray = teams.size();
-        scoreboard = new Match[teams.size()][teams.size()];
+        //SCOREBOARD STYLE A
+//        scoreboard = new Match[teams.size()][teams.size()];
+//        for (Team team : teams) {
+//            for (Match match : team.getSchedule()) { //For each unplayed match per team
+//                if (teams.indexOf(team) + teams.indexOf(match.getOtherTeam(team)) > 2 * teams.indexOf(team)) { //Sets the match into the scoreboard only once per league, rather than once per team in the match
+//                    scoreboard[teams.indexOf(team)][teams.size() - teams.indexOf(match.getOtherTeam(team)) - 1] = match;
+//                } else
+//                    scoreboard[teams.indexOf(team)][teams.size() - teams.indexOf(match.getOtherTeam(team)) - 1] = null;
+//            }
+//            for (Match match : team.getFinishedMatches()) { //For each played match per team
+//                if (teams.indexOf(team) + teams.indexOf(match.getOtherTeam(team)) > 2 * teams.indexOf(team)) { //Sets the match into the scoreboard only once per league, rather than once per team in the match
+//                    scoreboard[teams.indexOf(team)][teams.size() - teams.indexOf(match.getOtherTeam(team)) - 1] = match;
+//                } else
+//                    scoreboard[teams.indexOf(team)][teams.size() - teams.indexOf(match.getOtherTeam(team)) - 1] = null;
+//            }
+//        }
+        //SCOREBOARD STYLE B
+        int arraySize = teams.size();
+        if (teams.getLast().getTeamName() == "Bye") arraySize--;
+        scoreboard = new Match[arraySize][arraySize];
         for (Team team : teams) {
-            for (Match match : team.getSchedule()) { //For each unplayed match per team
-                if (teams.indexOf(team) + teams.indexOf(match.getOtherTeam(team)) > 2 * teams.indexOf(team)) { //Sets the match into the scoreboard only once per league, rather than once per team in the match
-                    scoreboard[teams.indexOf(team)][teams.size() - teams.indexOf(match.getOtherTeam(team)) - 1] = match;
-                } else
-                    scoreboard[teams.indexOf(team)][teams.size() - teams.indexOf(match.getOtherTeam(team)) - 1] = null;
-            }
-            for (Match match : team.getFinishedMatches()) { //For each unplayed match per team
-                if (teams.indexOf(team) + teams.indexOf(match.getOtherTeam(team)) > 2 * teams.indexOf(team)) { //Sets the match into the scoreboard only once per league, rather than once per team in the match
-                    scoreboard[teams.indexOf(team)][teams.size() - teams.indexOf(match.getOtherTeam(team)) - 1] = match;
-                } else
-                    scoreboard[teams.indexOf(team)][teams.size() - teams.indexOf(match.getOtherTeam(team)) - 1] = null;
+            LinkedList<Match> matchList = team.getSchedule();
+            matchList.addAll(team.getFinishedMatches());
+            int xAxis = teams.indexOf(team);
+            if (xAxis < arraySize) {
+                for (Match match : matchList) {
+                    int yAxis = teams.indexOf(match.getOtherTeam(team));
+                    if (yAxis < arraySize) {
+                        scoreboard[xAxis][yAxis] = match;
+                    }
+                }
+                scoreboard[xAxis][xAxis] = null;
             }
         }
 
