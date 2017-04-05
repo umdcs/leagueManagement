@@ -22,7 +22,7 @@ public class League implements LMTInterface.L{
     private int startYear = -1;
     private int startHour = -1;
     private int startMinute = -1;
-    private int maxRounds = -1;
+    private int maxRounds = 8;
     private Match[][] scoreboard = null;
 
     //Default Constructor
