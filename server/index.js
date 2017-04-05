@@ -9,8 +9,7 @@ var bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
 var path = require('path');
-var mongoDB = require('./mongoDBFunctions.js');
-//Set port number for http connection
+    //Set port number for http connection
 app.set("port",3246);
 
 
@@ -20,14 +19,9 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 //Data of a player
-var listOfLeagues = {
-    listOfLeagues:['Monday', 'Tuesday', 'Wednesday']
+var player = {
+    "Name":""
 };
-//League Data
-var league = {
-    "leagueName":""
-}
-var team
 var inputTestData = {
     "LeagueName":"",
     "TeamName":"",
@@ -41,20 +35,19 @@ var inputHistory = {
 app.get('/', function(request, response)
 	{
 	    response.sendFile(path.join(__dirname +'/home.html'));
-
-	    response.end();
-
+	   
+//	    response.end();
+	    
 	    console.log('Recieved Dashboard request!');
 	});
-app.get('/dash', function(request, response)
+app.get('/Leagues', function(request, response)
 	{
-		response.sendFile(path.join(__dirname +'/league.html'));
-		console.log('test for second page');
-		//response.json(inputHistory);
-		console.log('GET REQUEST: Test Server with JSON');
-	});
+	    response.json(inputHistory);
+	    
+	    console.log('GET REQUEST: Test Server with JSON');
 
-app.post('/dash', function(req, res)
+	});
+app.post('/Leagues', function(req, res)
 	 {
 	     if(!req.body) return response.sendStatus(400);
 
