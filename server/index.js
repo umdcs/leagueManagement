@@ -9,7 +9,8 @@ var bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
 var path = require('path');
-    //Set port number for http connection
+var mongoDB = require('./mongoDBFunctions.js');
+//Set port number for http connection
 app.set("port",3246);
 
 
@@ -40,11 +41,12 @@ var inputHistory = {
 app.get('/', function(request, response)
 	{
 	    response.sendFile(path.join(__dirname +'/home.html'));
+
 	    response.end();
 	    
 	    console.log('Recieved Dashboard request!');
 	});
-app.get('/league.html', function(request, response)
+app.get('/dash', function(request, response)
 	{
 		response.sendFile(path.join(__dirname +'/league.html'));
 		console.log('test for second page');
@@ -52,7 +54,7 @@ app.get('/league.html', function(request, response)
 		console.log('GET REQUEST: Test Server with JSON');
 	});
 
-app.post('/leagues.html', function(req, res)
+app.post('/dash', function(req, res)
 	 {
 	     if(!req.body) return response.sendStatus(400);
 
