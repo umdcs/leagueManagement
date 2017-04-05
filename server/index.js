@@ -43,7 +43,7 @@ app.get('/', function(request, response)
 	    response.sendFile(path.join(__dirname +'/home.html'));
 
 	    response.end();
-	    
+
 	    console.log('Recieved Dashboard request!');
 	});
 app.get('/dash', function(request, response)
@@ -82,5 +82,3 @@ app.use(function(req, res, next){
 
 app.listen(app.get("port"), function() {
     console.log("League Manager Testing Server Ready on port: ", app.get("port"))});
-
-

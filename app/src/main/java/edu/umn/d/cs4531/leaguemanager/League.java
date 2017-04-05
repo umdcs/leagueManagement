@@ -22,11 +22,11 @@ public class League implements LMTInterface.L{
     private int startYear = -1;
     private int startHour = -1;
     private int startMinute = -1;
-    private int maxRounds = -1;
+    private int maxRounds = 8;
     private Match[][] scoreboard = null;
 
     //Default Constructor
-    League(){};
+    League(){}
     //Constructor
     League(String name){ leagueName = name; }
 
@@ -129,7 +129,7 @@ public class League implements LMTInterface.L{
      */
     private LinkedList<Match> createOneWeekOfMatches(LinkedList<Team> currRotation, Calendar time){
 
-        LinkedList<Match> matchList = new LinkedList<Match>();
+        LinkedList<Match> matchList = new LinkedList<>();
         int listSize = currRotation.size() / 2;
         for (int i = 0; i < listSize; i++){
             Match newestMatch = new Match(currRotation.get(i), currRotation.get((currRotation.size()-1)-i), i+1, time);
@@ -141,7 +141,7 @@ public class League implements LMTInterface.L{
     }
 
     private LinkedList<LinkedList<Match>> createAllWeeks(){
-        LinkedList<LinkedList<Match>> fullSchedule = new LinkedList<LinkedList<Match>>();
+        LinkedList<LinkedList<Match>> fullSchedule = new LinkedList<>();
         int numberOfTeams = teams.size();
         int numberOfRounds = numberOfTeams - 1;
         if(numberOfTeams % 2 == 1){
@@ -185,7 +185,7 @@ public class League implements LMTInterface.L{
 //        }
         //SCOREBOARD STYLE B
         int arraySize = teams.size();
-        if (teams.getLast().getTeamName() == "Bye") arraySize--;
+        if (teams.getLast().getTeamName().equals("Bye")) arraySize--;
         scoreboard = new Match[arraySize][arraySize];
         for (Team team : teams) {
             LinkedList<Match> matchList = team.getSchedule();
