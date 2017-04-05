@@ -17,6 +17,7 @@ public class Match {
     private  Calendar playTime;
     private  int lane = 0;
     private  int winner = 2; //0 = teamA, 1 = teamB, 2 = draw
+    private  boolean matchPlayed = false;
 
     //Constructor
     public Match() {
@@ -59,10 +60,15 @@ public class Match {
         return returnTeam;
     }
 
-    public void setTeamAScore(int score) { teamAScore = score; }
+    public void setTeamAScore(int score) {
+        teamAScore = score;
+        matchPlayed = true;
+    }
 
-    public void setTeamBScore(int score) { teamBScore = score; }
-
+    public void setTeamBScore(int score) {
+        teamBScore = score;
+        matchPlayed = true;
+    }
     public int getTeamAScore() { return teamAScore; }
 
     public int getTeamBScore() { return teamBScore; }
