@@ -40,7 +40,14 @@ var inputHistory = {
 app.get('/', function(request, response)
 	{
 	    response.sendFile(path.join(__dirname +'/home.html'));
-	    response.end();
+//	    response.writeHead(200, {'Content-Type': 'text/html'});
+//	    response.write('<!DOCTYPE html><head><title>Duluth Curling Club</title></head></body>');
+//	    response.write('<H1 align="center">Duluth Curling Club</H1>');
+//	    response.write('<a href="localhost:3246/Leagues">Leagues </a>');
+  //      response.write('<a href="localhost:3246/Teams">Teams </a>');		   
+//	    response.write('</body></html>');
+	   
+//	    response.end();
 	    
 	    console.log('Recieved Dashboard request!');
 	});
@@ -80,5 +87,3 @@ app.use(function(req, res, next){
 
 app.listen(app.get("port"), function() {
     console.log("League Manager Testing Server Ready on port: ", app.get("port"))});
-
-
