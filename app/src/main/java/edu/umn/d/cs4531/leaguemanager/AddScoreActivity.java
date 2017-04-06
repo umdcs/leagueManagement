@@ -58,6 +58,7 @@ public class AddScoreActivity extends AppCompatActivity implements MVPComponents
         String sScoreB = scoreB.getText().toString();
         try {
             Integer.parseInt(sScoreA);
+            Integer.parseInt(sScoreB);
         }
         catch (NumberFormatException ex) {
             setResult(101, intent);
