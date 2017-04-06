@@ -9,7 +9,8 @@ var bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
 var path = require('path');
-
+// See that file for the details for what is provided.
+var mongodb = require('./mongoDBFunctions.js'); 
 //Set port number for http connection
 app.set("port",3246);
 
@@ -21,7 +22,7 @@ app.use(bodyParser.json());
 
 //list of leagues pulled from database.
 var listOfLeagues={
-    listOfLeague:[]
+    listOfLeagues:[]
 
 }
 //Data of a player
@@ -49,7 +50,12 @@ app.get('/', function(request, response)
 app.get('/Leagues', function(request, response)
 	{
 	    response.json(inputHistory);
-	    response.json(listOfLeagues);
+	    //response.json(listOfLeagues);
+var str = mongodb.printDatabase('documents', function(result) {
+	response.send('<HTML><BODY>' + JSON.stringify(result, null, 2) + '</BODY></HTML>');
+	
+});
+	    response.json(str);
 	    console.log('GET REQUEST: Test Server with JSON');
 
 	});
@@ -61,9 +67,8 @@ app.post('/Leagues', function(req, res)
 	     inputTestData.TeamName=req.body.TeamName;
 	     inputTestData.ScoreA=req.body.ScoreA;
 	     inputTestData.ScoreB=req.body.ScoreB;
-	    
-
 	     inputHistory.History.push(inputTestData);//CHECK FOR ERROR
+	     mongodb.insertScore(req.body.ScoreA, req.body.ScoreB );
 	     console.log('Match Input Posted'); 
 
 	     var statusMessage = {'status':"OK"
