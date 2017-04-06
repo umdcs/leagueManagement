@@ -10,7 +10,7 @@ var mongojs = require("mongojs");
 // running on a different machine if you so choose). Here, we run it
 // locally. Make sure Mongo is installed on your machine with this
 // example.
-var url = 'mongodb://localhost:27017/my_database_name'; //URL: this is for test purposes
+var url = 'mongodb://localhost:27017/data'; //URL: this is for test purposes
 
 var collections = ['documents']; //Array of known collections
 
@@ -83,9 +83,9 @@ module.exports.findWeek = function(weekId, callback) {
  * If the 'documents' collection doesn't exist, it will be created.
  * @param weekData
  */
-module.exports.insertWeek = function(weekData) {
+module.exports.insertScore = function(scoreDataA,scoreDataB) {
 
-    mongoDBRef.collection('documents').save({week: weekData}, function (err, result) {
+    mongoDBRef.collection('documents').save({scoreA: scoreDataA, scoreB: scoreDataB}, function (err, result) {
         if(err || !result) console.log ("Week not saved in database.");
         else console.log("Inserted a week record into the documents collection.");
     });

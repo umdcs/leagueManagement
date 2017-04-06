@@ -52,6 +52,7 @@ public class leagueModel implements MVPComponents.Model{
         listOfLeagues.add(new League("League 1"));
         listOfLeagues.add(new League("League 2"));
         listOfLeagues.add(new League("League 3"));
+       // restGET();
         for (League leagues: listOfLeagues)
         {
             leagues.addTeam("Team 1");
@@ -92,6 +93,8 @@ public class leagueModel implements MVPComponents.Model{
         //listOfLeagues.get(2).addTeam("Team Ludacris");
 
         //--------------------------------------------------------------------------------
+
+
         this.Presenter = Presenter;
 
     }
@@ -187,6 +190,7 @@ public class leagueModel implements MVPComponents.Model{
         }
         Log.d("DEBUG:", jsonParam.toString());
         new HTTPAsyncTask().execute("http://ukko.d.umn.edu:3246/Leagues", "POST", jsonParam.toString());
+        //new HTTPAsyncTask().execute("http://10.0.2.2:3246/Leagues", "POST", jsonParam.toString());
 
     }
     private class HTTPAsyncTask extends AsyncTask<String, Integer, String>{
