@@ -19,6 +19,11 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+//list of leagues pulled from database.
+var listOfLeagues={
+    listOfLeague:[]
+
+}
 //Data of a player
 var player = {
     "Name":""
@@ -44,7 +49,7 @@ app.get('/', function(request, response)
 app.get('/Leagues', function(request, response)
 	{
 	    response.json(inputHistory);
-	    
+	    response.json(listOfLeagues);
 	    console.log('GET REQUEST: Test Server with JSON');
 
 	});
