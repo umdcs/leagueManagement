@@ -56,6 +56,13 @@ public class AddScoreActivity extends AppCompatActivity implements MVPComponents
         EditText scoreB = (EditText) findViewById(R.id.enterTeam2Score);
         String sScoreA = scoreA.getText().toString();
         String sScoreB = scoreB.getText().toString();
+        try {
+            Integer.parseInt(sScoreA);
+        }
+        catch (NumberFormatException ex) {
+            setResult(101, intent);
+            finish();
+        }
         // Handle ID
         if (!teamIDET.getText().toString().equalsIgnoreCase(teamIDString)) {
             SharedPreferences.Editor editor = sharedPref.edit();
@@ -66,7 +73,7 @@ public class AddScoreActivity extends AppCompatActivity implements MVPComponents
 
         String returnData = sScoreA + ";" + sScoreB + ";" + teamIDET.getText().toString();
         intent.putExtra("edu.umn.d.cs4531.leaguemanager.MESSAGE", returnData);
-        Log.d("AddScore: ", returnData);
+        Log.d("AddScore: ", "This is " + returnData.split(";")[0]);
         setResult(Activity.RESULT_OK, intent);
         //mPresenter.scoreInput(scoreA.getText().toString(), scoreB.getText().toString());
         //mPresenter.run();

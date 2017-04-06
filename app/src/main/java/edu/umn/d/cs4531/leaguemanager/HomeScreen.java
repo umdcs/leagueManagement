@@ -21,6 +21,7 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
     private String leagueSelected;
     private String teamSelected;
     private String returnData;
+    private Intent scoreIntent;
     public static final String EXTRA_MESSAGE = "edu.umn.d.cs4531.leaguemanager.MESSAGE";
 
     @Override
@@ -90,7 +91,7 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
     }
 
     public void addScore(View view) {
-        Intent scoreIntent = new Intent(this, AddScoreActivity.class);
+        scoreIntent = new Intent(this, AddScoreActivity.class);
         scoreIntent.putExtra(EXTRA_MESSAGE, teamSelected);
         startActivityForResult(scoreIntent, 100);
     }
@@ -119,7 +120,7 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
                 if (resultCode == Activity.RESULT_OK) {
                     returnData = data.getStringExtra("edu.umn.d.cs4531.leaguemanager.MESSAGE");
                     Log.d("Home: ", "we in onActResult" + returnData);
-                    //parse the data into two strings
+                    //parse the data into three strings
                     String[] splitted = returnData.split(";");
                     Log.d("onActRes: ", "first " + splitted[0] + "second " + splitted[1]);
 
@@ -129,8 +130,11 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
                     else
                         Toast.makeText(getBaseContext(), "The team ID: " + splitted[2] + " Did not match out records", Toast.LENGTH_LONG).show();
                 }
+                if (resultCode == 101) {
+                    Toast.makeText(getBaseContext(), "Please enter a number for the score", Toast.LENGTH_LONG).show();
+                    startActivityForResult(scoreIntent, 100);
+                }
             }
-
         }
     }
 }
