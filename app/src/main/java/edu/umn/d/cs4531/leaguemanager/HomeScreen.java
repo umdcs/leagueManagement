@@ -22,6 +22,7 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
     private String teamSelected;
     private String returnData;
     public static final String EXTRA_MESSAGE = "edu.umn.d.cs4531.leaguemanager.MESSAGE";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +51,7 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedString = parent.getItemAtPosition(position).toString();
                 Log.d("Main", "the item selected is: " + selectedString);
-                Toast.makeText(getBaseContext(), parent.getItemAtPosition(position)+" selected", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), parent.getItemAtPosition(position) + " selected", Toast.LENGTH_LONG).show();
                 leagueSelected = parent.getItemAtPosition(position).toString();
                 mPresenter.leagueInput(leagueSelected);
                 setupTeamSpinner();
@@ -73,9 +74,10 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
         teamSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getBaseContext(), parent.getItemAtPosition(position)+" selected", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), parent.getItemAtPosition(position) + " selected", Toast.LENGTH_LONG).show();
                 teamSelected = parent.getItemAtPosition(position).toString();
                 mPresenter.teamInput(teamSelected);
+                teamSelected = teamSelected + ";" + mPresenter.getOtherTeam(teamSelected);
             }
 
             @Override
@@ -88,13 +90,13 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
     }
 
     public void addScore(View view) {
-        Intent scoreIntent = new Intent (this, AddScoreActivity.class);
-        scoreIntent.putExtra (EXTRA_MESSAGE, teamSelected);
+        Intent scoreIntent = new Intent(this, AddScoreActivity.class);
+        scoreIntent.putExtra(EXTRA_MESSAGE, teamSelected);
         startActivityForResult(scoreIntent, 100);
     }
 
     public void viewSchedule(View view) {
-        Intent scheduleIntent = new Intent (this, ViewScheduleActivity.class);
+        Intent scheduleIntent = new Intent(this, ViewScheduleActivity.class);
 //        ArrayList<String> arrayList = new ArrayList<String>();
 //        arrayList.add("Something");
 //        arrayList.add("Something else");
@@ -112,21 +114,23 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch(requestCode) {
-            case (100) : {
+        switch (requestCode) {
+            case (100): {
                 if (resultCode == Activity.RESULT_OK) {
                     returnData = data.getStringExtra("edu.umn.d.cs4531.leaguemanager.MESSAGE");
                     Log.d("Home: ", "we in onActResult" + returnData);
                     //parse the data into two strings
                     String[] splitted = returnData.split(";");
                     Log.d("onActRes: ", "first " + splitted[0] + "second " + splitted[1]);
+
+
                     mPresenter.scoreInput(splitted[0], splitted[1]);
                     if (mPresenter.teamIDVerification(splitted[2])) mPresenter.run();
                     else
                         Toast.makeText(getBaseContext(), "The team ID: " + splitted[2] + " Did not match out records", Toast.LENGTH_LONG).show();
                 }
             }
-        }
 
+        }
     }
 }

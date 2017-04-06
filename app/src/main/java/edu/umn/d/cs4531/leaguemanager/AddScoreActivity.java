@@ -18,7 +18,6 @@ public class AddScoreActivity extends AppCompatActivity implements MVPComponents
 
     Intent intent;
     private String message;
-    private String NO_PREF = "nopref";
     private String teamIDString;
     SharedPreferences sharedPref;
     EditText teamIDET;
@@ -27,14 +26,19 @@ public class AddScoreActivity extends AppCompatActivity implements MVPComponents
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_score);
-        //setupPresenter();
+        // Get Team info from homepage activity
         intent = getIntent();
         Bundle extras = intent.getExtras();
         if (extras != null) message = extras.getString("edu.umn.d.cs4531.leaguemanager.MESSAGE");
         else message = "fuck";
         Log.d("SCORE ACTIVITY", "This is what we got" + message);
+        // Split the message from homescreen and put it into the textviews
+        String[] splitted = message.split(";");
         TextView textview = (TextView) findViewById(R.id.Team1Name);
-        textview.setText(message);
+        textview.setText(splitted[0]);
+        TextView otherTextView = (TextView) findViewById(R.id.Team2Name);
+        otherTextView.setText(splitted[1]);
+
         teamIDET = (EditText) findViewById(R.id.teamID);
         // Shared Preferences
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
@@ -50,6 +54,8 @@ public class AddScoreActivity extends AppCompatActivity implements MVPComponents
     public void sendData(View view) {
         EditText scoreA = (EditText) findViewById(R.id.enterTeam1Score);
         EditText scoreB = (EditText) findViewById(R.id.enterTeam2Score);
+        String sScoreA = scoreA.getText().toString();
+        String sScoreB = scoreB.getText().toString();
         // Handle ID
         if (!teamIDET.getText().toString().equalsIgnoreCase(teamIDString)) {
             SharedPreferences.Editor editor = sharedPref.edit();
@@ -58,8 +64,7 @@ public class AddScoreActivity extends AppCompatActivity implements MVPComponents
             Log.d("Shared Pref sendData", "Stored value" + sharedPref.getString("TeamIDPref", "Nothing here"));
         }
 
-        String returnData = scoreA.getText().toString() + ";" + scoreB.getText().toString()
-                            + ";" + teamIDET.getText().toString();
+        String returnData = sScoreA + ";" + sScoreB + ";" + teamIDET.getText().toString();
         intent.putExtra("edu.umn.d.cs4531.leaguemanager.MESSAGE", returnData);
         Log.d("AddScore: ", returnData);
         setResult(Activity.RESULT_OK, intent);
