@@ -65,6 +65,12 @@ public class leaguePresenter implements MVPComponents.Presenter {
         else return false;
     }
     @Override
+    public String getOtherTeam(String team) {
+        Match thisMatch = leagueModel.getSelectedTeam().peekMatch();
+        Team otherTeam = thisMatch.getOtherTeam(leagueModel.getSelectedTeam());
+        return otherTeam.getTeamName();
+    }
+    @Override
     public void run()
         {
             leagueModel.inputData();

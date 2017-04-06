@@ -61,18 +61,6 @@ public class leagueModel implements MVPComponents.Model{
             leagues.addTeam("Team 4");
             Log.d ("Model: ", "List of leagues in for loop");
 
-            Match match1 = new Match(leagues.getTeams().get(0),leagues.getTeams().get(1),0,null);
-            Match match2 = new Match(leagues.getTeams().get(2),leagues.getTeams().get(3),0,null);
-            for (int i=0; i<4; ++i)
-            {
-                if(i<=1)
-                leagues.getTeams().get(i).addMatch(match1);
-                else
-                {
-                    leagues.getTeams().get(i).addMatch(match2);
-                }
-
-            }
             leagues.setStartDate(21);
             leagues.setStartMonth(0);
             leagues.setStartYear(2016);

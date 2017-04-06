@@ -60,6 +60,8 @@ public interface MVPComponents {
          */
         boolean teamIDVerification(String teamID);
 
+        String getOtherTeam(String team);
+
         ArrayList<String> getSchedule(int week);
 
         void run();
