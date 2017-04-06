@@ -168,7 +168,7 @@ public class leagueModel implements MVPComponents.Model{
 
     public void restGET() {
 
-        new HTTPAsyncTask().execute("http://ukko.d.umn.edu:3246/dash", "GET");
+        new HTTPAsyncTask().execute("http://ukko.d.umn.edu:3246/Leagues", "GET");
     }
     public void restPOST() {
 
@@ -186,7 +186,7 @@ public class leagueModel implements MVPComponents.Model{
             e.printStackTrace();
         }
         Log.d("DEBUG:", jsonParam.toString());
-        new HTTPAsyncTask().execute("http://ukko.d.umn.edu:3246/dash", "POST", jsonParam.toString());
+        new HTTPAsyncTask().execute("http://ukko.d.umn.edu:3246/Leagues", "POST", jsonParam.toString());
 
     }
     private class HTTPAsyncTask extends AsyncTask<String, Integer, String>{
