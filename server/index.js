@@ -21,8 +21,7 @@ app.use(bodyParser.json());
 
 //list of leagues pulled from database.
 var listOfLeagues={
-    listOfLeagues:[]
-
+    listOfLeagues:[{'LeagueName':'Sunday 3:30PM FAF'},{'LeagueName':'Sunday 5PM Open'},{'LeagueName':'Sunday 7PM Open'},{'LeagueName':'Monday 5PM Open'},{'LeagueName':'Monday 7PM Mixed'},{'LeagueName':'Tuesday 6PM Mens'},{'LeagueName':'Tuesday 8PM Open'},{'LeagueName':'Wednesday 4PM 2v2'},{'LeagueName':'Wednesday 5PM Mixed'},{'LeagueName':'Wednesday 7PM Womens'},{'LeagueName':'Thursday 4PM Open'},{'LeagueName':'Thursday 6PM Open'},{'LeagueName':'Thursday 8PM'},{'LeagueName':'Friday 5:30PM Open'}]
 }
 var inputTestData = {
     "LeagueName":"",
@@ -40,6 +39,11 @@ app.get('/', function(request, response)
 	   
 	    console.log('Recieved Dashboard request!');
 	});
+app.get('/listLeagues', function(request, response)
+{
+    response.json(listOfLeagues);
+    console.log('List of Leagues sent');
+});
 app.get('/Leagues', function(request, response)
 	{
 	    response.json(inputHistory);

@@ -1,5 +1,6 @@
 package edu.umn.d.cs4531.leaguemanager;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -25,6 +26,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.JsonReader;
 import android.util.Log;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -41,7 +44,7 @@ public class leagueModel implements MVPComponents.Model{
     private String inputtedScoreB;
     private League mLeague;         //the current league we can pull info from
     private Team mTeam;         //The current team we can pull from
-
+    private  ArrayList<String> stringOfLeagues = new ArrayList<String>();
 
     public leagueModel(MVPComponents.Presenter Presenter)
     {
@@ -49,10 +52,15 @@ public class leagueModel implements MVPComponents.Model{
 
 
         //Dummy list of leagues to send to the view for testing purposes DELETE AFTER TEST
-        listOfLeagues.add(new League("League 1"));
-        listOfLeagues.add(new League("League 2"));
-        listOfLeagues.add(new League("League 3"));
-       // restGET();
+        //listOfLeagues.add(new League("League 1"));
+        //listOfLeagues.add(new League("League 2"));
+        //listOfLeagues.add(new League("League 3"));
+        restGETLeagues();
+        for (String league: stringOfLeagues)
+        {
+            listOfLeagues.add(new League(league));
+        }
+
         for (League leagues: listOfLeagues)
         {
             leagues.addTeam("Team 1");
@@ -157,9 +165,9 @@ public class leagueModel implements MVPComponents.Model{
 
     /*Model Connection to Server************************************************/
 
-    public void restGET() {
+    public void restGETLeagues() {
 
-        new HTTPAsyncTask().execute("http://ukko.d.umn.edu:3246/Leagues", "GET");
+        new HTTPAsyncTask().execute("http://10.0.0.2:3246/listLeagues", "GET");
     }
     public void restPOST() {
 
@@ -177,7 +185,7 @@ public class leagueModel implements MVPComponents.Model{
             e.printStackTrace();
         }
         Log.d("DEBUG:", jsonParam.toString());
-        new HTTPAsyncTask().execute("http://ukko.d.umn.edu:3246/Leagues", "POST", jsonParam.toString());
+        new HTTPAsyncTask().execute("http://10.0.0.2:3246/Leagues", "POST", jsonParam.toString());
         //new HTTPAsyncTask().execute("http://10.0.2.2:3246/Leagues", "POST", jsonParam.toString());
 
     }
@@ -308,13 +316,19 @@ public class leagueModel implements MVPComponents.Model{
              */
 
             try {
-                JSONObject jsonData = new JSONObject( result );
+                JSONArray jsonData = new JSONArray( result );
+                for (int i=0; i<jsonData.length(); i++) {
+                    JSONObject league = jsonData.getJSONObject(i);
+                    String name = league.getString("LeagueName");
+
+                    stringOfLeagues.add(name);
+                }
                 Log.d("PostExecute Valid JSON:", jsonData.toString());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            //textView.setText( result );
+
         }
     }
 
