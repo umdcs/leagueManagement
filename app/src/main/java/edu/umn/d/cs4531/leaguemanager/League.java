@@ -3,6 +3,7 @@ package edu.umn.d.cs4531.leaguemanager;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
+import com.google.gson.Gson;
 
 /**
  * Created by Mark W on 3/14/2017.
@@ -202,6 +203,12 @@ public class League implements LMTInterface.L{
             }
         }
 
+    }
+
+    public String createGson(){
+        Gson gson = new Gson();
+        String json = gson.toJson(this);
+        return json;
     }
 
     //Gets called by model to input teamName, scoreA and scoreB into team.java and match.java
