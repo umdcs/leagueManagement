@@ -9,15 +9,16 @@ public class Match {
 
     //Variables
 
-    private  int teamAScore = 0;
-    private  int teamBScore = 0;
-    private  Team teamA;
-    private  Team teamB;
-    private  Team draw = new Team("Draw");
-    private  Calendar playTime;
-    private  int lane = 0;
-    private  int winner = 2; //0 = teamA, 1 = teamB, 2 = draw
-    private  boolean matchPlayed = false;
+    private int teamAScore = 0;
+    private int teamBScore = 0;
+    private transient Team teamA;
+    private transient Team teamB; //Transient prevents being called when Gson creates the Json string
+    private String teamAName = null;
+    private String teamBName = null; //Team name strings only used for passing through Json
+    private Calendar playTime;
+    private int lane = 0;
+    private int winner = 2; //0 = teamA, 1 = teamB, 2 = draw
+    private boolean matchPlayed = false;
 
     //Constructor
     public Match() {
@@ -30,6 +31,8 @@ public class Match {
     public Match(Team A, Team B, int newLane, Calendar time) {
         teamA = A;
         teamB = B;
+        teamAName = teamA.getTeamName();
+        teamBName = teamB.getTeamName();
         playTime = time;
         lane = newLane;
     }
@@ -60,14 +63,20 @@ public class Match {
         return returnTeam;
     }
 
-    public void setTeamAScore(int score) {
-        teamAScore = score;
-        matchPlayed = true;
+    public boolean setTeamAScore(int score) {
+        if(teamA != null) {
+            teamAScore = score;
+            matchPlayed = true;
+        }
+        return matchPlayed;
     }
 
-    public void setTeamBScore(int score) {
-        teamBScore = score;
-        matchPlayed = true;
+    public boolean setTeamBScore(int score) {
+        if(teamB != null) {
+            teamBScore = score;
+            matchPlayed = true;
+        }
+        return matchPlayed;
     }
     public int getTeamAScore() { return teamAScore; }
 
@@ -102,7 +111,7 @@ public class Match {
     //Other Methods
     public Team getWinner() {
         determineWinner();
-        Team winningTeam = draw;
+        Team winningTeam = new Team("Draw");
         if(winner == 0) winningTeam = teamA;
         else if(winner == 1) winningTeam = teamB;
         return winningTeam;

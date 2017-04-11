@@ -126,9 +126,22 @@ public class LeagueClassTester extends League{
         addTeam("Team 3");
         addTeam("Team 4");
         addTeam("Team 5");
-        addTeam("Bye");
+        addTeam("Team 6");
+        addTeam("Team 7");
+        addTeam("Team 8");
+        addTeam("Team 9");
+        addTeam("Team 10");
+        addTeam("Team 11");
+        addTeam("Team 12");
+        addTeam("Team 13");
+        addTeam("Team 14");
+        addTeam("Team 15");
+        addTeam("Team 16");
+        addTeam("Team 17");
+        addTeam("Team 18");
+        addTeam("Team 19");
         setInitialCalendar(new GregorianCalendar(2017,1,28,17,45));
-        setMaxRounds(10);
+        setMaxRounds(18);
 
         assertTrue(getScoreboard() == null);
 
@@ -180,5 +193,13 @@ public class LeagueClassTester extends League{
             row += "\n";
         }
         System.out.println(row);
+        System.out.println(createJson());
     }
+
+    @Test
+    public void GsonTest() {
+        System.out.println(createJson());
+    }
+
+
 }

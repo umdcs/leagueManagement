@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 /**
  * Created by Mark W on 3/14/2017.
@@ -205,8 +206,9 @@ public class League implements LMTInterface.L{
 
     }
 
-    public String createGson(){
-        Gson gson = new Gson();
+    public String createJson(){
+        GsonBuilder gsonBuilder = new GsonBuilder().setPrettyPrinting();
+        Gson gson = gsonBuilder.create();
         String json = gson.toJson(this);
         return json;
     }

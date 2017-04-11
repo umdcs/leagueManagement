@@ -14,13 +14,14 @@ public class Team {
     //Variables
 
 
-    private  int wins = 0;
-    private  int losses = 0;
-    private  int ties = 0;
-    private  LinkedList<String> PlayerList = new LinkedList<>();
-    private  LinkedList<Match> Schedule = new LinkedList<>();
-    private  LinkedList<Match> FinishedMatches = new LinkedList<>();
+    private int wins = 0;
+    private int losses = 0;
+    private int ties = 0;
     private String teamName="";
+    private LinkedList<String> PlayerList = new LinkedList<>();
+    private LinkedList<Match> Schedule = new LinkedList<>();
+    private LinkedList<Match> FinishedMatches = new LinkedList<>();
+
 
     //Default Constructor
     Team(){};
