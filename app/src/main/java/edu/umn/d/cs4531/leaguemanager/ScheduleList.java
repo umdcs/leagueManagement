@@ -9,6 +9,7 @@ import java.util.LinkedList;
 public class ScheduleList {
 
     private ArrayList<String> weekSchedule;
+    private String[][] mScoreboard;
 
     private static ScheduleList ourInstance = new ScheduleList();
 
@@ -23,7 +24,11 @@ public class ScheduleList {
         return weekSchedule;
     }
 
+    public String[][] getScoreboard() { return mScoreboard;}
+
     public void setScheduleList(ArrayList<String> list) {
         weekSchedule = list;
     }
+
+    public void setScoreboard(String[][] scoreboard) { this.mScoreboard = scoreboard;}
 }

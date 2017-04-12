@@ -155,6 +155,11 @@ public class leagueModel implements MVPComponents.Model{
         return fullSchedule.get(week);
     }
 
+    @Override
+    public Match[][] getScoreboard() {
+        return mLeague.getScoreboard();
+    }
+
     /*Model Connection to Server************************************************/
 
     public void restGET() {

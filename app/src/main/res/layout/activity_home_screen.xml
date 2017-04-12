@@ -84,6 +84,16 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="55dp" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scoreboardButton"
+        android:text="View Scoreboard"
+        android:onClick="viewScoreboard"
+        android:layout_below="@id/addScoreButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+
     <!--
     This button will eventually attach to the duluth curling club
     website as Jim suggested
