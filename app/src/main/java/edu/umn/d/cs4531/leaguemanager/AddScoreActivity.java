@@ -68,7 +68,8 @@ public class AddScoreActivity extends AppCompatActivity implements MVPComponents
         if (!teamIDET.getText().toString().equalsIgnoreCase(teamIDString)) {
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putString("TeamIDPref", teamIDET.getText().toString());
-            editor.commit();
+            //editor.commit();
+            editor.apply();//Added by LINT
             Log.d("Shared Pref sendData", "Stored value" + sharedPref.getString("TeamIDPref", "Nothing here"));
         }
 

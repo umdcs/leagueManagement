@@ -31,7 +31,8 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
 
         setupPresenter();
         setupSpinner();
-        Toast.makeText(getBaseContext(), returnData, Toast.LENGTH_LONG);
+        Toast.makeText(getBaseContext(), returnData, Toast.LENGTH_LONG).show();
+
         Log.d("Home: ", "onCreate" + returnData);
     }
 

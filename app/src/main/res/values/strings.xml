@@ -11,4 +11,6 @@
     <string name="opponent">Opponent</string>
     <string name="viewWeb">View DCC Website</string>
     <string name="teamIDPref">NO_PREF</string>
+    <string name="DCCLogo">DCC Logo</string>
+    <string name="Enter your team's ID">Enter your team's ID</string>
 </resources>

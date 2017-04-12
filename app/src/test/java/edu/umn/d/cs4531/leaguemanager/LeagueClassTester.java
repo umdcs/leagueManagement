@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
  */
 public class LeagueClassTester extends League{
 
-
+//This test checks the functionality of the adding of new teams in a league. Teams will be able to be added to a league.
     @Test
     public void teamAdder() throws Exception {
         getTeams().clear();
@@ -30,6 +30,7 @@ public class LeagueClassTester extends League{
         assertTrue(getTeams().peekLast().getTeamName().equals("Team 3"));
         assertTrue(getTeams().size()==3);
     }
+    //This test checks for the removal of teams in a league.
     @Test
     public void teamRemover() throws Exception {
 
@@ -61,7 +62,7 @@ public class LeagueClassTester extends League{
         assertTrue(getTeams().peekLast().getTeamName().equals("Team 3"));
         assertTrue(getTeams().size()==2);
     }
-
+//This test checks for the functionality of creating a schedule for teams in a league.
     @Test
     public void scheduleTest() throws Exception {
         getTeams().clear();
@@ -117,7 +118,7 @@ public class LeagueClassTester extends League{
         }
 
     }
-
+//This test checks functionality of the scoreboard, wther or not it is being updated.
     @Test
     public void scoreboardTest() throws Exception{
         getTeams().clear();

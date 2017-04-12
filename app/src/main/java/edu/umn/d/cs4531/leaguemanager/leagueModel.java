@@ -52,14 +52,10 @@ public class leagueModel implements MVPComponents.Model{
 
 
         //Dummy list of leagues to send to the view for testing purposes DELETE AFTER TEST
-        //listOfLeagues.add(new League("League 1"));
-        //listOfLeagues.add(new League("League 2"));
-        //listOfLeagues.add(new League("League 3"));
-        restGETLeagues();
-        for (String league: stringOfLeagues)
-        {
-            listOfLeagues.add(new League(league));
-        }
+        listOfLeagues.add(new League("League 1"));
+        listOfLeagues.add(new League("League 2"));
+        listOfLeagues.add(new League("League 3"));
+
 
         for (League leagues: listOfLeagues)
         {
@@ -316,13 +312,8 @@ public class leagueModel implements MVPComponents.Model{
              */
 
             try {
-                JSONArray jsonData = new JSONArray( result );
-                for (int i=0; i<jsonData.length(); i++) {
-                    JSONObject league = jsonData.getJSONObject(i);
-                    String name = league.getString("LeagueName");
+                JSONObject jsonData = new JSONObject( result );
 
-                    stringOfLeagues.add(name);
-                }
                 Log.d("PostExecute Valid JSON:", jsonData.toString());
             } catch (JSONException e) {
                 e.printStackTrace();

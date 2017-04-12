@@ -14,6 +14,7 @@ public class MatchClassTester extends Match {
         GregorianCalendar time = new GregorianCalendar(2017, 9, 20, 17, 30);//Should Be October 20th, 2017 at 5:30PM
         Match match1 = new Match(new Team("team1"),new Team("team2"),1,time);
         Team winningTeam = null;
+    //This test determines the winner of a match. Checks by team name.
         @Test
         public void determineWinnerTest()
         {
@@ -28,7 +29,7 @@ public class MatchClassTester extends Match {
             assertTrue(winningTeam.getTeamName().equals("team2"));
 
         }
-
+//This test simply displays the team scores.
         @Test
         public void stringOutput()
         {

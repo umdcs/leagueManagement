@@ -18,6 +18,7 @@ public class TeamClassTester extends Team{
     Match match2 = new Match(team2, team3, 1, null);
     Match match3 = new Match(team3, team1, 1, null);
 
+    //This test adds matches and checks to see if schedule is updated.
     @Test
     public void teamScheduleTest() throws Exception{
         team1.addMatch(match1);
@@ -28,7 +29,7 @@ public class TeamClassTester extends Team{
         assertTrue(team1.removeMatch() == match3);
         assertTrue(team1.removeMatch() == null);
     }
-
+//This test adds players and checks for update.
     @Test
     public void playerListTest() throws Exception{
         team1.addPlayer("Player1");
@@ -42,7 +43,7 @@ public class TeamClassTester extends Team{
         assertTrue(team1.getPlayerList().get(1) == "Player3");
         assertFalse(team1.removePlayer("Player4"));
     }
-
+    //This test adds scores and checks for update.
     @Test
     public void enterScoreTest() throws Exception{
         team1.addMatch(match1);
