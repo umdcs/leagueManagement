@@ -121,7 +121,7 @@ public class LeagueClassTester extends League{
     @Test
     public void scoreboardTest() throws Exception{
         getTeams().clear();
-        addTeam("Team 1");
+        addTeam("Team 1"); //Adding 19 teams to stress test in a possible scenario
         addTeam("Team 2");
         addTeam("Team 3");
         addTeam("Team 4");
@@ -198,8 +198,7 @@ public class LeagueClassTester extends League{
 
     @Test
     public void GsonTest() {
-        System.out.println(createJson());
+        //Implement
     }
-
 
 }

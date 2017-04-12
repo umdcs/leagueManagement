@@ -18,14 +18,14 @@ public class League implements LMTInterface.L{
     private LinkedList<LinkedList<Match>> fullSchedule = new LinkedList<>();
     private boolean scheduleFinalized=false; //Prevents teams and schedules being added and removed after the schedule is made
     private Calendar initialCalendar = null; // Useable as a different was to set calendar
-    private int numberOfLanes; // Need to implement functionality
-    private int startDate = -1;
-    private int startMonth = -1;
-    private int startYear = -1;
-    private int startHour = -1;
-    private int startMinute = -1;
-    private int maxRounds = 8;
-    private Match[][] scoreboard = null;
+    private int numberOfLanes;
+    private transient int startDate = -1;
+    private transient int startMonth = -1; // Transient variables do not get passed to Json
+    private transient int startYear = -1;
+    private transient int startHour = -1;
+    private transient int startMinute = -1;
+    private int maxRounds = 16;
+    private transient Match[][] scoreboard = null;
 
     //Default Constructor
     League(){}
@@ -204,6 +204,11 @@ public class League implements LMTInterface.L{
             }
         }
 
+    }
+
+    public boolean jsonToLeague(String jsonString){
+        //Implement
+        return false;
     }
 
     public String createJson(){
