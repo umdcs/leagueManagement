@@ -48,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/teamID"
-        android:hint="@+id/Enter your team's ID"
+        android:hint="@string/teamID"
         android:layout_below="@id/enterTeam2Score"
         android:layout_centerHorizontal="true" />
     <Button
