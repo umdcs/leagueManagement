@@ -7,24 +7,24 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Reader;
-import java.io.UnsupportedEncodingException;
+//import java.io.OutputStream;
+//import java.io.OutputStreamWriter;
+//import java.io.Reader;
+//import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.content.Intent;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.view.ViewGroup;
-import android.net.Uri;
+//import java.net.URLEncoder;
+//import android.support.v7.app.AppCompatActivity;
+//import android.os.Bundle;
+//import android.content.Intent;
+//import android.view.View;
+//import android.widget.EditText;
+//import android.widget.TextView;
+//import android.view.ViewGroup;
+//import android.net.Uri;
 import android.os.AsyncTask;
-import android.util.JsonReader;
+//import android.util.JsonReader;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -149,7 +149,7 @@ public class leagueModel implements MVPComponents.Model{
     {
         for(int i=0;i<listOfLeagues.size();++i) {
             if(listOfLeagues.get(i).getLeagueName().equals(selectedLeague)){//if selected league is in the list
-               Log.d("Model: ", "Selected Team is " + selectedTeam);
+               //Log.d("Model: ", "Selected Team is " + selectedTeam);
                listOfLeagues.get(i).inputData(selectedTeam, Integer.parseInt(inputtedScoreA),Integer.parseInt(inputtedScoreB));
             }
         }
@@ -184,7 +184,7 @@ public class leagueModel implements MVPComponents.Model{
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.d("DEBUG:", jsonParam.toString());
+        //Log.d("DEBUG:", jsonParam.toString());
         new HTTPAsyncTask().execute("http://10.0.0.2:3246/Leagues", "POST", jsonParam.toString());
         //new HTTPAsyncTask().execute("http://10.0.2.2:3246/Leagues", "POST", jsonParam.toString());
 
@@ -198,7 +198,7 @@ public class leagueModel implements MVPComponents.Model{
              *
              * params[0] contains the HOST and port number and route of the URI
              */
-            Log.d("Debug:", "Attempting to connect to: " + params[0]);
+            //Log.d("Debug:", "Attempting to connect to: " + params[0]);
 
             /* Java class to create a network connection to a HTTP
              * Server. InputStreams are used to process the incoming
@@ -228,7 +228,7 @@ public class leagueModel implements MVPComponents.Model{
                 if (params[1].equals("POST") ||
                         params[1].equals("PUT") ||
                         params[1].equals("DELETE")) {
-                    Log.d("DEBUG POST/PUT/DELETE:", "In post: params[0]=" + params[0] + ", params[1]=" + params[1] + ", params[2]=" + params[2]);
+                    //Log.d("DEBUG POST/PUT/DELETE:", "In post: params[0]=" + params[0] + ", params[1]=" + params[1] + ", params[2]=" + params[2]);
 
                     /* Various server parameters need to set on HTTP connections that indicate the type
                      * of data that will be sent. In our case, we are sending JSON as output so need to
@@ -263,7 +263,7 @@ public class leagueModel implements MVPComponents.Model{
                  */
                 int responseCode = serverConnection.getResponseCode();
 
-                Log.d("Debug: ", "HTTP Response Code : " + responseCode);
+                //Log.d("Debug: ", "HTTP Response Code : " + responseCode);
 
                 /* Get the input stream (what's coming from our server to the Android client)
                  * process the JSON data that's contained with it.
@@ -323,7 +323,7 @@ public class leagueModel implements MVPComponents.Model{
 
                     stringOfLeagues.add(name);
                 }
-                Log.d("PostExecute Valid JSON:", jsonData.toString());
+                //Log.d("PostExecute Valid JSON:", jsonData.toString());
             } catch (JSONException e) {
                 e.printStackTrace();
             }

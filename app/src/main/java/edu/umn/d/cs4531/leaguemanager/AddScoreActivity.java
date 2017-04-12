@@ -31,7 +31,7 @@ public class AddScoreActivity extends AppCompatActivity implements MVPComponents
         Bundle extras = intent.getExtras();
         if (extras != null) message = extras.getString("edu.umn.d.cs4531.leaguemanager.MESSAGE");
         else message = "fuck";
-        Log.d("SCORE ACTIVITY", "This is what we got" + message);
+        //Log.d("SCORE ACTIVITY", "This is what we got" + message);
         // Split the message from homescreen and put it into the textviews
         String[] splitted = message.split(";");
         TextView textview = (TextView) findViewById(R.id.Team1Name);
@@ -74,7 +74,7 @@ public class AddScoreActivity extends AppCompatActivity implements MVPComponents
 
         String returnData = sScoreA + ";" + sScoreB + ";" + teamIDET.getText().toString();
         intent.putExtra("edu.umn.d.cs4531.leaguemanager.MESSAGE", returnData);
-        Log.d("AddScore: ", "This is " + returnData.split(";")[0]);
+        //Log.d("AddScore: ", "This is " + returnData.split(";")[0]);
         setResult(Activity.RESULT_OK, intent);
         //mPresenter.scoreInput(scoreA.getText().toString(), scoreB.getText().toString());
         //mPresenter.run();
