@@ -31,9 +31,11 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
 
         setupPresenter();
         setupSpinner();
+
         Toast.makeText(getBaseContext(), returnData, Toast.LENGTH_LONG).show();
 
         Log.d("Home: ", "onCreate" + returnData);
+
     }
 
     /**
@@ -52,7 +54,7 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedString = parent.getItemAtPosition(position).toString();
-                Log.d("Main", "the item selected is: " + selectedString);
+                //Log.d("Main", "the item selected is: " + selectedString);
                 Toast.makeText(getBaseContext(), parent.getItemAtPosition(position) + " selected", Toast.LENGTH_LONG).show();
                 leagueSelected = parent.getItemAtPosition(position).toString();
                 mPresenter.leagueInput(leagueSelected);
