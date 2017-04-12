@@ -64,6 +64,8 @@ public interface MVPComponents {
 
         ArrayList<String> getSchedule(int week);
 
+        String[][] getScoreboard();
+
         void run();
     }
 
@@ -102,6 +104,7 @@ public interface MVPComponents {
         void inputData();
 
         LinkedList<Match> getSchedule(int week);
+        Match[][] getScoreboard();
 
     }
 }
