@@ -112,6 +112,12 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
         startActivity(intent);
     }
 
+    public void viewScoreboard(View view) {
+        Intent scoreboardIntent = new Intent(this, ScoreBoard.class);
+        ScheduleList.getInstance().setScoreboard(mPresenter.getScoreboard());
+        startActivity(scoreboardIntent);
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
