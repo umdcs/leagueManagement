@@ -185,7 +185,7 @@ public class leagueModel implements MVPComponents.Model{
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        //Log.d("DEBUG:", jsonParam.toString());
+        Log.d("DEBUG:", jsonParam.toString());
         new HTTPAsyncTask().execute("http://ukko.d.umn.edu:3246/Leagues", "POST", jsonParam.toString());
         //new HTTPAsyncTask().execute("http://10.0.2.2:3246/Leagues", "POST", jsonParam.toString());
 
@@ -318,11 +318,7 @@ public class leagueModel implements MVPComponents.Model{
 
             try {
                 JSONObject jsonData = new JSONObject( result );
-
-<<<<<<< HEAD
-
-=======
->>>>>>> a5863ab74ec7c07bbf0fd8924891be47dc867cf9
+                Log.d("PostExecute Valid JSON:", jsonData.toString());
             } catch (JSONException e) {
                 e.printStackTrace();
             }

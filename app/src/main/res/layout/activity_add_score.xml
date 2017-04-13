@@ -48,11 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/teamID"
-<<<<<<< HEAD
         android:hint="@+id/team_ID"
-=======
-        android:hint="@string/teamID"
->>>>>>> a5863ab74ec7c07bbf0fd8924891be47dc867cf9
         android:layout_below="@id/enterTeam2Score"
         android:layout_centerHorizontal="true" />
     <Button
