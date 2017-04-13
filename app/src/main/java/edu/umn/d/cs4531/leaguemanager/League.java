@@ -56,6 +56,8 @@ public class League implements LMTInterface.L{
 
     public void setMaxRounds(int rounds) { maxRounds = rounds; }
 
+    public int getMaxRounds() {return maxRounds;}
+
     public Calendar getInitialCalendar() {return initialCalendar;}
     //Other Methods
     //Adds a team to the bottom of a league linkedlist<Team> only if the league schedule has not yet been finalized.
@@ -214,10 +216,8 @@ public class League implements LMTInterface.L{
     }
 
     public String createJson(){
-        GsonBuilder gsonBuilder = new GsonBuilder().setPrettyPrinting();
-        Gson gson = gsonBuilder.create();
-        String json = gson.toJson(this);
-        return json;
+        LeagueJSONObject jsonObject = new LeagueJSONObject(this);
+        return jsonObject.toJson();
     }
 
     //Gets called by model to input teamName, scoreA and scoreB into team.java and match.java
