@@ -12,5 +12,9 @@
     <string name="viewWeb">View DCC Website</string>
     <string name="teamIDPref">NO_PREF</string>
     <string name="DCCLogo">DCC Logo</string>
+<<<<<<< HEAD
     <string name="team_ID">Enter your team ID</string>
+=======
+    <string name="teamID">Enter your teams ID</string>
+>>>>>>> a5863ab74ec7c07bbf0fd8924891be47dc867cf9
 </resources>

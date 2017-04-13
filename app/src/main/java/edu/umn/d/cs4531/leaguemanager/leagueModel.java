@@ -319,7 +319,10 @@ public class leagueModel implements MVPComponents.Model{
             try {
                 JSONObject jsonData = new JSONObject( result );
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> a5863ab74ec7c07bbf0fd8924891be47dc867cf9
             } catch (JSONException e) {
                 e.printStackTrace();
             }
