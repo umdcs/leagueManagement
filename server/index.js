@@ -10,7 +10,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 // See that file for the details for what is provided.
-var mongodb = require('./mongoDBFunctions.js'); 
+//var mongodb = require('./mongoDBFunctions.js'); 
 
 //Set port number for http connection
 app.set("port",3246);
@@ -58,18 +58,24 @@ app.get('/Leagues', function(request, response)
 app.post('/Leagues', function(req, res)
 	 {
 	     if(!req.body) return response.sendStatus(400);
-
-	     inputTestData.LeagueName= req.body.LeagueName;
-	     inputTestData.TeamName=req.body.TeamName;
-	     inputTestData.ScoreA=req.body.ScoreA;
-	     inputTestData.ScoreB=req.body.ScoreB;
-	     inputHistory.History.push(inputTestData);//CHECK FOR ERROR
-	     mongodb.insertScore(req.body.ScoreA, req.body.ScoreB );
+	     var input =
+		 {
+		     "LeagueName":"",
+		     "TeamName":"",
+		     "ScoreA":"",
+		     "ScoreB":"" 
+		 }
+	     input.LeagueName= req.body.LeagueName;
+	     input.TeamName=req.body.TeamName;
+	     input.ScoreA=req.body.ScoreA;
+	     input.ScoreB=req.body.ScoreB;
+	     inputHistory.History.push(input);//CHECK FOR ERROR
+//	     mongodb.insertScore(req.body.ScoreA, req.body.ScoreB );
 	     console.log('Match Input Posted'); 
 
 	     var statusMessage = {'status':"OK"
 				 };
-	     res.json(inputTestData.LeagueName);
+	     res.json(input);
 	 });
 app.use(function(req, res, next){
     res.status(404).send('Sorry cant find that!');
