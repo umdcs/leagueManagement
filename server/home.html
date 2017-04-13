@@ -13,8 +13,43 @@
 	<a href=About.html>About</a>
 	</li>
 </ul>
+
 <body>
-	<table border "1">
+  
+  <div class="Live">
+    <h2>Live Feed:</h2>
+    <div class="messages">
+	     <ul id="livefeed"></ul>
+    </div>
+    </div>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io();
+</script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+ <script>
+    $(function () {
+	     // Get a reference to the socket.io module
+	     var socket = io();
+	      // When we receive a log message packet, we
+	      // create a new entry in our <UL> to display the string on the
+	      // webpage.
+	     socket.on('livefeed', function(msg) {
+	       var liElems = $("#livefeed li");
+          if (liElems.length > 9) {  // last 10 messages
+		          liElems.eq(0).remove();
+		            $('#livefeed').append($('<li>').text(msg));
+	              } else {
+		            $('#livefeed').append($('<li>').text(msg));
+	              }
+	      });
+    });
+  </script>
+
+
+
+  <table border "1">
 		<tr>
 			
 </body>
