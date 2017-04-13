@@ -55,6 +55,8 @@ public class League implements LMTInterface.L{
     public void setStartMinute(int minute) { startMinute = minute; }
 
     public void setMaxRounds(int rounds) { maxRounds = rounds; }
+
+    public Calendar getInitialCalendar() {return initialCalendar;}
     //Other Methods
     //Adds a team to the bottom of a league linkedlist<Team> only if the league schedule has not yet been finalized.
     // If schedule is already finalized, return false indicating that adding a team is unsuccessful

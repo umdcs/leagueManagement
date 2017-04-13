@@ -13,8 +13,6 @@ public class Match {
     private int teamBScore = 0;
     private transient Team teamA;
     private transient Team teamB; //Transient prevents being called when Gson creates the Json string
-    private String teamAName = null;
-    private String teamBName = null; //Team name strings only used for passing through Json
     private Calendar playTime;
     private int lane = 0;
     private int winner = 2; //0 = teamA, 1 = teamB, 2 = draw
@@ -31,8 +29,6 @@ public class Match {
     public Match(Team A, Team B, int newLane, Calendar time) {
         teamA = A;
         teamB = B;
-        teamAName = teamA.getTeamName();
-        teamBName = teamB.getTeamName();
         playTime = time;
         lane = newLane;
     }
@@ -89,6 +85,10 @@ public class Match {
     public void setPlayTime(Calendar time) { playTime = (Calendar) time.clone(); }
 
     public Calendar getPlayTime() { return playTime; }
+
+    public int getWinnerInt() {return winner;}
+
+    public void setWinnerInt(int i) {winner = i;}
 
     //Debug toString function
     public String toString() {
