@@ -186,8 +186,8 @@ public class leagueModel implements MVPComponents.Model{
             e.printStackTrace();
         }
         Log.d("DEBUG:", jsonParam.toString());
-        new HTTPAsyncTask().execute("http://ukko.d.umn.edu:3246/Leagues", "POST", jsonParam.toString());
-        //new HTTPAsyncTask().execute("http://10.0.2.2:3246/Leagues", "POST", jsonParam.toString());
+       new HTTPAsyncTask().execute("http://ukko.d.umn.edu:3246/Leagues", "POST", jsonParam.toString());
+        //new HTTPAsyncTask().execute("http://10.0.2.2:3246/", "POST", jsonParam.toString());
 
     }
     private class HTTPAsyncTask extends AsyncTask<String, Integer, String>{

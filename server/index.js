@@ -5,16 +5,18 @@
 *
 *
 */
+//General requirements
 var bodyParser = require('body-parser');
-var http = require('http');
 var express = require('express');
 var app = express();
-var socketio = require('socket.io');
-var httpServer = http.createServer(app);
 var path = require('path');
 
-var io = require('socket.io')(http);
-var networkIORef = socketio.listen(httpServer);
+//Socket.io Requirements
+var socketio = require('socket.io');
+var http = require('http');
+var httpServer = http.createServer(app);
+var io = require('socket.io')(httpServer);
+
 
 
 //Set port number for http connection
@@ -35,25 +37,17 @@ var inputHistory = {
 app.get('/', function(request, response)
 	{
 	    response.sendFile(path.join(__dirname +'/home.html'));
-	    networkIORef.emit('livefeed',': Received / GET request ');
+	    io.sockets.emit('livefeed',': Received / GET request ');
 	    console.log('Recieved Dashboard request!');
 	});
 
-networkIORef.on('connection', function(socket) {
-	console.log('a user has connected.');
-	socket.on('livefeed', function(msg) {
-	});
-	socket.on('disconnect', function() {
-		console.log('a user has disconnected.');
-	});
-});
-
-
-io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
-    console.log('message: ' + msg);
+io.sockets.on('connection', function(socket){
+    socket.on('live', function(data){
+	io.sockets.emit('new data', data)
+    console.log('message: ' + data);
   });
 });
+
 app.get('/listLeagues', function(request, response)
 {
     response.json(listOfLeagues);
@@ -64,7 +58,7 @@ app.get('/Leagues', function(request, response)
 	    response.json(inputHistory);
 	    console.log('GET REQUEST: Test Server with JSON');
 	});
-app.post('/Leagues', function(req, res)
+app.post('/', function(req, res)
 	 {
 	     if(!req.body) return response.sendStatus(400);
 	     var input =
@@ -89,12 +83,13 @@ var feed = '';
 	 for(var elemName in req.body) {
 	feed = feed + "[" + elemName + ": " + req.body[elemName] + "] ";
 	 }
-	networkIORef.emit('livefeed', 'Received POST request ' + feed);
-	updateStats();
-
-
+	io.sockets.emit('livefeed', 'Received POST request ' + feed);
+	
 
 	 });
+
+
+//Other routes
 app.use(function(req, res, next){
     res.status(404).send('Sorry cant find that!');
 });

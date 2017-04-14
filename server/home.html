@@ -15,36 +15,23 @@
 </ul>
 
 <body>
-  
-  <div class="Live">
-    <h2>Live Feed:</h2>
-    <div class="messages">
-	     <ul id="livefeed"></ul>
-    </div>
-    </div>
-<script src="/socket.io/socket.io.js"></script>
-<script>
-  var socket = io();
-</script>
+  <div id="live"></div>
+  <h2>Live Feed</h2>
+
 <script src="/socket.io/socket.io.js"></script>
 <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
  <script>
-    $(function () {
-	     // Get a reference to the socket.io module
-	     var socket = io();
-	      // When we receive a log message packet, we
-	      // create a new entry in our <UL> to display the string on the
-	      // webpage.
-	     socket.on('livefeed', function(msg) {
-	       var liElems = $("#livefeed li");
-          if (liElems.length > 9) {  // last 10 messages
-		          liElems.eq(0).remove();
-		            $('#livefeed').append($('<li>').text(msg));
-	              } else {
-		            $('#livefeed').append($('<li>').text(msg));
-	              }
-	      });
-    });
+   $(function(){
+   var socket = io();
+   var $feedForm = $('#feed');
+   var $livefeedForm = $('#livefeed');
+   var $live = $('#live');
+
+   
+   socket.on('new data', function(data){
+   $live.append(data+"<br/>");
+   });
+   });
   </script>
 
 
