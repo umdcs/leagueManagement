@@ -3,7 +3,17 @@
 <title>Duluth Curling Club</title>
 <img src="https://www.duluthcurlingclub.org/wp-content/uploads/2015/07/duluth-curling-club.jpg" alt="Duluth Curling Club" align="center">
 <h1 align="center">Duluth Curling Club</h1>
+<style>
+      * { margin: 10; padding: 10; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      .Container { float:right; height: 290px; width:250px; padding:3px; }
+      .messages { height:285px; overflow:auto; }
+      #logmessages { list-style-type: none; margin: 0; padding: 0; }
+      #logmessages li { padding: 5px 10px; }
+      #logmessages li:nth-child(odd) { background: #eee; }
+    </style>
 </head>
+
 <ul>
 	<li>
 	<a name="league"></a>
@@ -15,26 +25,33 @@
 </ul>
 
 <body>
-  <div id="live"></div>
-  <h2>Live Feed</h2>
-
-<script src="/socket.io/socket.io.js"></script>
-<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
- <script>
-   $(function(){
-   var socket = io();
-   var $feedForm = $('#feed');
-   var $livefeedForm = $('#livefeed');
-   var $live = $('#live');
-
-   
-   socket.on('new data', function(data){
-   $live.append(data+"<br/>");
-   });
-   });
-  </script>
-
-
+    <h1>Live Feed</h1>
+    <div class="LogContainer">
+      <h3>Log Messages</h3>
+      <div class="messages">
+	<ul id="logmessages"></ul>
+      </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+    $(function () {
+	// Get a reference to the socket.io module
+	var socket = io();
+	// When we receive a log message packet, we
+	// create a new entry in our <UL> to display the string on the
+	// webpage.
+	socket.on('log message', function(msg) {
+	    var liElems = $("#logmessages li");
+            if (liElems.length > 9) {  // last 10 messages
+		liElems.eq(0).remove();
+		$('#logmessages').append($('<li>').text(msg));
+	    } else {
+		$('#logmessages').append($('<li>').text(msg));
+	    }
+	});
+    });
+    </script>
 
   <table border "1">
 		<tr>
