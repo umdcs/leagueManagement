@@ -95,19 +95,22 @@ public class leaguePresenter implements MVPComponents.Presenter {
     @Override
     public String[][] getScoreboard() {
         Match[][] matchScoreboard = leagueModel.getScoreboard();
-        int bounds = leagueModel.getTeams().size();
-        String[][] ssb = new String[bounds + 1][bounds + 1];
-
-        for (int i = 1; i < bounds+1; i++) {
-            ssb[0][i] = leagueModel.getTeams().get(i-1).getTeamName();
-        }
-        for (int i = 1; i < bounds+1; i++) {
-            ssb[i][0] = leagueModel.getTeams().get(i-1).getTeamName();
-        }
-        for (int i = 0; i < bounds+1; i++) {
-            for (int j = 0; j < bounds+1; i++) {
-                ssb[i+1][j+1] = Integer.toString(matchScoreboard[i][j].getTeamAScore()) + " : "
-                        + Integer.toString(matchScoreboard[i][j].getTeamBScore());
+        int bounds = matchScoreboard.length;
+        String[][] ssb = new String[bounds][bounds+1];
+        for (int row = 0; row < bounds; row ++) {
+            ssb[row][0] = leagueModel.getTeams().get(row).getTeamName();
+            for (int col = 1; col < bounds + 1; col ++) {
+                if (matchScoreboard[row][col-1] != null) {
+                    if (matchScoreboard[row][col-1].getTeamA() == leagueModel.getTeams().get(row)) {
+                        ssb[row][col] = "| " + matchScoreboard[row][col-1].getTeamAScore() + " : " + matchScoreboard[row][col-1].getTeamBScore() + " ";
+                    }
+                    else {
+                        ssb[row][col] = "| " + matchScoreboard[row][col-1].getTeamBScore() + " : " + matchScoreboard[row][col-1].getTeamAScore() + " ";
+                    }
+                }
+                else {
+                    ssb[row][col] = "| - : - ";
+                }
             }
         }
         return ssb;
