@@ -5,6 +5,8 @@ import org.junit.Test;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import static org.junit.Assert.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -150,7 +152,7 @@ public class LeagueClassTester extends League{
         assertTrue(createSchedule());
 
         int testScore = 0;
-        for(Team team: getTeams()){
+        for(Team team: getTeams()){  //Causes an infinite loop now after Team.java's enterScore function was set to not allow entering scores unless the opposing team's next match was identical to the entering team's next match
             while(team.getSchedule().size() > 0){
                 team.enterScore(testScore,++testScore);
             }
@@ -200,7 +202,29 @@ public class LeagueClassTester extends League{
 
     @Test
     public void GsonTest() {
-        //Implement
+        League JSONLeague = new League("Test League"); //Creating the League and filling it with initial parameters
+        JSONLeague.addTeam("Team Mark");
+        JSONLeague.addTeam("Team Jeff");
+        JSONLeague.addTeam("Team Hunter");
+        JSONLeague.addTeam("Team Adam");
+
+        JSONLeague.setInitialCalendar(new GregorianCalendar(2017,1,28,17,45));
+        JSONLeague.setNumberOfLanes(8);
+        JSONLeague.setMaxRounds(10);
+
+        JSONLeague.createSchedule(); //Creating and finilizing the schedule
+
+        JSONLeague.inputData("Team Mark",3,2); //Inputing some data to alter the JSON object
+        JSONLeague.inputData("Team Mark",5,5); //Should not input; Schedules don't match
+        JSONLeague.inputData("Team Mark",3,0); //Should not input; Schedules don't match
+        JSONLeague.inputData("Team Jeff",4,2); //SHOULD input
+
+        String theJson = JSONLeague.createJson();
+        System.out.println(theJson);
+
+        Gson gson = new Gson();
+        LeagueJSONObject jsonObject = gson.fromJson(theJson, LeagueJSONObject.class);
+
     }
 
 }
