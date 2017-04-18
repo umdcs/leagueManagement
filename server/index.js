@@ -71,25 +71,21 @@ app.post('/Leagues', function(req, res)
 	     if(!req.body) return response.sendStatus(400);
 	     var input =
 		 {
-		    //  "leagueName":"",
-		    //  "teams":[],
-		    //  "fullSchedule":[],
-		    //  "initialCalendar":0,
-        //  "numberOfLanes":0,
-        //  "maxRounds":0
-        //  "scoreboard":[]
-        "LeagueName":"",
-        "TeamName":"",
-        "ScoreA":"",
-        "ScoreB":""
+	 "leagueName":"",
+	 "teams":[],
+//       "fullSchedule":[],
+//       "initialCalendar":0,
+          "numberOfLanes":0,
+	"maxRounds":0,
+          "scoreboard":[]
+        
 		 }
-	     input.LeagueName= req.body.LeagueName;
-	     input.TeamName=req.body.TeamName;
-	     input.ScoreA=req.body.ScoreA;
-       input.ScoreB=req.body.ScoreB;
-	     //input.teams=req.body.teams;
-       //input.fullSchedule=req.body.fullSchedule;
-       //input.scoreboard=req.body.scoreboard;
+	     input.leagueName= req.body.leagueName;
+	     input.numberOfLanes=req.body.numberOfLanes;
+	     input.maxRounds=req.body.maxRounds;
+       	     input.teams.push(req.body.teams);
+       input.fullSchedule.push(req.body.fullSchedule);
+	     input.scoreboard.push(req.body.scoreboard);
 	     inputHistory.History.push(input);//CHECK FOR ERROR
 
 	     var statusMessage = {'status':"OK"	};

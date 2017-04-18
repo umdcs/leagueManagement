@@ -182,10 +182,10 @@ public class leagueModel implements MVPComponents.Model{
         } catch (JSONException e) {
             e.printStackTrace();
         }
-       new HTTPAsyncTask().execute("http://10.0.0.1:3246/Leagues", "POST", jsonParam.toString());
-//        String displayString = mLeague.createJson();
-//        System.out.println(displayString);
-//        new HTTPAsyncTask().execute("http://10.0.0.1:3246/Leagues", "POST", displayString);
+ ///      new HTTPAsyncTask().execute("http://10.0.0.1:3246/Leagues", "POST", jsonParam.toString());
+        String displayString = mLeague.createJson();
+        System.out.println(displayString);
+        new HTTPAsyncTask().execute("http://10.0.2.2:3246/Leagues", "POST", displayString);
 
     }
     private class HTTPAsyncTask extends AsyncTask<String, Integer, String>{
