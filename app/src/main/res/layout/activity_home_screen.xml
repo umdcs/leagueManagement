@@ -72,8 +72,10 @@
         android:id="@+id/addScoreButton"
         android:onClick="addScore"
         android:text="@string/addScore"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/teamSpinner"
+        android:layout_centerHorizontal="true"
+        android:layout_alignStart="@+id/scoreboardButton" />
 
     <Button
         android:layout_width="wrap_content"
@@ -81,19 +83,19 @@
         android:id="@+id/viewSchedule"
         android:text="@string/viewSchedule"
         android:onClick="viewSchedule"
-        android:layout_below="@+id/addScoreButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="55dp" />
+        android:layout_below="@+id/scoreboardButton"
+        android:layout_alignStart="@+id/scoreboardButton"
+        android:layout_alignEnd="@+id/scoreboardButton" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:id="@+id/scoreboardButton"
         android:text="View Scoreboard"
         android:onClick="viewScoreboard"
-        android:layout_below="@id/addScoreButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp" />
+        android:layout_alignStart="@+id/listView"
+        android:layout_below="@+id/addScoreButton"
+        android:layout_alignEnd="@+id/textView" />
 
     <!--
     This button will eventually attach to the duluth curling club
@@ -105,6 +107,8 @@
         android:text="@string/viewWeb"
         android:id="@+id/DCCWebsite"
         android:onClick="goToWebsite"
+        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/addScoreButton" />
+        android:layout_alignStart="@+id/pickTeam"
+        android:layout_marginBottom="36dp" />
 </RelativeLayout>
