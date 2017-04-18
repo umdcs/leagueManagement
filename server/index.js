@@ -5,16 +5,18 @@
 *
 *
 */
+//General requirements
 var bodyParser = require('body-parser');
-var http = require('http');
 var express = require('express');
 var app = express();
-var socketio = require('socket.io');
-var httpServer = http.createServer(app);
 var path = require('path');
 
-var io = require('socket.io')(http);
-var networkIORef = socketio.listen(httpServer);
+//Socket.io Requirements
+var socketio = require('socket.io');
+var http = require('http');
+var httpServer = http.createServer(app);
+var networkIORef = require= socketio.listen(httpServer);
+
 
 
 //Set port number for http connection
@@ -23,7 +25,9 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
-
+//httpServer.listen(app.get("port"), function () {
+  //  console.log('node app listening on port: ', app.get("port"));
+//});
 //list of leagues pulled from database.
 var listOfLeagues={
     listOfLeagues:[{'LeagueName':'Sunday 3:30PM FAF'},{'LeagueName':'Sunday 5PM Open'},{'LeagueName':'Sunday 7PM Open'},{'LeagueName':'Monday 5PM Open'},{'LeagueName':'Monday 7PM Mixed'},{'LeagueName':'Tuesday 6PM Mens'},{'LeagueName':'Tuesday 8PM Open'},{'LeagueName':'Wednesday 4PM 2v2'},{'LeagueName':'Wednesday 5PM Mixed'},{'LeagueName':'Wednesday 7PM Womens'},{'LeagueName':'Thursday 4PM Open'},{'LeagueName':'Thursday 6PM Open'},{'LeagueName':'Thursday 8PM'},{'LeagueName':'Friday 5:30PM Open'}]
@@ -35,25 +39,22 @@ var inputHistory = {
 app.get('/', function(request, response)
 	{
 	    response.sendFile(path.join(__dirname +'/home.html'));
-	    networkIORef.emit('livefeed',': Received / GET request ');
+	    
 	    console.log('Recieved Dashboard request!');
 	});
 
 networkIORef.on('connection', function(socket) {
-	console.log('a user has connected.');
-	socket.on('livefeed', function(msg) {
-	});
-	socket.on('disconnect', function() {
-		console.log('a user has disconnected.');
-	});
+    console.log('user connected');
+   
+    socket.on('log message', function(msg) {
+	networkIORef.emit('log message', msg);
+    });
+
+    socket.on('disconnect', function(){
+	console.log('user now disconnected');
+    });
 });
 
-
-io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
-    console.log('message: ' + msg);
-  });
-});
 app.get('/listLeagues', function(request, response)
 {
     response.json(listOfLeagues);
@@ -79,22 +80,22 @@ app.post('/Leagues', function(req, res)
 	     input.ScoreA=req.body.ScoreA;
 	     input.ScoreB=req.body.ScoreB;
 	     inputHistory.History.push(input);//CHECK FOR ERROR
-	     console.log('Match Input Posted'); 
-
-	     var statusMessage = {'status':"OK"
-				 };
-	     res.json(input);
-
-var feed = '';
-	 for(var elemName in req.body) {
-	feed = feed + "[" + elemName + ": " + req.body[elemName] + "] ";
-	 }
-	networkIORef.emit('livefeed', 'Received POST request ' + feed);
-	updateStats();
-
-
-
+	    
+	     var statusMessage = {'status':"OK"	};
+	     
+             var timestamp = new Date().valueOf();
+	     var logstr = '';
+    for(var elemName in req.body) {
+	logstr = logstr + "[" + elemName + ": " + req.body[elemName] + "] ";
+    }	
+networkIORef.emit('log message', timestamp + ': Received /POST' + logstr);
+	     //res.json(input);
+ console.log('Match Input Posted'); 
+	     res.status(200).send('OK');
 	 });
+
+
+//Other routes
 app.use(function(req, res, next){
     res.status(404).send('Sorry cant find that!');
 });
@@ -104,5 +105,8 @@ app.use(function(req, res, next){
     res.status(500).send('Something broke!');
 });
 
-app.listen(app.get("port"), function() {
-    console.log("League Manager Testing Server Ready on port: ", app.get("port"))});
+//app.listen(app.get("port"), function() {
+  //  console.log("League Manager Testing Server Ready on port: ", app.get("port//"))});
+httpServer.listen(app.get("port"), function () {
+    console.log('node app listening on port: ', app.get("port"));
+});
