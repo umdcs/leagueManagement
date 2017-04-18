@@ -67,23 +67,29 @@ app.get('/Leagues', function(request, response)
 	});
 app.post('/Leagues', function(req, res)
 	 {
+     console.log('Post accesed');
 	     if(!req.body) return response.sendStatus(400);
 	     var input =
 		 {
-		     "leagueName":"",
-		     "teams":[],
-		     "fullSchedule":[],
-		     "initialCalendar":0,
-         "numberOfLanes":0,
-         "maxRounds":0,
-         "scoreboard":[]
+		    //  "leagueName":"",
+		    //  "teams":[],
+		    //  "fullSchedule":[],
+		    //  "initialCalendar":0,
+        //  "numberOfLanes":0,
+        //  "maxRounds":0
+        //  "scoreboard":[]
+        "LeagueName":"",
+        "TeamName":"",
+        "ScoreA":"",
+        "ScoreB":""
 		 }
-	     input.leagueName= req.body.leagueName;
-	     input.numberOfLanes=req.body.numberOfLanes;
-	     input.maxRounds=req.body.maxRounds;
-	     input.teams=req.body.teams;
-       input.fullSchedule=req.body.fullSchedule;
-       input.scoreboard=req.body.scoreboard;
+	     input.LeagueName= req.body.LeagueName;
+	     input.TeamName=req.body.TeamName;
+	     input.ScoreA=req.body.ScoreA;
+       input.ScoreB=req.body.ScoreB;
+	     //input.teams=req.body.teams;
+       //input.fullSchedule=req.body.fullSchedule;
+       //input.scoreboard=req.body.scoreboard;
 	     inputHistory.History.push(input);//CHECK FOR ERROR
 
 	     var statusMessage = {'status':"OK"	};
