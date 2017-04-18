@@ -1,5 +1,5 @@
 /*
-*Node Server uses express and node.js to create a test server 
+*Node Server uses express and node.js to create a test server
 *for the league manager application.
 *
 *
@@ -39,13 +39,13 @@ var inputHistory = {
 app.get('/', function(request, response)
 	{
 	    response.sendFile(path.join(__dirname +'/home.html'));
-	    
+
 	    console.log('Recieved Dashboard request!');
 	});
 
 networkIORef.on('connection', function(socket) {
     console.log('user connected');
-   
+
     socket.on('log message', function(msg) {
 	networkIORef.emit('log message', msg);
     });
@@ -70,27 +70,32 @@ app.post('/Leagues', function(req, res)
 	     if(!req.body) return response.sendStatus(400);
 	     var input =
 		 {
-		     "LeagueName":"",
-		     "TeamName":"",
-		     "ScoreA":"",
-		     "ScoreB":"" 
+		     "leagueName":"",
+		     "teams":[],
+		     "fullSchedule":[],
+		     "initialCalendar":0,
+         "numberOfLanes":0,
+         "maxRounds":0,
+         "scoreboard":[]
 		 }
-	     input.LeagueName= req.body.LeagueName;
-	     input.TeamName=req.body.TeamName;
-	     input.ScoreA=req.body.ScoreA;
-	     input.ScoreB=req.body.ScoreB;
+	     input.leagueName= req.body.leagueName;
+	     input.numberOfLanes=req.body.numberOfLanes;
+	     input.maxRounds=req.body.maxRounds;
+	     input.teams=req.body.teams;
+       input.fullSchedule=req.body.fullSchedule;
+       input.scoreboard=req.body.scoreboard;
 	     inputHistory.History.push(input);//CHECK FOR ERROR
-	    
+
 	     var statusMessage = {'status':"OK"	};
-	     
+
              var timestamp = new Date().valueOf();
 	     var logstr = '';
     for(var elemName in req.body) {
 	logstr = logstr + "[" + elemName + ": " + req.body[elemName] + "] ";
-    }	
+    }
 networkIORef.emit('log message', timestamp + ': Received /POST' + logstr);
 	     //res.json(input);
- console.log('Match Input Posted'); 
+ console.log('Match Input Posted');
 	     res.status(200).send('OK');
 	 });
 

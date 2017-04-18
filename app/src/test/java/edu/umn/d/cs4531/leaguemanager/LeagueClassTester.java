@@ -124,8 +124,8 @@ public class LeagueClassTester extends League{
         getTeams().clear();
         addTeam("Team 1"); //Adding 19 teams to stress test in a possible scenario
         addTeam("Team 2");
-//        addTeam("Team 3");
-//        addTeam("Team 4");
+        addTeam("Team 3");
+        addTeam("Team 4");
 //        addTeam("Team 5");
 //        addTeam("Team 6");
 //        addTeam("Team 7");
@@ -143,6 +143,7 @@ public class LeagueClassTester extends League{
 //        addTeam("Team 19");
         setInitialCalendar(new GregorianCalendar(2017,1,28,17,45));
         setMaxRounds(18);
+        setLeagueName("Test League");
 
         assertTrue(getScoreboard() == null);
 
