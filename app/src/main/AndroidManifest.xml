@@ -20,7 +20,6 @@
         <activity android:name=".AddScoreActivity" />
         <activity android:name=".ViewScheduleActivity" />
         <activity android:name=".ScoreBoard"></activity>
-        <activity android:name=".ScoreInput"></activity>
     </application>
 
 </manifest>
