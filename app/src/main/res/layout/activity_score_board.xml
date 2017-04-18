@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableView xmlns:android="http://schemas.android.com/apk/res/android"
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_score_board"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/scoreBoardList"
-    tools:context="edu.umn.d.cs4531.leaguemanager.ScoreBoard">
+    tools:context="edu.umn.d.cs4531.leaguemanager.ViewScheduleActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/tvgetit"
-        android:text="Didn't get populated" />
-
-</TableView>
+</ListView>
