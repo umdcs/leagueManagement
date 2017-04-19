@@ -1,0 +1,31 @@
+#!/bin/bash
+# Testing index.js using a bunch of curl
+
+echo "Starting Testing on the server"
+echo
+echo "GET on the root page"
+echo
+curl --header "Content-type: application/json" --request GET ukko.d.umn.edu:3246/
+echo
+echo "GET on /listLeagues"
+echo
+curl --header "Content-type: application/json" --request GET ukko.d.umn.edu:3246/listLeagues
+echo
+echo "\n GET on /Leagues \n"
+echo
+curl --header "Content-type: application/json" --request GET ukko.d.umn.edu:3246/Leagues
+echo
+echo "\n ************ POST ************\n"
+echo
+curl --header "Content-type: application/json" --request POST --data '{"LeagueName" : "AwesomeLeague" , "TeamName" : "Best NA" , "ScoreA" : "7" , "ScoreB" : "arg"}' ukko.d.umn.edu:3246/Leagues
+echo
+echo "Should see {"LeagueName" : "AwesomeLeague" , "TeamName" : "Best NA" , "ScoreA" : "7" , "ScoreB" : "arg"}"
+echo
+curl --header "Content-type: application/json" --request GET ukko.d.umn.edu:3246/Leagues
+
+echo
+curl --header "Content-type: application/json" --request POST --data '{"LeagueName" : "AwesomeLeague" , "TeamName" : "Worst NA" , "ScoreA" : "890g" , "ScoreB" : "argfds./"}' ukko.d.umn.edu:3246/Leagues
+
+echo
+curl --header "Content-type: application/json" --request GET ukko.d.umn.edu:3246/Leagues
+echo

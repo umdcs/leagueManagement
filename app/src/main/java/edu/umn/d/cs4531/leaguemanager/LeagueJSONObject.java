@@ -51,6 +51,7 @@ public class LeagueJSONObject {
             jsonTeam.setLosses(team.getLosses());
             jsonTeam.setTies(team.getTies());
             jsonTeam.setTeamName(team.getTeamName());
+            jsonTeam.setPassword(team.getPassword());
 
             //Setting the Player Roster
             String[] roster = new String[team.getPlayerList().size()];
@@ -105,6 +106,7 @@ public class LeagueJSONObject {
         private int losses = 0;
         private int ties = 0;
         private String teamName="";
+        private String password="";
         private String[] PlayerList;
         private int[] Schedule; // Stores the index of each match in fullSchedule, instead of passing instances of match each time
         private int[] FinishedMatches;
@@ -118,6 +120,8 @@ public class LeagueJSONObject {
         public int getTies () {return ties;}
         public void setTeamName (String n) {teamName = n;}
         public String getTeamName () {return teamName;}
+        public void setPassword (String n) {password = n;}
+        public String getPassword () {return password;}
         public void setPlayerList (String[] list) {PlayerList = list;}
         public String[] getPlayerList () {return PlayerList;}
         public void setSchedule (int[] list) {Schedule = list;}
