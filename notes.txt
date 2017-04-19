@@ -1,0 +1,5 @@
+sting name
+calander API
+Teams
+number of lanes
+max rounds
