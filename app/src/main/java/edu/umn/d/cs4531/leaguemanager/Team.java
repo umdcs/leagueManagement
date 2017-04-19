@@ -19,6 +19,7 @@ public class Team {
     private int losses = 0;
     private int ties = 0;
     private String teamName="";
+    private String password="";
     private LinkedList<String> PlayerList = new LinkedList<>();
     private LinkedList<Match> Schedule = new LinkedList<>();
     private LinkedList<Match> FinishedMatches = new LinkedList<>();
@@ -59,6 +60,10 @@ public class Team {
     public void addMatch(Match match) { Schedule.add(match); }
 
     public void addSchedule(LinkedList<Match> matches) { Schedule = matches; }
+
+    public void setPassword(String pass) { password = pass;}
+
+    public String getPassword() { return password;}
 
     public Match removeMatch() {
         Match returnMatch;
