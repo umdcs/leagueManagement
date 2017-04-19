@@ -15,9 +15,11 @@ var path = require('path');
 var socketio = require('socket.io');
 var http = require('http');
 var httpServer = http.createServer(app);
-var networkIORef = require= socketio.listen(httpServer);
+var networkIORef = socketio.listen(httpServer);
 
-
+//Mongo Requirements
+var mongodb =require('./mongoDBFunctions.js');
+console.log(mongodb);
 
 //Set port number for http connection
 app.set("port",3246);
@@ -60,6 +62,31 @@ app.get('/listLeagues', function(request, response)
     response.json(listOfLeagues);
     console.log('List of Leagues sent');
 });
+app.get('/database', function(req, res) {
+
+    // Dump the whole collection for debugging
+    var str = mongodb.printDatabase('documents', function(result) {
+
+        res.send('<HTML><BODY>' + JSON.stringify(result, null, 2) + '<\
+/BODY></HTML>');
+
+    });
+
+});
+app.get('/getList', function(req, res)
+        {
+            mongodb.findLeagueName(req.params.LeagueName, function(result){
+                var arrayData = {
+                    results:[]
+                };
+                result.forEach(function(doc){
+                    arrayData.results.push(doc);
+                    console.log('Result: ' + doc);
+                });
+                res.send(JSON.stringify(arrayData));
+            });
+        });
+
 app.get('/Leagues', function(request, response)
 	{
 	    response.json(inputHistory);
@@ -78,7 +105,8 @@ app.post('/Leagues', function(req, res)
       for(var i = 0; i < inputHistory.History.length; i++) {
         if(inputHistory.History[i].leagueName == input.leagueName){
           inputHistory.History[i] = input;
-          leagueAlreadyInput = true;
+  mongodb.insertLeague(input);         
+leagueAlreadyInput = true;
           break;
         }
       }

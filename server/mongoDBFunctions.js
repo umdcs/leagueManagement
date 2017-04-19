@@ -59,12 +59,12 @@ module.exports.printDatabase = function(collectionName, callback) {
  * @param week
  * @param callback
  */
-module.exports.findWeek = function(weekId, callback) {
+module.exports.findLeagueName = function(leagueId, callback) {
 
-    console.log( 'Searching for weekId: ' + weekId );
+    console.log( 'Searching for leagueId: ' + leagueId );
 
     // Get the documents collection
-    mongoDBRef.collection('documents').find({ week: Number(weekId) }).toArray(function(err, docs) {
+    mongoDBRef.collection('documents').find({ LeagueName: Number(leagueId) }).toArray(function(err, docs) {
 
 	// if (!err) {
 	console.log("Found the following records");
@@ -83,9 +83,9 @@ module.exports.findWeek = function(weekId, callback) {
  * If the 'documents' collection doesn't exist, it will be created.
  * @param weekData
  */
-module.exports.insertScore = function(scoreDataA,scoreDataB) {
+module.exports.insertLeague = function(leagueData) {
 
-    mongoDBRef.collection('documents').save({scoreA: scoreDataA, scoreB: scoreDataB}, function (err, result) {
+    mongoDBRef.collection('documents').save({League: leagueData}, function (err, result) {
         if(err || !result) console.log ("Week not saved in database.");
         else console.log("Inserted a week record into the documents collection.");
     });
