@@ -68,23 +68,23 @@ app.get('/Leagues', function(request, response)
 app.post('/Leagues', function(req, res)
 	 {
 	     if(!req.body) return response.sendStatus(400);
-	     var input =
-		 {
-		     "leagueName":"",
-		     "teams":[],
-		     "fullSchedule":[],
-		     "initialCalendar":0,
-         "numberOfLanes":0,
-         "maxRounds":0,
-         "scoreboard":[]
-		 }
-	     input.leagueName= req.body.leagueName;
-	     input.numberOfLanes=req.body.numberOfLanes;
-	     input.maxRounds=req.body.maxRounds;
-	     input.teams=req.body.teams;
-       input.fullSchedule=req.body.fullSchedule;
-       input.scoreboard=req.body.scoreboard;
-	     inputHistory.History.push(input);//CHECK FOR ERROR
+       //Parsing JSON string into javascript object
+       var jsonString = req.body;
+       var inputJson = JSON.stringify(jsonString);
+       var input = JSON.parse(inputJson);
+
+      //Testing
+      var leagueAlreadyInput = false;
+      for(var i = 0; i < inputHistory.History.length; i++) {
+        if(inputHistory.History[i].leagueName == input.leagueName){
+          inputHistory.History[i] = input;
+          leagueAlreadyInput = true;
+          break;
+        }
+      }
+      if(!leagueAlreadyInput){
+        inputHistory.History.push(input);//CHECK FOR ERROR
+      }
 
 	     var statusMessage = {'status':"OK"	};
 

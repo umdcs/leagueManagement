@@ -165,25 +165,27 @@ public class leagueModel implements MVPComponents.Model{
 
     public void restGETLeagues() {
 
-        new HTTPAsyncTask().execute("http://10.0.0.2:3246/listLeagues", "GET");
+        new HTTPAsyncTask().execute("http://localhost:3246/listLeagues", "GET");
     }
     public void restPOST() {
 
-//        JSONObject jsonParam = null;
-//        try {
-//
-//            //Create JSONObject here
-//            jsonParam = new JSONObject();
-//            jsonParam.put("LeagueName",selectedLeague);
-//            jsonParam.put("TeamName",selectedTeam);
-//            jsonParam.put("ScoreA",inputtedScoreA);//mTeam.peekMatch().getTeamAScore());
-//            jsonParam.put("ScoreB",inputtedScoreB);//mTeam.peekMatch().getTeamBScore());
-//
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-      // new HTTPAsyncTask().execute("http://ukko.d.umn.edu:3246/Leagues", "POST", jsonParam.toString());
-        new HTTPAsyncTask().execute("http://127.0.0.1:3246/Leagues", "POST", mLeague.createJson());
+        JSONObject jsonParam = null;
+        try {
+
+            //Create JSONObject here
+            jsonParam = new JSONObject();
+            jsonParam.put("LeagueName",selectedLeague);
+            jsonParam.put("TeamName",selectedTeam);
+            jsonParam.put("ScoreA",inputtedScoreA);//mTeam.peekMatch().getTeamAScore());
+            jsonParam.put("ScoreB",inputtedScoreB);//mTeam.peekMatch().getTeamBScore());
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+ ///      new HTTPAsyncTask().execute("http://10.0.0.1:3246/Leagues", "POST", jsonParam.toString());
+        String displayString = mLeague.createJson();
+        System.out.println(displayString);
+        new HTTPAsyncTask().execute("http://ukko.d.umn.edu:3246/Leagues", "POST", displayString);
 
     }
     private class HTTPAsyncTask extends AsyncTask<String, Integer, String>{

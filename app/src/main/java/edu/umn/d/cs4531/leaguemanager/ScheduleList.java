@@ -10,6 +10,7 @@ public class ScheduleList {
 
     private ArrayList<String> weekSchedule;
     private String[][] mScoreboard;
+    private MVPComponents.Presenter mPresenter;
 
     private static ScheduleList ourInstance = new ScheduleList();
 
@@ -23,12 +24,12 @@ public class ScheduleList {
     public ArrayList<String> getWeekSchedule() {
         return weekSchedule;
     }
-
     public String[][] getScoreboard() { return mScoreboard;}
+    public MVPComponents.Presenter getPresenter() { return mPresenter;}
 
+    public void setPresenter(MVPComponents.Presenter presenter) { mPresenter = presenter;}
     public void setScheduleList(ArrayList<String> list) {
         weekSchedule = list;
     }
-
     public void setScoreboard(String[][] scoreboard) { this.mScoreboard = scoreboard;}
 }
