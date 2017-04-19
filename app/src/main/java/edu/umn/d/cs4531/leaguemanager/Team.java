@@ -100,34 +100,35 @@ public class Team {
         Match currentMatch = Schedule.peek();
 //        Log.d("Team: ", "My team is " + teamName);
 //        Log.d("Team: ", "My opponent is " + currentMatch.getOtherTeam(this));
-        if (currentMatch.getTeamA().equals(this) || currentMatch.getOtherTeam(this).equals(this)) {
-            if (currentMatch.getTeamA().equals(this)) {
-                currentMatch.setTeamAScore(teamScore);
-                currentMatch.setTeamBScore(opponentScore);
+        if (currentMatch.getTeamA().peekMatch() == currentMatch.getTeamB().peekMatch()) { //Make sure the other team's next match is equal to this team's next match
+            if (currentMatch.getTeamA().equals(this) || currentMatch.getOtherTeam(this).equals(this)) { //Make sure this team is in this match
+                if (currentMatch.getTeamA().equals(this)) {
+                    currentMatch.setTeamAScore(teamScore);
+                    currentMatch.setTeamBScore(opponentScore);
+                } else {
+                    currentMatch.setTeamAScore(opponentScore);
+                    currentMatch.setTeamBScore(teamScore);
+                }
+                int otherTeamResult; //0 = win, 1 = loss, 2 = draw
+                if (currentMatch.getWinner() == this) {
+                    wins++;
+                    otherTeamResult = 1;
+                } else if (currentMatch.getWinner().getTeamName() == "Draw") {
+                    ties++;
+                    otherTeamResult = 2;
+                } else {
+                    losses++;
+                    otherTeamResult = 0;
+                }
+                removeMatch();
+                if (currentMatch.getTeamA() == this) {
+                    currentMatch.getTeamB().setResult(otherTeamResult);
+                } else {
+                    currentMatch.getTeamA().setResult(otherTeamResult);
+                }
             } else {
-                currentMatch.setTeamAScore(opponentScore);
-                currentMatch.setTeamBScore(teamScore);
+                removeMatch();
             }
-            int otherTeamResult; //0 = win, 1 = loss, 2 = draw
-            if (currentMatch.getWinner() == this) {
-                wins++;
-                otherTeamResult = 1;
-            } else if (currentMatch.getWinner().getTeamName() == "Draw") {
-                ties++;
-                otherTeamResult = 2;
-            } else {
-                losses++;
-                otherTeamResult = 0;
-            }
-            removeMatch();
-            if (currentMatch.getTeamA() == this) {
-                currentMatch.getTeamB().setResult(otherTeamResult);
-            } else {
-                currentMatch.getTeamA().setResult(otherTeamResult);
-            }
-        }
-        else {
-            removeMatch();
         }
     }
 }

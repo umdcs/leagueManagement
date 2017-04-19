@@ -2,6 +2,8 @@ package edu.umn.d.cs4531.leaguemanager;
 
 import java.util.Calendar;
 import java.util.LinkedList;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 /**
  * Created by Mark W on 4/13/2017.
@@ -22,11 +24,13 @@ public class LeagueJSONObject {
         setFullSchedule(theLeague.getFullSchedule());
         setTeams(theLeague.getTeams());
         initialCalendar = theLeague.getInitialCalendar();
+        numberOfLanes = theLeague.getNumberOfLanes();
+        maxRounds = theLeague.getMaxRounds();
     }
 
     private void setFullSchedule(LinkedList<LinkedList<Match>> theList){
         for(LinkedList<Match> innerList: theList){
-            for(Match match: innerList) {
+            for(Match match: innerList) { //Set the internal values for each match class
                 JSONMatch jsonMatch = new JSONMatch();
                 jsonMatch.setTeamAName(match.getTeamA().getTeamName());
                 jsonMatch.setTeamBName(match.getTeamB().getTeamName());
@@ -35,7 +39,7 @@ public class LeagueJSONObject {
                 jsonMatch.setPlayTime(match.getPlayTime());
                 jsonMatch.setTeamAScore(match.getTeamAScore());
                 jsonMatch.setTeamBScore(match.getTeamBScore());
-                fullSchedule.add(jsonMatch);
+                fullSchedule.add(jsonMatch); //Add to the schedule
             }
         }
     }
@@ -48,22 +52,52 @@ public class LeagueJSONObject {
             jsonTeam.setTies(team.getTies());
             jsonTeam.setTeamName(team.getTeamName());
 
+            //Setting the Player Roster
             String[] roster = new String[team.getPlayerList().size()];
             int i = 0;
             for(String player : team.getPlayerList()){
                 roster[i] = player;
                 ++i;
             }
+            jsonTeam.setPlayerList(roster);
 
-            int[] upcomingMatches = new int[team.getSchedule().size()];
-            for(Match match : team.getSchedule()){
-                boolean found = false;
-                int fullScheduleIndex = 0;
-                while(!found && fullSchedule.get(fullScheduleIndex)!=null){
-                    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                }
-            }
+            //Setting the upcoming matches
+            jsonTeam.setSchedule(setSchedules(team.getSchedule()));
+
+            //Setting the completed matches
+            jsonTeam.setFinishedMatches(setSchedules(team.getFinishedMatches()));
+            teams.add(jsonTeam);
         }
+    }
+
+    private int[] setSchedules(LinkedList<Match> matchList){
+        int MatchesIndex = 0; //Index of the overall array, used to keep chronological order and to enable placing into array
+        int[] Matches = new int[matchList.size()]; //Will be returned to set the team's upcoming matches
+        for(Match match : matchList){
+            boolean found = false;
+            int fullScheduleIndex = 0; //Sets the match index for fast recovery after finding the match in the full schedule
+            while(!found && fullScheduleIndex < fullSchedule.size()){
+                if(match.getTeamA().getTeamName() == fullSchedule.get(fullScheduleIndex).getTeamAName() &&
+                        match.getTeamB().getTeamName() == fullSchedule.get(fullScheduleIndex).getTeamBName()){
+                    Matches[MatchesIndex] = fullScheduleIndex;
+                }
+                fullScheduleIndex++;
+            }
+            MatchesIndex++;
+        }
+        return Matches;
+    }
+
+    public String toJson(){
+        GsonBuilder gsonBuilder = new GsonBuilder().setPrettyPrinting();
+        Gson gson = gsonBuilder.create();
+        //Gson gson = new Gson();
+        String json = gson.toJson(this);
+        return json;
+    }
+
+    public League parseJson(){
+        return null; //implement
     }
 
     private class JSONTeam {

@@ -56,14 +56,12 @@ public class leagueModel implements MVPComponents.Model{
         listOfLeagues.add(new League("League 2"));
         listOfLeagues.add(new League("League 3"));
 
-
         for (League leagues: listOfLeagues)
         {
             leagues.addTeam("Team 1");
             leagues.addTeam("Team 2");
             leagues.addTeam("Team 3");
             leagues.addTeam("Team 4");
-            Log.d ("Model: ", "List of leagues in for loop");
 
             leagues.setStartDate(21);
             leagues.setStartMonth(0);
@@ -73,12 +71,9 @@ public class leagueModel implements MVPComponents.Model{
             leagues.setMaxRounds(3);
             leagues.setNumberOfLanes(8);
             boolean success = leagues.createSchedule();
-            if (success) Log.d("Model: ", "Successful league schedule creation");
-            else Log.d("Model: ", "Couldn't make a schedule");
 
         }
 
-        Log.d("Model: ", "outside listofleagues for");
         //adding these unique teams to the lists to differentiate between the leagues.
         //listOfLeagues.get(0).addTeam("Team Awesome");
         //listOfLeagues.get(1).addTeam("Team Incredible");
@@ -114,6 +109,8 @@ public class leagueModel implements MVPComponents.Model{
     {
        listOfLeagues.add(new League("name"));
     }
+
+    public void addLeague(League inputLeague) {listOfLeagues.add(inputLeague);}
 
     /**
      * takes in a string of the league selected and sets the League member object to it
@@ -168,7 +165,7 @@ public class leagueModel implements MVPComponents.Model{
 
     public void restGETLeagues() {
 
-        new HTTPAsyncTask().execute("http://10.0.0.2:3246/listLeagues", "GET");
+        new HTTPAsyncTask().execute("http://localhost:3246/listLeagues", "GET");
     }
     public void restPOST() {
 
@@ -185,9 +182,10 @@ public class leagueModel implements MVPComponents.Model{
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.d("DEBUG:", jsonParam.toString());
-      // new HTTPAsyncTask().execute("http://ukko.d.umn.edu:3246/Leagues", "POST", jsonParam.toString());
-        new HTTPAsyncTask().execute("http://10.0.2.2:3246/Leagues", "POST", jsonParam.toString());
+ ///      new HTTPAsyncTask().execute("http://10.0.0.1:3246/Leagues", "POST", jsonParam.toString());
+        String displayString = mLeague.createJson();
+        System.out.println(displayString);
+        new HTTPAsyncTask().execute("http://10.0.2.2:3246/Leagues", "POST", displayString);
 
     }
     private class HTTPAsyncTask extends AsyncTask<String, Integer, String>{
@@ -318,7 +316,6 @@ public class leagueModel implements MVPComponents.Model{
 
             try {
                 JSONObject jsonData = new JSONObject( result );
-                Log.d("PostExecute Valid JSON:", jsonData.toString());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
