@@ -58,6 +58,10 @@ public class League implements LMTInterface.L{
 
     public int getMaxRounds() {return maxRounds;}
 
+    public void setTeams(LinkedList inputTeams) { teams = inputTeams;}
+
+    public void setFullSchedule(LinkedList inputSchedule) {fullSchedule = inputSchedule;}
+
     public Calendar getInitialCalendar() {return initialCalendar;}
     //Other Methods
     //Adds a team to the bottom of a league linkedlist<Team> only if the league schedule has not yet been finalized.

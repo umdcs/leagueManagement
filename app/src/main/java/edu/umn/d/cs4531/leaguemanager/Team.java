@@ -61,6 +61,8 @@ public class Team {
 
     public void addSchedule(LinkedList<Match> matches) { Schedule = matches; }
 
+    public void addFinishedMatches(LinkedList<Match> matches) { FinishedMatches = matches;}
+
     public void setPassword(String pass) { password = pass;}
 
     public String getPassword() { return password;}

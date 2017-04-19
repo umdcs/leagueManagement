@@ -28,6 +28,15 @@ public class LeagueJSONObject {
         maxRounds = theLeague.getMaxRounds();
     }
 
+    //Accessors
+//    public String getLeagueName() { return leagueName;}
+//    public LinkedList<JSONTeam> getTeams() { return teams;}
+//    public LinkedList<JSONMatch> getFullSchedule() { return fullSchedule;}
+//    public Calendar getInitialCalendar() { return initialCalendar;}
+//    public int getNumberOfLanes() { return numberOfLanes;}
+//    public int getMaxRounds() { return maxRounds;}
+//    public int[][] getScoreboard() { return scoreboard;}
+
     private void setFullSchedule(LinkedList<LinkedList<Match>> theList){
         for(LinkedList<Match> innerList: theList){
             for(Match match: innerList) { //Set the internal values for each match class
@@ -97,8 +106,43 @@ public class LeagueJSONObject {
         return json;
     }
 
-    public League parseJson(){
-        return null; //implement
+    public League parseJson(String jsonString){
+        Gson gson = new Gson();
+        LeagueJSONObject parsedObject = gson.fromJson(jsonString, this.getClass());
+        //Set simple values of the league
+        League buildLeague = new League(parsedObject.leagueName);
+        buildLeague.setMaxRounds(parsedObject.maxRounds);
+        buildLeague.setNumberOfLanes(parsedObject.numberOfLanes);
+        buildLeague.setInitialCalendar(parsedObject.initialCalendar);
+        //Set the full schedule, with each match currently having no teams assigned
+        for(JSONMatch match : parsedObject.fullSchedule) {
+            Match nextMatch = new Match();
+            nextMatch.setPlayTime(match.playTime);
+            nextMatch.setLane(match.lane);
+            nextMatch.setTeamAScore(match.teamAScore);
+            nextMatch.setTeamBScore(match.teamBScore);
+            for(int calendarOffset = 0; calendarOffset < 7*(parsedObject.maxRounds);calendarOffset+=7){
+//                if(match.getPlayTime().get())
+            }
+
+        }
+
+
+        //Set the full list of teams
+        LinkedList<Team> teamList = new LinkedList<>();
+        for(JSONTeam team : parsedObject.teams) {
+            Team nextTeam = new Team(team.teamName);
+            for (int index : team.getSchedule()){
+
+            }
+        }
+
+        //Go back and properly assign each team to the matches
+
+
+
+
+        return null;
     }
 
     private class JSONTeam {
