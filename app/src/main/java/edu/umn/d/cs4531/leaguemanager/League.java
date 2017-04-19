@@ -87,13 +87,18 @@ public class League implements LMTInterface.L{
         return removed;
     }
 
+    public boolean setLeagueName(String name) {
+        if(!scheduleFinalized){
+            leagueName = name;
+        }
+        return !scheduleFinalized;
+    }
+
     //Returns a linked list of linked list of matches
     //Inside linked list: One week of matches.
     public LinkedList<LinkedList<Match>> getFullSchedule() {
         return fullSchedule;
     }
-
-    //public scoreboard getLeagueStandings
 
     public Match[][] getScoreboard() {
         Match[][] returnValue = null;

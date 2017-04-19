@@ -91,8 +91,13 @@ public class LeagueJSONObject {
     public String toJson(){
         GsonBuilder gsonBuilder = new GsonBuilder().setPrettyPrinting();
         Gson gson = gsonBuilder.create();
+        //Gson gson = new Gson();
         String json = gson.toJson(this);
         return json;
+    }
+
+    public League parseJson(){
+        return null; //implement
     }
 
     private class JSONTeam {
