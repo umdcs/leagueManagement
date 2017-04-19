@@ -107,7 +107,9 @@ public class leagueModel implements MVPComponents.Model{
     @Override
     public void createLeague(String name)
     {
-       listOfLeagues.add(new League("name"));
+
+        listOfLeagues.add(new League(name));
+        setSelectedLeague(name);
     }
 
     public void addLeague(League inputLeague) {listOfLeagues.add(inputLeague);}
@@ -160,6 +162,12 @@ public class leagueModel implements MVPComponents.Model{
     public Match[][] getScoreboard() {
         return mLeague.getScoreboard();
     }
+
+    @Override
+    public void addTeam(String name) {
+        mLeague.addTeam(name);
+    }
+
 
     /*Model Connection to Server************************************************/
 

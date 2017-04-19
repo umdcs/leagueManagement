@@ -67,6 +67,9 @@ public interface MVPComponents {
         String[][] getScoreboard();
 
         void run();
+
+        void addTeam(String name);
+        void setLeagueCalendar(Calendar calendar);
     }
 
     interface Model
@@ -91,6 +94,8 @@ public interface MVPComponents {
          * @return
          */
         LinkedList getLeagues();
+
+        void addTeam(String name);
 
         Team getSelectedTeam();
 
