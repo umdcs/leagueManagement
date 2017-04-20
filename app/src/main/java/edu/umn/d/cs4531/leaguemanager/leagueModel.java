@@ -52,9 +52,20 @@ public class leagueModel implements MVPComponents.Model{
 
 
         //Dummy list of leagues to send to the view for testing purposes DELETE AFTER TEST
-        listOfLeagues.add(new League("League 1"));
-        listOfLeagues.add(new League("League 2"));
-        listOfLeagues.add(new League("League 3"));
+        listOfLeagues.add(new League("Sunday 3:30PM FAF"));
+        listOfLeagues.add(new League("Sunday 5PM Open"));
+        listOfLeagues.add(new League("Sunday 7PM Open"));
+        listOfLeagues.add(new League("Monday 5PM Open"));
+        listOfLeagues.add(new League("Monday 7PM Mixed"));
+        listOfLeagues.add(new League("Tuesday 6PM Mens"));
+        listOfLeagues.add(new League("Tuesday 8PM Open"));
+        listOfLeagues.add(new League("Wednesday 4PM 2v2"));
+        listOfLeagues.add(new League("Wednesday 5PM Mixed"));
+        listOfLeagues.add(new League("Wednesday 7PM Womens"));
+        listOfLeagues.add(new League("Thursday 4PM Open"));
+        listOfLeagues.add(new League("Thursday 6PM Open"));
+        listOfLeagues.add(new League("Thursday 8PM"));
+        listOfLeagues.add(new League("Friday 5:30PM Open"));
 
         for (League leagues: listOfLeagues)
         {
@@ -185,7 +196,8 @@ public class leagueModel implements MVPComponents.Model{
  ///      new HTTPAsyncTask().execute("http://10.0.0.1:3246/Leagues", "POST", jsonParam.toString());
         String displayString = mLeague.createJson();
         System.out.println(displayString);
-        new HTTPAsyncTask().execute("http://ukko.d.umn.edu:3246/Leagues", "POST", displayString);
+       //new HTTPAsyncTask().execute("http://ukko.d.umn.edu:3246/Leagues", "POST", displayString);
+        new HTTPAsyncTask().execute("http://10.0.2.2:3246/Leagues", "POST", displayString);
 
     }
     private class HTTPAsyncTask extends AsyncTask<String, Integer, String>{
