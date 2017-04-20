@@ -105,11 +105,13 @@ public class Match {
         debug += playTime.get(Calendar.MINUTE);
         if (playTime.get(Calendar.HOUR_OF_DAY) > 11) debug += "PM";
         else debug += "AM";
+
         return debug;
     }
 
     //Other Methods
     public Team getWinner() {
+        if(teamAScore + teamBScore > 0) matchPlayed = true;
         determineWinner();
         Team winningTeam = new Team("Draw");
         if(winner == 0) winningTeam = teamA;

@@ -1,6 +1,7 @@
 package edu.umn.d.cs4531.leaguemanager;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -115,16 +116,24 @@ public class LeagueJSONObject {
         buildLeague.setNumberOfLanes(parsedObject.numberOfLanes);
         buildLeague.setInitialCalendar(parsedObject.initialCalendar);
         //Set the full schedule, with each match currently having no teams assigned
+        LinkedList<LinkedList<Match>> fullInputSchedule = new LinkedList<>();
+        int fullScheduleIndex = 0;
+        Calendar testCalendar = parsedObject.initialCalendar;
         for(JSONMatch match : parsedObject.fullSchedule) {
             Match nextMatch = new Match();
             nextMatch.setPlayTime(match.playTime);
             nextMatch.setLane(match.lane);
             nextMatch.setTeamAScore(match.teamAScore);
             nextMatch.setTeamBScore(match.teamBScore);
-            for(int calendarOffset = 0; calendarOffset < 7*(parsedObject.maxRounds);calendarOffset+=7){
-//                if(match.getPlayTime().get())
+            if(match.playTime == testCalendar){
+                fullInputSchedule.get(fullScheduleIndex).add(nextMatch);
             }
-
+            else {
+                fullScheduleIndex++; //Since the JSON object is cretaed with each match in cronological order, when the calendars dont match up, it sets it to the next week and adds to the next index in the full schedule
+                testCalendar = match.playTime;
+                fullInputSchedule.get(fullScheduleIndex).add(nextMatch);
+            }
+            nextMatch.getWinner(); //Sets the winner and match played variables
         }
 
 
