@@ -1,6 +1,7 @@
 package edu.umn.d.cs4531.leaguemanager;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -104,12 +105,16 @@ public class leagueModel implements MVPComponents.Model{
     public LinkedList<League> getLeagues() {
         return listOfLeagues;
     }
-    @Override
-    public void createLeague(String name)
-    {
 
+    @Override
+    public League getSelectedLeague() { return mLeague;}
+
+    @Override
+    public void createLeague(String name, Calendar cal)
+    {
         listOfLeagues.add(new League(name));
         setSelectedLeague(name);
+        getSelectedLeague().setInitialCalendar(cal);
     }
 
     public void addLeague(League inputLeague) {listOfLeagues.add(inputLeague);}

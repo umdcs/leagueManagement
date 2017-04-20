@@ -3,6 +3,7 @@ package edu.umn.d.cs4531.leaguemanager;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.LinkedList;
 
 /**
@@ -114,5 +115,20 @@ public class leaguePresenter implements MVPComponents.Presenter {
             }
         }
         return ssb;
+    }
+
+    @Override
+    public void addTeam(String name, LinkedList<String> members, String ID) {
+        leagueModel.getSelectedLeague().addTeam(name);
+        leagueModel.setSelectedTeam(name);
+        for (String member: members) {
+            leagueModel.getSelectedTeam().addPlayer(member);
+        }
+        leagueModel.getSelectedTeam().setPassword(ID);
+    }
+
+    @Override
+    public void createLeague(String name, Calendar cal) {
+        leagueModel.createLeague(name, cal);
     }
 }
