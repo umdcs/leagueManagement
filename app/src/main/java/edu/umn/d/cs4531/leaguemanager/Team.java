@@ -104,12 +104,6 @@ public class Team {
         if (other.getWins() != wins) {equal = false;}
         if (other.getTies() != ties) {equal = false;}
         if (!other.getPassword().equals(password)) {equal = false;}
-        for(Match match : other.getSchedule()){
-            if(!match.equals(Schedule.get(other.getSchedule().indexOf(match)))) {equal = false;}
-        }
-        for(Match match : other.getFinishedMatches()){
-            if(!match.equals(FinishedMatches.get(other.getFinishedMatches().indexOf(match)))) {equal = false;}
-        }
         return equal;
     }
 

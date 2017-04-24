@@ -232,6 +232,8 @@ public class LeagueClassTester extends League{
         for(Team team:JSONLeague.getTeams()){
             assertTrue(team.equals(returnLeague.getTeams().get(JSONLeague.getTeams().indexOf(team))));
         }
+        returnLeague.inputData("Team Mark",10,50);
+        int test = 0;
     }
 
 }
