@@ -83,26 +83,10 @@ public interface MVPComponents {
          */
         LinkedList<Team> getTeams();
 
-        /**
-         * Gets all relevant info on the team selected so it can be displayed in the view
-         * @param teamName
-         * @return
-                    else {
-                        ssb[row][col] = "| " + matchScoreboard[row][col-1].getTeamBScore() + " : " + matchScoreboard[row][col-1].getTeamAScore() + " ";
-                    }
-                }
-                else {
-                    ssb[row][col] = "| - : - ";
-                }
-            }
-        }
-        return ssb;
-    }
-
     @Override
     public void addTeam(String name, LinkedList<String> members, String ID) {
         leagueModel.getSelectedLeague().addTeam(name);
-         */
+
         String[] teamData(String teamName);
 
         /**
