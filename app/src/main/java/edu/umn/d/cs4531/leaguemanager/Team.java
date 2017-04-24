@@ -96,6 +96,23 @@ public class Team {
         ties = tie;
     }
 
+    public boolean equals(Team other){
+        boolean equal = true;
+        if (!other.getTeamName().equals(teamName)) {equal = false;}
+        if (!other.getPlayerList().equals(PlayerList)) {equal = false;}
+        if (other.getLosses() != losses) {equal = false;}
+        if (other.getWins() != wins) {equal = false;}
+        if (other.getTies() != ties) {equal = false;}
+        if (!other.getPassword().equals(password)) {equal = false;}
+        for(Match match : other.getSchedule()){
+            if(!match.equals(Schedule.get(other.getSchedule().indexOf(match)))) {equal = false;}
+        }
+        for(Match match : other.getFinishedMatches()){
+            if(!match.equals(FinishedMatches.get(other.getFinishedMatches().indexOf(match)))) {equal = false;}
+        }
+        return equal;
+    }
+
     //Class to be called ONLY by enterScore method
     protected void setResult(int result) {
         if(result == 0){

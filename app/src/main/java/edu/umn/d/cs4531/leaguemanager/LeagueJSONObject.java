@@ -157,39 +157,47 @@ public class LeagueJSONObject {
             }
 
             //Set schedule and finished matches, with proper references to the matches
-            int scheduleSize = buildLeague.getFullSchedule().size();
+            int matchesPerWeek = buildLeague.getFullSchedule().get(0).size();
             LinkedList<Match> inputSchedule = new LinkedList<>();
             LinkedList<Match> inputFinishedMatches = new LinkedList<>();
+            Match inputMatch;
             for (int index : team.getSchedule()){
-                int a = index/scheduleSize;
-                int b = index%scheduleSize;
-                inputSchedule.add(buildLeague.getFullSchedule().get(index/scheduleSize).get(index%scheduleSize));
+                inputMatch = buildLeague.getFullSchedule().get(index/matchesPerWeek).get(index%matchesPerWeek); //Creates match pointer for easy reference
+                inputSchedule.add(inputMatch); //Adds to schedule
+                if(inputMatch.getTeamAName().equals(nextTeam.getTeamName())) {inputMatch.setTeamA(nextTeam);} //Sets itself to the proper team
+                else if(inputMatch.getTeamBName().equals(nextTeam.getTeamName())) {inputMatch.setTeamB(nextTeam);}
+
             }
             for (int index : team.getFinishedMatches()){
-                buildLeague.getFullSchedule().get(index/scheduleSize).get(index%scheduleSize).getWinner(); //Since the match is played, it sets the winner and matchPlayed values
-                inputFinishedMatches.add(buildLeague.getFullSchedule().get(index/scheduleSize).get(index%scheduleSize));
+                inputMatch = buildLeague.getFullSchedule().get(index/matchesPerWeek).get(index%matchesPerWeek);
+                inputMatch.getWinner(); //Since the match is played, it sets the winner and matchPlayed values
+                inputFinishedMatches.add(inputMatch); //Adds to schedule
+                if(inputMatch.getTeamAName().equals(nextTeam.getTeamName())) {inputMatch.setTeamA(nextTeam);} //Sets itself to the proper team
+                else if(inputMatch.getTeamBName().equals(nextTeam.getTeamName())) {inputMatch.setTeamB(nextTeam);}
             }
 
             nextTeam.addSchedule(inputSchedule);
             nextTeam.addFinishedMatches(inputFinishedMatches);
+            teamList.add(nextTeam);
         }
+        buildLeague.setTeams(teamList);
 
-        //Go back and properly assign each team to the matches
-        for(LinkedList<Match> week:buildLeague.getFullSchedule()){ //Gets each week
-            for(Match match: week){ //Gets each match of each week
-                int found = 0;
-                for (int index = 0; index < buildLeague.getTeams().size() && found < 2; index++){ //If proper teams are found or index extends beyond list size, exit
-                    if(buildLeague.getTeams().get(index).getTeamName() == match.getTeamAName()) {
-                        match.setTeamA(buildLeague.getTeams().get(index));
-                        found++; //One team is found, must find other team to exit
-                    }
-                    else if(buildLeague.getTeams().get(index).getTeamName() == match.getTeamBName()) {
-                        match.setTeamB(buildLeague.getTeams().get(index));
-                        found++; //Other team is found, must find first to exit
-                    }
-                }
-            }
-        }
+//        //Go back and properly assign each team to the matches
+//        for(LinkedList<Match> week:buildLeague.getFullSchedule()){ //Gets each week
+//            for(Match match: week){ //Gets each match of each week
+//                int found = 0;
+//                for (int index = 0; index < buildLeague.getTeams().size() && found < 2; index++){ //If proper teams are found or index extends beyond list size, exit
+//                    if(buildLeague.getTeams().get(index).getTeamName() == match.getTeamAName()) {
+//                        match.setTeamA(buildLeague.getTeams().get(index));
+//                        found++; //One team is found, must find other team to exit
+//                    }
+//                    else if(buildLeague.getTeams().get(index).getTeamName() == match.getTeamBName()) {
+//                        match.setTeamB(buildLeague.getTeams().get(index));
+//                        found++; //Other team is found, must find first to exit
+//                    }
+//                }
+//            }
+//        }
 
         return buildLeague;
     }

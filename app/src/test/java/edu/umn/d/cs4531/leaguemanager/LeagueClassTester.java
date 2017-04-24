@@ -225,7 +225,13 @@ public class LeagueClassTester extends League{
 //        Gson gson = new Gson();
 //        LeagueJSONObject jsonObject = gson.fromJson(theJson, LeagueJSONObject.class);
         League returnLeague = LeagueJSONObject.parseJson(theJson);
-        int i = 0;
+
+        assertTrue(JSONLeague.getLeagueName().equals(returnLeague.getLeagueName()));
+        assertTrue(JSONLeague.getMaxRounds() == returnLeague.getMaxRounds());
+        assertTrue(JSONLeague.getNumberOfLanes() == returnLeague.getNumberOfLanes());
+        for(Team team:JSONLeague.getTeams()){
+            assertTrue(team.equals(returnLeague.getTeams().get(JSONLeague.getTeams().indexOf(team))));
+        }
     }
 
 }

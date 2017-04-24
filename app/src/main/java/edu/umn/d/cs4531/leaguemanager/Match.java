@@ -100,6 +100,18 @@ public class Match {
 
     public void setWinnerInt(int i) {winner = i;}
 
+    public boolean equals(Match other) {
+        boolean equal = true;
+        if(!other.getTeamA().getTeamName().equals(teamA.getTeamName())) {equal = false;} //Testing names, not objects, to prevent circular calls, since Team.equals calls Match.equals
+        if(!other.getTeamB().getTeamName().equals(teamB.getTeamName())) {equal = false;}
+        if(other.getWinner().getTeamName() != getWinner().getTeamName()) {equal = false;}
+        if(other.getTeamAScore() != teamAScore) {equal = false;}
+        if(other.getTeamBScore() != teamBScore) {equal = false;}
+        if(!other.getPlayTime().equals(playTime)) {equal = false;}
+        if(other.getLane() != lane) {equal = false;}
+        return equal;
+    }
+
     //Debug toString function
     public String toString() {
         String debug;
