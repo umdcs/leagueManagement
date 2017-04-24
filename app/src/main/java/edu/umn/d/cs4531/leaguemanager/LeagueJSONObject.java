@@ -107,9 +107,9 @@ public class LeagueJSONObject {
         return json;
     }
 
-    public League parseJson(String jsonString){
+    public static League parseJson(String jsonString){
         Gson gson = new Gson();
-        LeagueJSONObject parsedObject = gson.fromJson(jsonString, this.getClass());
+        LeagueJSONObject parsedObject = gson.fromJson(jsonString, LeagueJSONObject.class);
         //Set simple values of the league
         League buildLeague = new League(parsedObject.leagueName);
         buildLeague.setMaxRounds(parsedObject.maxRounds);
@@ -117,6 +117,7 @@ public class LeagueJSONObject {
         buildLeague.setInitialCalendar(parsedObject.initialCalendar);
         //Set the full schedule, with each match currently having no teams assigned
         LinkedList<LinkedList<Match>> fullInputSchedule = new LinkedList<>();
+        LinkedList<Match> weekInputSchedule = new LinkedList<>();
         int fullScheduleIndex = 0;
         Calendar testCalendar = parsedObject.initialCalendar;
         for(JSONMatch match : parsedObject.fullSchedule) {
@@ -125,33 +126,72 @@ public class LeagueJSONObject {
             nextMatch.setLane(match.lane);
             nextMatch.setTeamAScore(match.teamAScore);
             nextMatch.setTeamBScore(match.teamBScore);
-            if(match.playTime == testCalendar){
-                fullInputSchedule.get(fullScheduleIndex).add(nextMatch);
+            nextMatch.setTeamAName(match.teamAName);
+            nextMatch.setTeamBName(match.teamBName);
+            if(match.playTime.get(Calendar.DAY_OF_MONTH) == testCalendar.get(Calendar.DAY_OF_MONTH)){
+                weekInputSchedule.add(nextMatch);
             }
             else {
                 fullScheduleIndex++; //Since the JSON object is cretaed with each match in cronological order, when the calendars dont match up, it sets it to the next week and adds to the next index in the full schedule
                 testCalendar = match.playTime;
-                fullInputSchedule.get(fullScheduleIndex).add(nextMatch);
+                fullInputSchedule.add((LinkedList<Match>)weekInputSchedule.clone());
+                weekInputSchedule.clear();
+                weekInputSchedule.add(nextMatch);
             }
-            nextMatch.getWinner(); //Sets the winner and match played variables
+            //the winner and matchPlayed values are set along with the teams
         }
-
+        fullInputSchedule.add((LinkedList<Match>)weekInputSchedule.clone()); //Last week of matches is not automatically added, due to the if-success not addig weeks to fullInputSchedule
+        buildLeague.setFullSchedule(fullInputSchedule);
 
         //Set the full list of teams
         LinkedList<Team> teamList = new LinkedList<>();
         for(JSONTeam team : parsedObject.teams) {
+            //Set default values
             Team nextTeam = new Team(team.teamName);
-            for (int index : team.getSchedule()){
+            nextTeam.setAllScores(team.wins,team.losses,team.ties);
+            nextTeam.setPassword(team.password);
 
+            //Set roster
+            for(String name:team.getPlayerList()){
+                nextTeam.addPlayer(name);
             }
+
+            //Set schedule and finished matches, with proper references to the matches
+            int scheduleSize = buildLeague.getFullSchedule().size();
+            LinkedList<Match> inputSchedule = new LinkedList<>();
+            LinkedList<Match> inputFinishedMatches = new LinkedList<>();
+            for (int index : team.getSchedule()){
+                int a = index/scheduleSize;
+                int b = index%scheduleSize;
+                inputSchedule.add(buildLeague.getFullSchedule().get(index/scheduleSize).get(index%scheduleSize));
+            }
+            for (int index : team.getFinishedMatches()){
+                buildLeague.getFullSchedule().get(index/scheduleSize).get(index%scheduleSize).getWinner(); //Since the match is played, it sets the winner and matchPlayed values
+                inputFinishedMatches.add(buildLeague.getFullSchedule().get(index/scheduleSize).get(index%scheduleSize));
+            }
+
+            nextTeam.addSchedule(inputSchedule);
+            nextTeam.addFinishedMatches(inputFinishedMatches);
         }
 
         //Go back and properly assign each team to the matches
+        for(LinkedList<Match> week:buildLeague.getFullSchedule()){ //Gets each week
+            for(Match match: week){ //Gets each match of each week
+                int found = 0;
+                for (int index = 0; index < buildLeague.getTeams().size() && found < 2; index++){ //If proper teams are found or index extends beyond list size, exit
+                    if(buildLeague.getTeams().get(index).getTeamName() == match.getTeamAName()) {
+                        match.setTeamA(buildLeague.getTeams().get(index));
+                        found++; //One team is found, must find other team to exit
+                    }
+                    else if(buildLeague.getTeams().get(index).getTeamName() == match.getTeamBName()) {
+                        match.setTeamB(buildLeague.getTeams().get(index));
+                        found++; //Other team is found, must find first to exit
+                    }
+                }
+            }
+        }
 
-
-
-
-        return null;
+        return buildLeague;
     }
 
     private class JSONTeam {

@@ -222,9 +222,10 @@ public class LeagueClassTester extends League{
         String theJson = JSONLeague.createJson();
         System.out.println(theJson);
 
-        Gson gson = new Gson();
-        LeagueJSONObject jsonObject = gson.fromJson(theJson, LeagueJSONObject.class);
-
+//        Gson gson = new Gson();
+//        LeagueJSONObject jsonObject = gson.fromJson(theJson, LeagueJSONObject.class);
+        League returnLeague = LeagueJSONObject.parseJson(theJson);
+        int i = 0;
     }
 
 }

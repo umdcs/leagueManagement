@@ -90,6 +90,12 @@ public class Team {
 
     //Other Methods
 
+    public void setAllScores(int win, int loss, int tie){
+        wins = win;
+        losses = loss;
+        ties = tie;
+    }
+
     //Class to be called ONLY by enterScore method
     protected void setResult(int result) {
         if(result == 0){
