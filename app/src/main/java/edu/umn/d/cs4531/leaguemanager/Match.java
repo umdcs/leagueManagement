@@ -13,8 +13,8 @@ public class Match {
     private int teamBScore = 0;
     private transient Team teamA;
     private transient Team teamB; //Transient prevents being called when Gson creates the Json string
-    private transient String teamAName;
-    private transient String teamBName;
+    private transient String teamAName = null;
+    private transient String teamBName = null;
     private Calendar playTime;
     private int lane = 0;
     private int winner = 2; //0 = teamA, 1 = teamB, 2 = draw
@@ -70,18 +70,14 @@ public class Match {
     }
 
     public boolean setTeamAScore(int score) {
-        if(teamA != null) {
-            teamAScore = score;
-            matchPlayed = true;
-        }
+        teamAScore = score;
+        matchPlayed = true;
         return matchPlayed;
     }
 
     public boolean setTeamBScore(int score) {
-        if(teamB != null) {
-            teamBScore = score;
-            matchPlayed = true;
-        }
+        teamBScore = score;
+        matchPlayed = true;
         return matchPlayed;
     }
     public int getTeamAScore() { return teamAScore; }
@@ -102,7 +98,7 @@ public class Match {
 
     public boolean equals(Match other) {
         boolean equal = true;
-        if(!other.getTeamA().getTeamName().equals(teamA.getTeamName())) {equal = false;} //Testing names, not objects, to prevent circular calls, since Team.equals calls Match.equals
+        if(!other.getTeamA().getTeamName().equals(teamA.getTeamName())) {equal = false;} //Testing names, not objects
         if(!other.getTeamB().getTeamName().equals(teamB.getTeamName())) {equal = false;}
         if(other.getWinner().getTeamName() != getWinner().getTeamName()) {equal = false;}
         if(other.getTeamAScore() != teamAScore) {equal = false;}

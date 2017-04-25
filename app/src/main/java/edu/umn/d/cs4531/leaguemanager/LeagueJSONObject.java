@@ -115,6 +115,7 @@ public class LeagueJSONObject {
         buildLeague.setMaxRounds(parsedObject.maxRounds);
         buildLeague.setNumberOfLanes(parsedObject.numberOfLanes);
         buildLeague.setInitialCalendar(parsedObject.initialCalendar);
+
         //Set the full schedule, with each match currently having no teams assigned
         LinkedList<LinkedList<Match>> fullInputSchedule = new LinkedList<>();
         LinkedList<Match> weekInputSchedule = new LinkedList<>();
@@ -124,8 +125,8 @@ public class LeagueJSONObject {
             Match nextMatch = new Match();
             nextMatch.setPlayTime(match.playTime);
             nextMatch.setLane(match.lane);
-            nextMatch.setTeamAScore(match.teamAScore);
-            nextMatch.setTeamBScore(match.teamBScore);
+            nextMatch.setTeamAScore(match.getTeamAScore());
+            nextMatch.setTeamBScore(match.getTeamBScore());
             nextMatch.setTeamAName(match.teamAName);
             nextMatch.setTeamBName(match.teamBName);
             if(match.playTime.get(Calendar.DAY_OF_MONTH) == testCalendar.get(Calendar.DAY_OF_MONTH)){

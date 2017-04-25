@@ -177,6 +177,7 @@ public class leagueModel implements MVPComponents.Model{
     public void restGETLeagues() {
 
         new HTTPAsyncTask().execute("http://localhost:3246/listLeagues", "GET");
+
     }
     public void restPOST() {
 
