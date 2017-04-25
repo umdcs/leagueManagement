@@ -16,6 +16,13 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/setTimeButton"
+        android:onClick="setTime"
+        android:text="Set the date/time"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Add a team"
         android:onClick="addTeam"
         android:id="@+id/addTeamButton"/>
