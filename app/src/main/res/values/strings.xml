@@ -13,5 +13,6 @@
     <string name="teamIDPref">NO_PREF</string>
     <string name="DCCLogo">DCC Logo</string>
     <string name="team_ID">Enter your team ID</string>
+    <string name="createLeague">Create League</string>
 
     </resources>

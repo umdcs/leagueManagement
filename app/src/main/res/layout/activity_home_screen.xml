@@ -15,10 +15,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/dcclogo"
-        android:layout_above="@+id/pickTeam"
         android:layout_toStartOf="@+id/textView"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="11dp" />
+        android:id="@+id/imageView" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -27,8 +25,10 @@
         android:textColor="#000000"
         android:textSize="20sp"
         android:id="@+id/textView"
+        android:layout_marginTop="21dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignEnd="@+id/addScoreButton"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:id="@+id/listView"
@@ -36,9 +36,9 @@
         android:textAlignment="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp" />
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,9 +53,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/pickTeam"
         android:text="@string/pickTeam"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
         android:layout_below="@+id/leagueSpinner"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignStart="@+id/listView"
+        android:layout_centerHorizontal="true"/>
 
     <Spinner
         android:layout_width="wrap_content"
@@ -72,9 +73,9 @@
         android:id="@+id/addScoreButton"
         android:onClick="addScore"
         android:text="@string/addScore"
-        android:layout_marginTop="55dp"
         android:layout_below="@+id/teamSpinner"
-        android:layout_alignStart="@+id/scoreboardButton" />
+        android:layout_alignStart="@+id/createLeagueButton"
+        android:layout_marginTop="32dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -83,20 +84,22 @@
         android:text="@string/viewSchedule"
         android:onClick="viewSchedule"
         android:layout_marginTop="22dp"
-        android:layout_below="@+id/scoreboardButton"
-        android:layout_alignStart="@+id/scoreboardButton"
-        android:layout_alignEnd="@+id/textView" />
+        android:layout_below="@+id/createLeagueButton"
+        android:layout_alignStart="@+id/createLeagueButton"
+        android:layout_alignEnd="@+id/textView"
+        android:layout_centerHorizontal="true"/>
 
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:id="@+id/scoreboardButton"
-        android:text="View Scoreboard"
-        android:onClick="viewScoreboard"
+        android:id="@+id/createLeagueButton"
+        android:text="@string/createLeague"
+        android:onClick="createLeague"
         android:layout_marginTop="18dp"
         android:layout_below="@+id/addScoreButton"
         android:layout_alignStart="@+id/listView"
-        android:layout_alignEnd="@+id/DCCWebsite" />
+        android:layout_alignEnd="@+id/DCCWebsite"
+        android:layout_centerHorizontal="true"/>
 
     <!--
     This button will eventually attach to the duluth curling club
@@ -108,8 +111,8 @@
         android:text="@string/viewWeb"
         android:id="@+id/DCCWebsite"
         android:onClick="goToWebsite"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/viewSchedule"
         android:layout_alignStart="@+id/pickTeam"
-        android:layout_marginBottom="36dp" />
+        android:layout_marginTop="23dp"
+        android:layout_centerHorizontal="true"/>
 </RelativeLayout>
