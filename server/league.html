@@ -1,22 +1,211 @@
+
 <!DOCTYPE html><html>
-    <head>
-        <title>Duluth Curling Club</title>
-        <img src="https://www.duluthcurlingclub.org/wp-content/uploads/2015/07/duluth-curling-club.jpg" alt="Duluth Curling Club" align="center">
-    </head>
-    <body>
-<h2>Sunday 3:30PM FAF</h2>
-<h2>Sunday 5PM Open</h2>
-<h2>Sunday 7PM Open</h2>
-<h2>Monday 5PM Open</h2>
-<h2>Monday 7PM Mixed</h2>
-<h2>Tuesday 6PM Mens</h2>
-<h2>Tuesday 8PM Open</h2>
-<h2>Wednesday 4PM 2v2</h2>
-<h2>Wednesday 5PM Mixed</h2>
-<h2>Wednesday 7PM Womens</h2>
-<h2>Thursday 4PM Open</h2>
-<h2>Thursday 6PM Open</h2>
-<h2>Thursday 8PM</h2>
-<h2>Friday 5:30PM Open</h2>
-      </body>
+  <head>
+    <title>Duluth Curling Club</title>
+    <img src="https://www.duluthcurlingclub.org/wp-content/uploads/2015/07/duluth-curling-club.jpg" alt="Duluth Curling Club" align="center">
+  </head>
+  <body>
+    <h2>Sunday 3:30PM FAF</h2>
+    <table id="mytable1">
+	<table border=1>
+      <tr>
+        <th>League Name</th>
+        <th>Teams</th>
+        <th>Wins</th>
+        <th>Loss</th>
+	<th>Ties</th>
+      </tr>
+    </table>
+    <h2>Sunday 5PM Open</h2>
+    <table id="mytable2">
+      <tr>
+        <th>Submission</th>
+        <th>User ID</th>
+        <th>Manual Entry</th>
+        <th>Time</th>
+      </tr>
+          </table>
+    <h2>Sunday 7PM Open</h2>
+    <table id="mytable3">
+      <tr>
+        <th>Submission</th>
+        <th>User ID</th>
+        <th>Manual Entry</th>
+        <th>Time</th>
+      </tr>
+          </table>
+    <h2>Monday 5PM Open</h2>
+    <table id="mytable4">
+      <tr>
+        <th>Submission</th>
+        <th>User ID</th>
+        <th>Manual Entry</th>
+        <th>Time</th>
+      </tr>
+          </table>
+    <h2>Monday 7PM Mixed</h2>
+    <table id="mytable5">
+      <tr>
+        <th>Submission</th>
+        <th>User ID</th>
+        <th>Manual Entry</th>
+        <th>Time</th>
+      </tr>
+          </table>
+    <h2>Tuesday 6PM Mens</h2>
+    <table id="mytable6">
+      <tr>
+        <th>Submission</th>
+   	<th>User ID</th>
+        <th>Manual Entry</th>
+        <th>Time</th>
+      </tr>
+          </table>
+    <h2>Tuesday 8PM Open</h2>
+    <table id="mytable7">
+      <tr>
+        <th>Submission</th>
+        <th>User ID</th>
+        <th>Manual Entry</th>
+        <th>Time</th>
+      </tr>
+          </table>
+    <h2>Wednesday 4PM 2v2</h2>
+    <table id="mytable8">
+      <tr>
+        <th>Submission</th>
+        <th>User ID</th>
+        <th>Manual Entry</th>
+        <th>Time</th>
+      </tr>
+          </table>
+ <h2>Wednesday 5PM Mixed</h2>
+    <table id="mytable9">
+      <tr>
+        <th>Submission</th>
+        <th>User ID</th>
+        <th>Manual Entry</th>
+        <th>Time</th>
+      </tr>
+          </table>
+    <h2>Wednesday 7PM Womens</h2>
+    <table id="mytable10">
+      <tr>
+        <th>Submission</th>
+        <th>User ID</th>
+        <th>Manual Entry</th>
+        <th>Time</th>
+      </tr>
+          </table>
+    <h2>Thursday 4PM Open</h2>
+    <table id="mytable11">
+      <tr>
+        <th>Submission</th>
+        <th>User ID</th>
+        <th>Manual Entry</th>
+        <th>Time</th>
+      </tr>
+          </table>
+    <h2>Thursday 6PM Open</h2>
+    <table id="mytable12">
+      <tr>
+        <th>Submission</th>
+        <th>User ID</th>
+        <th>Manual Entry</th>
+        <th>Time</th>
+      </tr>
+          </table>
+  <h2>Thursday 8PM</h2>
+    <table id="mytable13">
+      <tr>
+        <th>Submission</th>
+        <th>User ID</th>
+        <th>Manual Entry</th>
+        <th>Time</th>
+      </tr>
+          </table>
+    <h2>Friday 5:30PM Open</h2>
+    <table id="mytable14">
+      <tr>
+        <th>Submission</th>
+        <th>User ID</th>
+        <th>Manual Entry</th>
+        <th>Time</th>
+      </tr>
+          </table>
+  </body>
+<script>
+  function tableCreate(data) {
+  var body = document.getElementsByTagName('body')[0];
+
+  var tbdy = document.createElement('tbody');
+  var table = document.getElementById('mytable1');
+
+  for (var i = 0; i < data.length; i++) {
+var tr = document.createElement('tr');
+        for (var j = 0; j < 14; j++) {
+          var td = document.createElement('td');
+        td.appendChild(document.createTextNode('\u0020'));
+                  tr.appendChild(td) }
+  tbdy.appendChild(tr); }
+                 table.appendChild(tbdy);
+                            fillTable(data);
+                            }
+
+function fillTable(data) {
+         for (var i = 1; i < data.length + 1; i++) {
+                      for (var j = 0; j < 14; j++) {
+                            var cell = document.getElementById("mytable1").rows[i].cells[j];
+                            var k = i -1;
+                                      if(j == 0) {
+                                         cell.innerHTML = data[k].LeagueName;
+                                                                    }
+                                      if(j == 1) {
+                                         cell.innerHTML = data[k].teamName;
+                                                                    }
+                                      if(j == 2) {
+                                         cell.innerHTML = data[k].wins;
+                                                                    }
+                                      if(j == 3) {
+                                         cell.innerHTML = data[k].losses;
+                                                                    }
+                                      if(j == 4) {
+                                         cell.innerHTML = data[k].ties;
+                                                                    }
+                                                                                                        
+                                                                                }
+function callBack(data) {
+	tableCreate(data);
+}
+$.ajax({
+             
+//url: 'http://131.212.41.37:5001/getRecords',
+             
+url: 'http://localhost:3246/leagueOne',
+             
+headers: {
+               'Content-Type':'application/x-www-form-urlencoded',
+             },
+             
+method: 'POST',
+             
+crossDomain: 'true',
+             
+async: true,
+             
+dataType: 'json',
+             
+data: { },
+             
+success: callBack
+    
+}).fail(function(jqXhr) {
+  console.log('failed to connect to server!');
+           
+ });
+       
+ });
+
+</script> 
 </html>
+

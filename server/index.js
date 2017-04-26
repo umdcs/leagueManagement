@@ -101,9 +101,9 @@ networkIORef.on('connection', function(socket) {
     });
 });
 
-app.get('/listLeagues', function(request, response)
+app.get('/leagueOne', function(request, response)
 {
-    response.json(listOfLeagues);
+    response.json(leagueOne);
     console.log('List of Leagues sent');
 });
 
@@ -134,65 +134,15 @@ app.get('/getLeagues', function(request, response){
   response.status(200).send(JSON.stringify(inputHistory.History));
   console.log('getLeagues success');
 });
->>>>>>> 210fb5543659dafc5f0ae4fc5f487ff60c4fe670
+
 app.get('/Leagues', function(request, response)
 	{
-	    // response.sendFile(path.join(__dirname +'/league.html'));
- response.writeHead(200, {'Content-Type': 'text/html'});
-	    response.write('<!DOCTYPE html><head><title>LeaguesDashboard</title></head></body>');
-	response.write('<H1>Leagues</H1>');
-	    response.write('<h2>Sunday 3:30PM FAF </h2>');
-	var obj = JSON.stringify(leagueOne.History);
-	    response.write(obj);
-	    response.write('<h2>Sunday 5PM Open</h2>');
-  var obj1 = JSON.stringify(leagueTwo.History);
-	    response.write(obj1);
-	    response.write('<h2>Sunday 7PM Open</h2>');
-  var obj2 = JSON.stringify(leagueThree.History);
-	    response.write(obj2);
-	    response.write('<h2>Monday 5PM Open </h2>');
-  var obj3 = JSON.stringify(leagueFour.History);
-	    response.write(obj3);
-	    response.write('<h2>Monday 7PM Mixed </h2>');
-  var obj4 = JSON.stringify(leagueFive.History);
-	    response.write(obj4);
-	    response.write('<h2>Tuesday 6PM Mens </h2>');
-  var obj5 = JSON.stringify(leagueSix.History);
-	    response.write(obj5);
-	    response.write('<h2>Tuesday 8PM Open </h2>');
-  var obj6 = JSON.stringify(leagueSeven.History);
-	    response.write(obj6);
-      response.write('<h2>Wednesday 4PM 2v2 </h2>');
-	var obj7 = JSON.stringify(leagueEight.History);
-	    response.write(obj7);
-	    response.write('<h2>Wednesday 5PM Mixed </h2>');
-  var obj8 = JSON.stringify(leagueNine.History);
-	    response.write(obj8);
-	    response.write('<h2>Wednesday 7PM Womens </h2>');
-  var obj9 = JSON.stringify(leagueTen.History);
-	    response.write(obj9);
-	    response.write('<h2>Thursday 4PM Open </h2>');
-  var obj10 = JSON.stringify(leagueEleven.History);
-	    response.write(obj10);
-	    response.write('<h2>Thursday 6PM Open </h2>');
-  var obj11 = JSON.stringify(leagueTwelve.History);
-	    response.write(obj11);
-	    response.write('<h2>Thursday 8PM  </h2>');
-  var obj12 = JSON.stringify(leagueThirteen.History);
-	    response.write(obj12);
-	     response.write('<h2>Friday 5:30PM Open </h2>');
-  var obj13 = JSON.stringify(leagueFourteen.History);
-	    response.write(obj13);
-	    response.write('</body></html>');
-response.end();
+	     response.sendFile(path.join(__dirname +'/league.html'));
+
 	    console.log('GET REQUEST: Test Server with JSON');
 	});
 app.get('/history', function(request, response)
 	{
-<<<<<<< HEAD
-=======
-
->>>>>>> 210fb5543659dafc5f0ae4fc5f487ff60c4fe670
 	    response.send(inputHistory);
 	    console.log('GET REQUEST: History');
 	});
