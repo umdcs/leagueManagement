@@ -107,6 +107,34 @@ app.get('/listLeagues', function(request, response)
     console.log('List of Leagues sent');
 });
 
+
+ 
+app.get('/getLeagues', function(request, response){
+  console.log('getLeagues accessed');
+  // var returnArray = {
+  //   History : [{}]
+  // }
+  // var basicLeagueData = {
+  //   'LeagueName' : '',
+  //   TeamNameArray : ['']
+  // };
+  // if(inputHistory.History.length){
+  //   for(var i = 0;i < inputHistory.History.length; i++){
+  //     basicLeagueData.LeagueName = inputHistory.History[i].leagueName;
+  //     if(inputHistory.History[i].teams.length){
+  //       for(var j = 0;j < inputHistory.History[i].teams.length; j++){
+  //         basicLeagueData.TeamNameArray.push(inputHistory.History[i].teams[j].teamName);
+  //       };
+  //     };
+  //     returnArray.History.push(basicLeagueData);
+  //   };
+  //
+  //   response.json(JSON.stringify(returnArray));
+  // };
+  response.status(200).send(JSON.stringify(inputHistory.History));
+  console.log('getLeagues success');
+});
+>>>>>>> 210fb5543659dafc5f0ae4fc5f487ff60c4fe670
 app.get('/Leagues', function(request, response)
 	{
 	    // response.sendFile(path.join(__dirname +'/league.html'));
@@ -114,7 +142,7 @@ app.get('/Leagues', function(request, response)
 	    response.write('<!DOCTYPE html><head><title>LeaguesDashboard</title></head></body>');
 	response.write('<H1>Leagues</H1>');
 	    response.write('<h2>Sunday 3:30PM FAF </h2>');
-	    var obj = JSON.stringify(leagueOne.History);
+	var obj = JSON.stringify(leagueOne.History);
 	    response.write(obj);
 	    response.write('<h2>Sunday 5PM Open</h2>');
   var obj1 = JSON.stringify(leagueTwo.History);
@@ -134,8 +162,8 @@ app.get('/Leagues', function(request, response)
 	    response.write('<h2>Tuesday 8PM Open </h2>');
   var obj6 = JSON.stringify(leagueSeven.History);
 	    response.write(obj6);
-            response.write('<h2>Wednesday 4PM 2v2 </h2>');
-	    var obj7 = JSON.stringify(leagueEight.History);
+      response.write('<h2>Wednesday 4PM 2v2 </h2>');
+	var obj7 = JSON.stringify(leagueEight.History);
 	    response.write(obj7);
 	    response.write('<h2>Wednesday 5PM Mixed </h2>');
   var obj8 = JSON.stringify(leagueNine.History);
@@ -161,6 +189,10 @@ response.end();
 	});
 app.get('/history', function(request, response)
 	{
+<<<<<<< HEAD
+=======
+
+>>>>>>> 210fb5543659dafc5f0ae4fc5f487ff60c4fe670
 	    response.send(inputHistory);
 	    console.log('GET REQUEST: History');
 	});
@@ -172,7 +204,7 @@ app.post('/Leagues', function(req, res)
        var inputJson = JSON.stringify(jsonString);
        var input = JSON.parse(inputJson);
 	console.log(req.body.leagueName);
-	
+
 switch(req.body.leagueName) {
     case "Sunday 3:30PM FAF":
         var leagueAlreadyInput = false;

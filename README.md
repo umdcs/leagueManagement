@@ -1,7 +1,38 @@
 # LeagueManager
-League Manager distributed application for creating and managing ongoing league play
-#This is Jeff Vang's edit after cloning the repo.#
-Mark's commit test
+League Manager application is developed to manage and input scores for the Duluth Curling Club (DCC) in Duluth, MN. Scores should added only by team captains (skips) and no other for a team. League Manager manages by leagues and each team in a league. League info is shown on ukko.d.umn.edu:3246/Leagues.
+
+Purpose:
+The purpose of this project was to develop an application that would be used to enter scores  and manage leagues for the Duluth Curling Club in Duluth, MN.
+
+Primary User Stores:
+As a team skip (captain), I want to be able to input scores after matches so that the manger does not have to do them manually.
+As a player, I want to be able to view scores, matchups, and schedules on the website.
+As a player, I want to have a schedule created automatically, and viewable on the website.
+
+
+
+Connection to Node Server:
+Node needs to be install on your machine.
+Server can be on localhost:3246/Leagues or ukko.d.umn.edu:3246/Leagues
+"npm install" will need to be applied to the package.json for its individual dependencies. 
+To run on ukko or akka, use the screen command in the following procedure.
+screen
+nodejs index.js
+ctrl-a-d (Used to detach from screen)
+screen -ls (shows all processes running in background)
+screen -r (resumes most recent screen)
+
+Forever is currently not used but is included in the dependency.
+
+The app contains dummy values ofr league data, currently not using data from DCC.
+
+Future Goals:
+Prevent teams from entering scores until the scheduled date.
+Create a database to store all league data.
+More efficiently transfer data back/from app & server.
+
+
+
 
 //TESTING//
 Our unit test tests out League, Match and Team classes for functionality. League checks for the ability to add and remove teams from a league. It also tests how the schedule is created and if the scoreboard is being updated correctly. The Team class tests for schedule updates and adding and removing of players in a team. In addition the adding of scores for each team's matches. The match class tests for tests for determining the winner of a match.
