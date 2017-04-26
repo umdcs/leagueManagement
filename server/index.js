@@ -106,30 +106,6 @@ app.get('/listLeagues', function(request, response)
     response.json(listOfLeagues);
     console.log('List of Leagues sent');
 });
-app.get('/database', function(req, res) {
-
-    // Dump the whole collection for debugging
-    //var str = mongodb.printDatabase('documents', function(result) {
-
-//        res.send('<HTML><BODY>' + JSON.stringify(result, null, 2) + '<\
-///BODY></HTML>');
-
-  //  });
-
-});
-app.get('/getList', function(req, res)
-        {
-            //mongodb.findLeagueName(req.params.LeagueName, function(result){
-            //    var arrayData = {
-              //      results:[]
-               // };
-               // result.forEach(function(doc){
-                 //   arrayData.results.push(doc);
-                   // console.log('Result: ' + doc);
-               // });
-                //res.send(JSON.stringify(arrayData));
-           // });
-        });
 
 app.get('/Leagues', function(request, response)
 	{
@@ -185,7 +161,6 @@ response.end();
 	});
 app.get('/history', function(request, response)
 	{
-	    
 	    response.send(inputHistory);
 	    console.log('GET REQUEST: History');
 	});
