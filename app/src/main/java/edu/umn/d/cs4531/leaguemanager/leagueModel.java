@@ -1,5 +1,6 @@
 package edu.umn.d.cs4531.leaguemanager;
 
+import java.io.DataInputStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.io.BufferedReader;
@@ -45,6 +46,7 @@ public class leagueModel implements MVPComponents.Model{
     private League mLeague;         //the current league we can pull info from
     private Team mTeam;         //The current team we can pull from
     private  ArrayList<String> stringOfLeagues = new ArrayList<String>();
+    private JSONObject globalJsonData;
 
     public leagueModel(MVPComponents.Presenter Presenter)
     {
@@ -92,7 +94,7 @@ public class leagueModel implements MVPComponents.Model{
 
         //--------------------------------------------------------------------------------
 
-
+        //restGETLeagues();
         this.Presenter = Presenter;
 
     }
@@ -172,11 +174,17 @@ public class leagueModel implements MVPComponents.Model{
         return mLeague.getScoreboard();
     }
 
-    /*Model Connection to Server************************************************/
+    /*Model Conngit section to Server************************************************/
 
-    public void restGETLeagues() {
+    public void restGETLeagues(){
 
-        new HTTPAsyncTask().execute("http://localhost:3246/listLeagues", "GET");
+        new HTTPAsyncTask().execute("http://ukko.d.umn.edu:3246/getLeagues", "GET");
+        System.out.println(globalJsonData);
+        try {
+            String name = globalJsonData.getString("LeagueName");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
     }
     public void restPOST() {
@@ -266,6 +274,10 @@ public class leagueModel implements MVPComponents.Model{
                     out.flush();
                     out.close();
                 }
+                if(params[1].equals("GET")){
+                    serverConnection.setDoInput(true);
+                    DataInputStream in = new DataInputStream(serverConnection.getInputStream());
+                }
 
                 /* ************************
                  * HTTP RESPONSE Section
@@ -318,6 +330,7 @@ public class leagueModel implements MVPComponents.Model{
          *
          * @param result the result from the query
          */
+        @Override
         protected void onPostExecute(String result) {
 
             /* Take the result (a String) returned from the doInBackground function and
@@ -329,6 +342,7 @@ public class leagueModel implements MVPComponents.Model{
 
             try {
                 JSONObject jsonData = new JSONObject( result );
+                globalJsonData = jsonData;
             } catch (JSONException e) {
                 e.printStackTrace();
             }
