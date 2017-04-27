@@ -38,11 +38,19 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setupSpinner();
+    }
+
+
     /**
      * Creates a presenter object instance.
      */
     void setupPresenter() {
         mPresenter = new leaguePresenter(this);
+        ScheduleList.getInstance().setPresenter(mPresenter);
     }
 
     void setupSpinner() {
@@ -101,24 +109,15 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
 
     public void viewSchedule(View view) {
         Intent scheduleIntent = new Intent(this, ViewScheduleActivity.class);
-//        ArrayList<String> arrayList = new ArrayList<String>();
-//        arrayList.add("Something");
-//        arrayList.add("Something else");
-//        arrayList.add("Something so crazy it couldn't possibly fit on one line");
+
         ScheduleList.getInstance().setScheduleList(mPresenter.getSchedule(0));
-        //ScheduleList.getInstance().setScheduleList(arrayList);
+
         startActivity(scheduleIntent);
     }
 
     public void goToWebsite(View view) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.duluthcurlingclub.org/"));
         startActivity(intent);
-    }
-
-    public void viewScoreboard(View view) {
-        Intent scoreboardIntent = new Intent(this, ScoreBoard.class);
-        ScheduleList.getInstance().setScoreboard(mPresenter.getScoreboard());
-        startActivity(scoreboardIntent);
     }
 
     public void createLeague(View view) {
