@@ -28,6 +28,8 @@ import android.os.AsyncTask;
 //import android.util.JsonReader;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,7 +48,7 @@ public class leagueModel implements MVPComponents.Model{
     private League mLeague;         //the current league we can pull info from
     private Team mTeam;         //The current team we can pull from
     private  ArrayList<String> stringOfLeagues = new ArrayList<String>();
-    private JSONObject globalJsonData;
+    private String jsonResult;
 
     public leagueModel(MVPComponents.Presenter Presenter)
     {
@@ -94,7 +96,7 @@ public class leagueModel implements MVPComponents.Model{
 
         //--------------------------------------------------------------------------------
 
-        //restGETLeagues();
+        restGETLeagues();
         this.Presenter = Presenter;
 
     }
@@ -154,6 +156,7 @@ public class leagueModel implements MVPComponents.Model{
        public void inputData()
     {
         for(int i=0;i<listOfLeagues.size();++i) {
+            restGETLeagues();
             if(listOfLeagues.get(i).getLeagueName().equals(selectedLeague)){//if selected league is in the list
                //Log.d("Model: ", "Selected Team is " + selectedTeam);
                listOfLeagues.get(i).inputData(selectedTeam, Integer.parseInt(inputtedScoreA),Integer.parseInt(inputtedScoreB));
@@ -178,35 +181,47 @@ public class leagueModel implements MVPComponents.Model{
 
     public void restGETLeagues(){
 
-        new HTTPAsyncTask().execute("http://ukko.d.umn.edu:3246/getLeagues", "GET");
-        System.out.println(globalJsonData);
-        try {
-            String name = globalJsonData.getString("LeagueName");
-        } catch (JSONException e) {
-            e.printStackTrace();
+        new HTTPAsyncTask().execute("http://10.0.2.2:3246/getLeagues", "GET");
+        if(jsonResult != null) {
+            System.out.println(jsonResult);
+            JSONArray jsonData;
+            try {
+                jsonData = new JSONArray(jsonResult);
+                for (int i = 1; i < jsonData.length(); i++) {
+                    JSONObject jsonobject = jsonData.getJSONObject(i);
+                    League nextLeague = LeagueJSONObject.parseJson(jsonobject.toString());
+                    for (int j = 0; j < listOfLeagues.size(); j++) {
+                        if (listOfLeagues.get(j).getLeagueName().equals(nextLeague.getLeagueName())) {
+                            listOfLeagues.set(j, nextLeague);
+                            break;
+                        }
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
-
     }
     public void restPOST() {
 
-        JSONObject jsonParam = null;
-        try {
-
-            //Create JSONObject here
-            jsonParam = new JSONObject();
-            jsonParam.put("LeagueName",selectedLeague);
-            jsonParam.put("TeamName",selectedTeam);
-            jsonParam.put("ScoreA",inputtedScoreA);//mTeam.peekMatch().getTeamAScore());
-            jsonParam.put("ScoreB",inputtedScoreB);//mTeam.peekMatch().getTeamBScore());
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
- ///      new HTTPAsyncTask().execute("http://10.0.0.1:3246/Leagues", "POST", jsonParam.toString());
+//        JSONObject jsonParam = null;
+//        try {
+//
+//            //Create JSONObject here
+//            jsonParam = new JSONObject();
+//            jsonParam.put("LeagueName",selectedLeague);
+//            jsonParam.put("TeamName",selectedTeam);
+//            jsonParam.put("ScoreA",inputtedScoreA);//mTeam.peekMatch().getTeamAScore());
+//            jsonParam.put("ScoreB",inputtedScoreB);//mTeam.peekMatch().getTeamBScore());
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//      new HTTPAsyncTask().execute("http://10.0.0.1:3246/Leagues", "POST", jsonParam.toString());
         String displayString = mLeague.createJson();
         System.out.println(displayString);
        //new HTTPAsyncTask().execute("http://ukko.d.umn.edu:3246/Leagues", "POST", displayString);
-        new HTTPAsyncTask().execute("http://ukko.d.umn.edu:3246/Leagues", "POST", displayString);
+        new HTTPAsyncTask().execute("http://10.0.2.2:3246/Leagues", "POST", displayString);
 
     }
     private class HTTPAsyncTask extends AsyncTask<String, Integer, String>{
@@ -274,10 +289,6 @@ public class leagueModel implements MVPComponents.Model{
                     out.flush();
                     out.close();
                 }
-                if(params[1].equals("GET")){
-                    serverConnection.setDoInput(true);
-                    DataInputStream in = new DataInputStream(serverConnection.getInputStream());
-                }
 
                 /* ************************
                  * HTTP RESPONSE Section
@@ -311,6 +322,7 @@ public class leagueModel implements MVPComponents.Model{
                  * function and the onPostExecute function will process it.
                  */
                 System.out.println(sb.toString());
+                jsonResult = sb.toString();
                 return sb.toString();
 
             } catch (MalformedURLException e) {
@@ -342,7 +354,6 @@ public class leagueModel implements MVPComponents.Model{
 
             try {
                 JSONObject jsonData = new JSONObject( result );
-                globalJsonData = jsonData;
             } catch (JSONException e) {
                 e.printStackTrace();
             }
