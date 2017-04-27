@@ -1,6 +1,7 @@
 package edu.umn.d.cs4531.leaguemanager;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.LinkedList;
 
 /**
@@ -67,6 +68,12 @@ public interface MVPComponents {
         String[][] getScoreboard();
 
         void run();
+
+        void addTeam(String name, LinkedList<String> members, String ID);
+        void createLeague(String name);
+        void setLeagueCalendar(Calendar calendar);
+        void setRoundsLanes(int rounds, int lanes);
+        void uploadLeague(String name);
     }
 
     interface Model
@@ -78,12 +85,7 @@ public interface MVPComponents {
          */
         LinkedList<Team> getTeams();
 
-        /**
-         * Gets all relevant info on the team selected so it can be displayed in the view
-         * @param teamName
-         * @return
-         */
-        String[] teamData(String teamName);
+        void addTeam(String name, LinkedList<String> members, String ID);
 
         /**
          * will have static leagues to get that will have teams inside and junk.
@@ -92,9 +94,14 @@ public interface MVPComponents {
          */
         LinkedList getLeagues();
 
+        void addTeam(String name);
+
         Team getSelectedTeam();
 
+        League getSelectedLeague();
+
         void createLeague(String name);
+        void uploadLeague(String name);
 
         void setSelectedLeague(String leagueName);
 

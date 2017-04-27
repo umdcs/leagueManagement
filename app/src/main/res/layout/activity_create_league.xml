@@ -13,6 +13,33 @@
         android:id="@+id/leagueNameET"
         android:hint="Enter League Name"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Number of Lanes"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lanesET"
+        android:hint="Enter a number"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter Max Rounds"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/roundsET"
+        android:hint="Enter a number"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/setTimeButton"
+        android:onClick="leagueTime"
+        android:text="Set the date/time"/>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,6 +52,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/finalizeButton"
         android:text="Upload"
-        android:onClick="finalize"/>
+        android:onClick="uploadLeague"/>
 
 </LinearLayout>

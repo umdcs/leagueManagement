@@ -2,6 +2,7 @@ package edu.umn.d.cs4531.leaguemanager;
 
 import java.io.DataInputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -109,7 +110,6 @@ public class leagueModel implements MVPComponents.Model{
         return mTeam;
     }
 
-    @Override
     public String[] teamData(String teamName) {
         return new String[0];
     }
@@ -119,13 +119,18 @@ public class leagueModel implements MVPComponents.Model{
         restGETLeagues();
         return listOfLeagues;
     }
+
+    @Override
+    public League getSelectedLeague() { return mLeague;}
+
     @Override
     public void createLeague(String name)
     {
-       listOfLeagues.add(new League("name"));
+        Log.d("Model", "Before" + name);
+        listOfLeagues.add(new League(name));
+        setSelectedLeague(name);
+        Log.d("Model", "After" + getSelectedLeague().getLeagueName());
     }
-
-    public void addLeague(League inputLeague) {listOfLeagues.add(inputLeague);}
 
     /**
      * takes in a string of the league selected and sets the League member object to it
@@ -176,7 +181,30 @@ public class leagueModel implements MVPComponents.Model{
         return mLeague.getScoreboard();
     }
 
-    /*Model Conngit section to Server************************************************/
+    @Override
+    public void addTeam(String name) {
+        mLeague.addTeam(name);
+    }
+
+    @Override
+    public void addTeam(String name, LinkedList<String> members, String ID) {
+
+        mLeague.addTeam(name);
+        setSelectedTeam(name);
+        for (String member: members) {
+            mTeam.addPlayer(member);
+        }
+        mTeam.setPassword(ID);
+    }
+
+    @Override
+    public void uploadLeague(String name) {
+        mLeague.setLeagueName(name);
+        mLeague.createSchedule();
+        restPOST();
+    }
+
+    /*Model Connection to Server************************************************/
 
     public void restGETLeagues(){
 
