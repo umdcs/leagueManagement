@@ -30,10 +30,9 @@ app.use(bodyParser.json());
 //httpServer.listen(app.get("port"), function () {
   //  console.log('node app listening on port: ', app.get("port"));
 //});
-//list of leagues pulled from database.
-var listOfLeagues={
-    listOfLeagues:[{'LeagueName':'Sunday 3:30PM FAF'},{'LeagueName':'Sunday 5PM Open'},{'LeagueName':'Sunday 7PM Open'},{'LeagueName':'Monday 5PM Open'},{'LeagueName':'Monday 7PM Mixed'},{'LeagueName':'Tuesday 6PM Mens'},{'LeagueName':'Tuesday 8PM Open'},{'LeagueName':'Wednesday 4PM 2v2'},{'LeagueName':'Wednesday 5PM Mixed'},{'LeagueName':'Wednesday 7PM Womens'},{'LeagueName':'Thursday 4PM Open'},{'LeagueName':'Thursday 6PM Open'},{'LeagueName':'Thursday 8PM'},{'LeagueName':'Friday 5:30PM Open'}]
-}
+
+var allLeagues = {leagueOne,leagueTwo,leagueThree,leagueFour,leagueFive,leagueSix,leagueSeven,leagueEight,leagueNine,leagueTen,leagueEleven,leagueTwelve,leagueThirteen,leagueFourteen};
+
 var inputHistory = {
     History:[{}]
 };
@@ -45,43 +44,95 @@ var leagueOne = {
     "ties":0
 };
 var leagueTwo = {
-    History:[{}]
+    "leagueName":"Sunday 5PM Open",
+    "teamName":"",
+    "wins":0,
+    "losses":0,
+    "ties":0
 };
 var leagueThree = {
-    History:[{}]
+    "leagueName":"Sunday 7PM Open",
+    "teamName":"",
+    "wins":0,
+    "losses":0,
+    "ties":0
 };
 var leagueFour = {
-    History:[{}]
+ "leagueName":"Monday 5PM Open",
+    "teamName":"",
+    "wins":0,
+    "losses":0,
+    "ties":0
 };
 var leagueFive = {
-    History:[{}]
+ "leagueName":"Monday 7PM Mixed",
+    "teamName":"",
+    "wins":0,
+    "losses":0,
+    "ties":0
 };
 var leagueSix = {
-    History:[{}]
+ "leagueName":"Tuesday 6PM Mens",
+    "teamName":"",
+    "wins":0,
+    "losses":0,
+    "ties":0
 };
 var leagueSeven = {
-    History:[{}]
+ "leagueName":"Tuesday 8PM Open",
+    "teamName":"",
+    "wins":0,
+    "losses":0,
+    "ties":0
 };
 var leagueEight = {
-    History:[{}]
+ "leagueName":"Wednesday 4PM 2v2",
+    "teamName":"",
+    "wins":0,
+    "losses":0,
+    "ties":0
 };
 var leagueNine = {
-    History:[{}]
+ "leagueName":"Wednesday 5PM Mixed",
+    "teamName":"",
+    "wins":0,
+    "losses":0,
+    "ties":0
 };
 var leagueTen = {
-    History:[{}]
+ "leagueName":"Wednesday 7PM Womens ",
+    "teamName":"",
+    "wins":0,
+    "losses":0,
+    "ties":0
 };
 var leagueEleven = {
-    History:[{}]
+ "leagueName":"Thursday 4PM Open",
+    "teamName":"",
+    "wins":0,
+    "losses":0,
+    "ties":0
 };
 var leagueTwelve = {
-    History:[{}]
+ "leagueName":"Thursday 6PM Open",
+    "teamName":"",
+    "wins":0,
+    "losses":0,
+    "ties":0
 };
 var leagueThirteen = {
-    History:[{}]
+ "leagueName":"Thursday 8PM",
+    "teamName":"",
+    "wins":0,
+    "losses":0,
+    "ties":0
 };
 var leagueFourteen = {
-    History:[{}]
+ "leagueName":"Friday 5:30PM Open",
+    "teamName":"",
+    "wins":0,
+    "losses":0,
+    "ties":0
 };
 
 var pathto = require("path");
@@ -107,9 +158,9 @@ networkIORef.on('connection', function(socket) {
     });
 });
 
-app.get('/leagueOne', function(request, response)
+app.get('/allLeagues', function(request, response)
 {
-    response.json(leagueOne);
+    response.json(allLeagues);
     console.log('List of Leagues sent');
 });
 
@@ -136,210 +187,35 @@ app.post('/Leagues', function(req, res)
        var inputJson = JSON.stringify(jsonString);
        var input = JSON.parse(inputJson);
 	var name = req.body.leagueName;
-
-	     leagueOne = input;
-switch(name) {
-    case "Sunday 3:30PM FAF":
-        var leagueAlreadyInput = false;
-       
-        //if(leagueOne.leagueName == input.leagueName){
-
-            leagueOne = input;
-	
-leagueAlreadyInput = true;
-          break;
-       // }
-      
-    if(!leagueAlreadyInput){
-	 console.log(input);
-        leagueOne = input;//CHECK FOR ERROR
-      }
-        break;
-    case "Sunday 5PM Open":
-        var leagueAlreadyInput = false;
-      for(var i = 0; i < leagueTwo.History.length; i++) {
-        if(leagueTwo.History[i].leagueName == input.leagueName){
-          leagueTwo.History[i] = input;
-
-leagueAlreadyInput = true;
-          break;
-        }
-      }
-      if(!leagueAlreadyInput){
-        leagueTwo.History.push(input);//CHECK FOR ERROR
-      }
-        break;
- case "Sunday 7PM Open":
-        var leagueAlreadyInput = false;
-      for(var i = 0; i < leagueThree.History.length; i++) {
-        if(leagueThree.History[i].leagueName == input.leagueName){
-          leagueThree.History[i] = input;
-
-leagueAlreadyInput = true;
-          break;
-        }
-      }
-      if(!leagueAlreadyInput){
-        leagueThree.History.push(input);//CHECK FOR ERROR
-      }
-        break;
- case "Monday 5PM Open":
-        var leagueAlreadyInput = false;
-      for(var i = 0; i < leagueFour.History.length; i++) {
-        if(leagueFour.History[i].leagueName == input.leagueName){
-          leagueFour.History[i] = input;
-
-leagueAlreadyInput = true;
-          break;
-        }
-      }
-      if(!leagueAlreadyInput){
-        leagueFour.History.push(input);//CHECK FOR ERROR
-      }
-        break;
- case "Monday 7PM Mixed":
-        var leagueAlreadyInput = false;
-      for(var i = 0; i < leagueFive.History.length; i++) {
-        if(leagueFive.History[i].leagueName == input.leagueName){
-          leagueFive.History[i] = input;
-
-leagueAlreadyInput = true;
-          break;
-        }
-      }
-      if(!leagueAlreadyInput){
-        leagueFive.History.push(input);//CHECK FOR ERROR
-      }
-        break;
- case "Tuesday 6PM Mens":
-        var leagueAlreadyInput = false;
-      for(var i = 0; i < leagueSix.History.length; i++) {
-        if(leagueSix.History[i].leagueName == input.leagueName){
-          leagueSix.History[i] = input;
-
-leagueAlreadyInput = true;
-          break;
-        }
-      }
-      if(!leagueAlreadyInput){
-        leagueSix.History.push(input);//CHECK FOR ERROR
-      }
-        break;
- case "Tuesday 8PM Open":
-        var leagueAlreadyInput = false;
-      for(var i = 0; i < leagueSeven.History.length; i++) {
-        if(leagueSeven.History[i].leagueName == input.leagueName){
-          leagueSeven.History[i] = input;
-
-leagueAlreadyInput = true;
-          break;
-        }
-      }
-      if(!leagueAlreadyInput){
-        leagueSeven.History.push(input);//CHECK FOR ERROR
-      }
-        break;
- case "Wednesday 4PM 2v2":
-        var leagueAlreadyInput = false;
-      for(var i = 0; i < leagueEight.History.length; i++) {
-        if(leagueEight.History[i].leagueName == input.leagueName){
-          leagueEight.History[i] = input;
-
-leagueAlreadyInput = true;
-          break;
-        }
-      }
-      if(!leagueAlreadyInput){
-        leagueEight.History.push(input);//CHECK FOR ERROR
-      }
-        break;
- case "Wednesday 5PM Mixed":
-        var leagueAlreadyInput = false;
-      for(var i = 0; i < leagueNine.History.length; i++) {
-        if(leagueNine.History[i].leagueName == input.leagueName){
-          leagueNine.History[i] = input;
-
-leagueAlreadyInput = true;
-          break;
-        }
-      }
-      if(!leagueAlreadyInput){
-        leagueNine.History.push(input);//CHECK FOR ERROR
-      }
-        break;
- case "Wednesday 7PM Womens":
-        var leagueAlreadyInput = false;
-      for(var i = 0; i < leagueTen.History.length; i++) {
-        if(leagueTen.History[i].leagueName == input.leagueName){
-          leagueTen.History[i] = input;
-
-leagueAlreadyInput = true;
-          break;
-        }
-      }
-      if(!leagueAlreadyInput){
-        leagueTen.History.push(input);//CHECK FOR ERROR
-      }
-        break;
- case "Thursday 4PM Open":
-        var leagueAlreadyInput = false;
-      for(var i = 0; i < leagueEleven.History.length; i++) {
-        if(leagueEleven.History[i].leagueName == input.leagueName){
-          leagueEleven.History[i] = input;
-
-leagueAlreadyInput = true;
-          break;
-        }
-      }
-      if(!leagueAlreadyInput){
-        leagueEleven.History.push(input);//CHECK FOR ERROR
-      }
-        break;
- case "Thursday 6PM Open":
-        var leagueAlreadyInput = false;
-      for(var i = 0; i < leagueTwelve.History.length; i++) {
-        if(leagueTwelve.History[i].leagueName == input.leagueName){
-          leagueTwelve.History[i] = input;
-
-leagueAlreadyInput = true;
-          break;
-        }
-      }
-      if(!leagueAlreadyInput){
-        leagueTwelve.History.push(input);//CHECK FOR ERROR
-      }
-        break;
- case "Thursday 8PM":
-        var leagueAlreadyInput = false;
-      for(var i = 0; i < leagueThirteen.History.length; i++) {
-        if(leagueThirteen.History[i].leagueName == input.leagueName){
-          leagueThirteen.History[i] = input;
-
-leagueAlreadyInput = true;
-          break;
-        }
-      }
-      if(!leagueAlreadyInput){
-        leagueThirteen.History.push(input);//CHECK FOR ERROR
-      }
-        break;
- case "Friday 5:30PM Open":
-       var leagueAlreadyInput = false;
-      for(var i = 0; i < leagueFourteen.History.length; i++) {
-        if(leagueFourteen.History[i].leagueName == input.leagueName){
-          leagueFourteen.History[i] = input;
-
-leagueAlreadyInput = true;
-          break;
-        }
-      }
-      if(!leagueAlreadyInput){
-        leagueFourteen.History.push(input);//CHECK FOR ERROR
-      }
-        break;
-    default:
-        break;
-}
+//	     leagueOne = input;
+	     if(leagueOne.leagueName == input.leagueName)
+		 allLeagues.leagueOne = input;
+	      else if(leagueTwo.leagueName == input.leagueName)
+		  allLeagues.leagueTwo = input;
+	      else if(leagueThree.leagueName == input.leagueName)
+		  allLeagues.leagueThree = input;
+	      else if(leagueFour.leagueName == input.leagueName)
+		  allLeagues.leagueFour = input;
+	      else if(leagueFive.leagueName == input.leagueName)
+		  allLeagues.leagueFive = input;
+	      else if (leagueSix.leagueName == input.leagueName)
+		  allLeagues.leagueSix = input;
+	      else if(leagueSeven.leagueName == input.leagueName)
+		  allLeagues.leagueSeven = input;
+	      else if(leagueEight.leagueName == input.leagueName)
+		  allLeagues.leagueEight = input;
+	      else if(leagueNine.leagueName == input.leagueName)
+		  allLeagues.leagueNine = input;
+	      else if(leagueTen.leagueName == input.leagueName)
+		  allLeagues.leagueTen = input;
+	      else if(leagueEleven.leagueName == input.leagueName)
+		  allLeagues.leagueEleven = input;
+	     else if(leagueTwelve.leagueName == input.leagueName)
+		 allLeagues.leagueTwelve = input;
+	      else if(leagueThirteen.leagueName == input.leagueName)
+		  allLeagues.leagueThirteen = input;
+	      else
+		  allLeagues.leagueFourteen = input;
 
       //Testing
       var leagueAlreadyInput = false;
