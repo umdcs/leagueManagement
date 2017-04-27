@@ -12,9 +12,9 @@
 
     <ImageView
         android:contentDescription= "@+id/DCCLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/dcclogo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/transparentlogo"
         android:layout_toStartOf="@+id/textView"
         android:id="@+id/imageView" />
 
