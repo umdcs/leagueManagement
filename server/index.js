@@ -38,7 +38,11 @@ var inputHistory = {
     History:[{}]
 };
 var leagueOne = {
-    History:[{}]
+    "leagueName":"Sunday 3:30PM FAF",
+    "teamName":"",
+    "wins":0,
+    "losses":0,
+    "ties":0
 };
 var leagueTwo = {
     History:[{}]
@@ -80,6 +84,8 @@ var leagueFourteen = {
     History:[{}]
 };
 
+var pathto = require("path");
+app.use(express.static(pathto.join(__dirname, '/resources')));
 
 app.get('/', function(request, response)
 
@@ -153,21 +159,24 @@ app.post('/Leagues', function(req, res)
        var jsonString = req.body;
        var inputJson = JSON.stringify(jsonString);
        var input = JSON.parse(inputJson);
-	console.log(req.body.leagueName);
+	var name = req.body.leagueName;
 
-switch(req.body.leagueName) {
+	     leagueOne = input;
+switch(name) {
     case "Sunday 3:30PM FAF":
         var leagueAlreadyInput = false;
-      for(var i = 0; i < leagueOne.History.length; i++) {
-        if(leagueOne.History[i].leagueName == input.leagueName){
-          leagueOne.History[i] = input;
+       
+        //if(leagueOne.leagueName == input.leagueName){
 
+            leagueOne = input;
+	
 leagueAlreadyInput = true;
           break;
-        }
-      }
-      if(!leagueAlreadyInput){
-        leagueOne.History.push(input);//CHECK FOR ERROR
+       // }
+      
+    if(!leagueAlreadyInput){
+	 console.log(input);
+        leagueOne = input;//CHECK FOR ERROR
       }
         break;
     case "Sunday 5PM Open":
