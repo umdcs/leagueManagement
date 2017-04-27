@@ -21,8 +21,7 @@
         <activity android:name=".ViewScheduleActivity" />
         <activity android:name=".CreateLeague" />
         <activity android:name=".CreateTeam" />
-        <activity android:name=".ScoreBoard"></activity>
-        <activity android:name=".CreateLeague"></activity>
+        <activity android:name=".ScoreBoard" />
     </application>
 
 </manifest>
