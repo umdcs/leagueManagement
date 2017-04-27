@@ -70,8 +70,10 @@ public interface MVPComponents {
         void run();
 
         void addTeam(String name, LinkedList<String> members, String ID);
-        void createLeague(String name, Calendar cal);
+        void createLeague(String name);
         void setLeagueCalendar(Calendar calendar);
+        void setRoundsLanes(int rounds, int lanes);
+        void uploadLeague(String name);
     }
 
     interface Model
@@ -83,11 +85,7 @@ public interface MVPComponents {
          */
         LinkedList<Team> getTeams();
 
-    @Override
-    public void addTeam(String name, LinkedList<String> members, String ID) {
-        leagueModel.getSelectedLeague().addTeam(name);
-
-        String[] teamData(String teamName);
+        void addTeam(String name, LinkedList<String> members, String ID);
 
         /**
          * will have static leagues to get that will have teams inside and junk.
@@ -102,7 +100,8 @@ public interface MVPComponents {
 
         League getSelectedLeague();
 
-        void createLeague(String name, Calendar cal);
+        void createLeague(String name);
+        void uploadLeague(String name);
 
         void setSelectedLeague(String leagueName);
 

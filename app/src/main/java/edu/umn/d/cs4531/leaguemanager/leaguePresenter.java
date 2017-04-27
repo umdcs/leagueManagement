@@ -1,6 +1,7 @@
 package edu.umn.d.cs4531.leaguemanager;
 
 import android.os.Parcelable;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,6 +24,7 @@ public class leaguePresenter implements MVPComponents.Presenter {
     {
         return this;
     }
+
     @Override
     public ArrayList<String> getLeagues() {
 
@@ -119,6 +121,7 @@ public class leaguePresenter implements MVPComponents.Presenter {
 
     @Override
     public void addTeam(String name, LinkedList<String> members, String ID) {
+        leagueModel.addTeam(name, members, ID);
         leagueModel.getSelectedLeague().addTeam(name);
         leagueModel.setSelectedTeam(name);
         for (String member: members) {
@@ -128,7 +131,25 @@ public class leaguePresenter implements MVPComponents.Presenter {
     }
 
     @Override
-    public void createLeague(String name, Calendar cal) {
-        leagueModel.createLeague(name, cal);
+    public void createLeague(String name) {
+        Log.d("Presenter: ", "Before" + name);
+        leagueModel.createLeague(name);
+        Log.d("Presenter" , "After" + name);
+    }
+
+    @Override
+    public void setLeagueCalendar(Calendar calendar) {
+
+    }
+
+    @Override
+    public void setRoundsLanes(int rounds, int lanes) {
+        leagueModel.getSelectedLeague().setMaxRounds(rounds);
+        leagueModel.getSelectedLeague().setNumberOfLanes(lanes);
+    }
+
+    @Override
+    public void uploadLeague(String name) {
+        leagueModel.uploadLeague(name);
     }
 }

@@ -107,7 +107,6 @@ public class leagueModel implements MVPComponents.Model{
         return mTeam;
     }
 
-    @Override
     public String[] teamData(String teamName) {
         return new String[0];
     }
@@ -121,14 +120,13 @@ public class leagueModel implements MVPComponents.Model{
     public League getSelectedLeague() { return mLeague;}
 
     @Override
-    public void createLeague(String name, Calendar cal)
+    public void createLeague(String name)
     {
+        Log.d("Model", "Before" + name);
         listOfLeagues.add(new League(name));
         setSelectedLeague(name);
-        getSelectedLeague().setInitialCalendar(cal);
+        Log.d("Model", "After" + getSelectedLeague().getLeagueName());
     }
-
-    public void addLeague(League inputLeague) {listOfLeagues.add(inputLeague);}
 
     /**
      * takes in a string of the league selected and sets the League member object to it
@@ -182,6 +180,24 @@ public class leagueModel implements MVPComponents.Model{
     @Override
     public void addTeam(String name) {
         mLeague.addTeam(name);
+    }
+
+    @Override
+    public void addTeam(String name, LinkedList<String> members, String ID) {
+
+        mLeague.addTeam(name);
+        setSelectedTeam(name);
+        for (String member: members) {
+            mTeam.addPlayer(member);
+        }
+        mTeam.setPassword(ID);
+    }
+
+    @Override
+    public void uploadLeague(String name) {
+        mLeague.setLeagueName(name);
+        mLeague.createSchedule();
+        restPOST();
     }
 
 
