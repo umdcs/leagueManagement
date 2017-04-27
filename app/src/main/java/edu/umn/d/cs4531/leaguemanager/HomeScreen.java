@@ -125,11 +125,6 @@ public class HomeScreen extends AppCompatActivity implements MVPComponents.View 
         startActivity(leagueIntent);
     }
 
-    public void createLeague(View view) {
-        Intent leagueIntent = new Intent(this, CreateLeague.class);
-        startActivity(leagueIntent);
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
