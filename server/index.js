@@ -107,9 +107,9 @@ networkIORef.on('connection', function(socket) {
     });
 });
 
-app.get('/listLeagues', function(request, response)
+app.get('/leagueOne', function(request, response)
 {
-    response.json(inputHistory);
+    response.json(leagueOne);
     console.log('List of Leagues sent');
 });
 
