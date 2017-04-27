@@ -54,7 +54,6 @@ public class leagueModel implements MVPComponents.Model{
     {
         listOfLeagues = new LinkedList<League>();
 
-
         //Dummy list of leagues to send to the view for testing purposes DELETE AFTER TEST
         listOfLeagues.add(new League("Sunday 3:30PM FAF"));
         listOfLeagues.add(new League("Sunday 5PM Open"));
@@ -117,6 +116,7 @@ public class leagueModel implements MVPComponents.Model{
 
     @Override
     public LinkedList<League> getLeagues() {
+        restGETLeagues();
         return listOfLeagues;
     }
     @Override
