@@ -134,7 +134,7 @@ public class Team {
                     currentMatch.setTeamBScore(teamScore);
                 }
                 int otherTeamResult; //0 = win, 1 = loss, 2 = draw
-                if (currentMatch.getWinner() == this) {
+                if (currentMatch.getWinner().getTeamName().equals(teamName)) {
                     wins++;
                     otherTeamResult = 1;
                 } else if (currentMatch.getWinner().getTeamName() == "Draw") {
